@@ -1,0 +1,38 @@
+.first-img{
+  max-height: 200px;
+  width: 100%;
+}
+.about{
+  display: flex;
+  margin-top: 10px;
+}
+.about-me{
+  display: flex;
+  flex-direction: column;
+  margin-left:50px;
+}
+.about img{
+  width: 250px;
+  height: 250px;
+}
+.about-me p{
+  font-size: 24px;
+  margin: 10px 0px 10px 0px;
+  padding: 0;
+}
+.btn{
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: green;
+  font-size: 24px;
+  width: 160px;
+  height: 60px;
+  display: block;
+  border-radius: 4px;
+  outline: none;
+  border:none;
+}
+.btn a{
+  color:black;
+}

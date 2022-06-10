@@ -1,0 +1,16 @@
+.navbar{}
+.navbar_list{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+
+}
+.navbar_li {
+  margin: 20px 0 10px 20px;
+}
+.navbar_li:nth-last-child(1){
+  margin-top:100px;
+}
+.navbar_link{
+  font-size: 24px;
+}
