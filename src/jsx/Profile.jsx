@@ -20,17 +20,18 @@ const Article = () => {
         <div className="about-me">
           <p className="About-me_name">Name: Sergey Barzakouski</p>
           <p className="About-me_date">Date of birth: 18.08.1990</p>
-          <p className="About-me_city">City: Grodno</p>
-          <p className="About-me_date">Education: Grgu</p>
-          <p className="About-me_date">Website: w</p>
+          <p className="About-me_city">Country: Republic of Belarus, Grodno</p>
+          <p className="About-me_date">Education: Yanka Kupala State University of Grodno, faculty: Law'18</p>
+          <p className="About-me_date">Website: https://github.com/Izvra4ok</p>
         </div>
       </div>
       <div className="post">
           My post
           <form action="">
+          <input name="input" type="text" placeholder="Введите что-нибудь" />
             <textarea name="text" id="textarea" cols="100" rows="5"></textarea>
           </form>
-          <button className='btn' type='submit'><a href="#s">button</a></button>
+          <a className='button' href="#s">SEND</a>
           <div className="post-sent">
            <p>Post 1</p>
            <p>Post 2</p>
