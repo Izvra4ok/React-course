@@ -1,0 +1,20 @@
+.navbar{
+  grid-area:nav;
+  background-color: #007146;
+}
+.navbar_list{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.navbar_li {
+  margin:20px auto 20px 0px;
+}
+.navbar_li:nth-last-child(1){
+  margin-top:100px;
+}
+.navbar_link{
+  color:white;
+  font-size: 20px;
+}

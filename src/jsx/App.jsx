@@ -1,4 +1,5 @@
 import React from "react";
+import "./../css/nullstyle.css"
 import "./../css/App.css";
 import Article from "./Profile";
 import Header from "./Header";

@@ -1,22 +1,17 @@
 .app-wrapper{
   max-width: 1980px;
   margin:0 auto;
+  margin-top: 10px;
+  margin-left: 10px;
   display: grid;
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  grid-gap: 5px;
+  grid-gap: 10px;
   grid-template-areas:
   "header header"
   "nav content";
 }
-.header{
-  grid-area: header;
-  background: #0080595e;
-}
-.navbar{
-  grid-area:nav;
-  background-color: #0080595e;
-}
-.article{
-  grid-area: content;
+a {
+  color:black;
+  text-decoration: none;
 }

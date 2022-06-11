@@ -1,14 +1,14 @@
-import "./../css/Navbar.css"
+import mod from "./../css/Navbar.module.css"
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
-      <ul className="navbar_list">
-        <li className="navbar_li"><a href="#s" className="navbar_link">Profile</a></li>
-        <li className="navbar_li"><a href="#s" className="navbar_link">Message</a></li>
-        <li className="navbar_li"><a href="#s" className="navbar_link">News</a></li>
-        <li className="navbar_li"><a href="#s" className="navbar_link">Music</a></li>
-        <li className="navbar_li"><a href="#s" className="navbar_link">Settings</a></li>
+    <nav className={mod.navbar}>
+      <ul className={mod.navbar_list}>
+        <li className={mod.navbar_li}><a href="#s" className={mod.navbar_link}>Profile</a></li>
+        <li className={mod.navbar_li}><a href="#s" className={mod.navbar_link}>Message</a></li>
+        <li className={mod.navbar_li}><a href="#s" className={mod.navbar_link}>News</a></li>
+        <li className={mod.navbar_li}><a href="#s" className={`${mod.navbar_link} ${mod.active}`}>Music</a></li>
+        <li className={mod.navbar_li}><a href="#s" className={mod.navbar_link}>Settings</a></li>
       </ul>
     </nav>
 
