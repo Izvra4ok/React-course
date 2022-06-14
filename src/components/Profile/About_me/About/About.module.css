@@ -1,0 +1,36 @@
+.about {
+    display: flex;
+}
+
+.about_me {
+    min-height: 250px;
+    max-width: 670px;
+    padding-left: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-self: center;
+    min-width: 666px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.about_info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    margin: 10px 0px 10px 0px;
+}
+
+.about_span {
+    width: 70%;
+    margin: 0px 0px 0px auto;
+    font-size: 20px;
+}
+
+.separator {
+    width: 90%;
+    margin:0 auto;
+    border-top: 1px solid black;
+}

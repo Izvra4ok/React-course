@@ -1,0 +1,28 @@
+.post {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid rgba(73, 69, 69, 0.40);
+}
+
+.post_item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.message {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.like {
+    cursor: pointer;
+    margin-top: 5px;
+}

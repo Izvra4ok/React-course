@@ -3,5 +3,6 @@
   background:#007146;
 }
 .header_logo{
-  max-height: 100%;
+  width: inherit;
+  max-height: 60px;
 }
