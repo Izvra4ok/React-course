@@ -1,0 +1,18 @@
+.dialogues {
+    padding: 10px;
+
+}
+
+.dialogues_items {
+    font-size: 20px;
+
+}
+
+.dialog {
+    padding: 10px;
+}
+
+.active_link {
+    padding: 10px;
+    color: red;
+}

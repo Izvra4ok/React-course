@@ -1,8 +1,14 @@
 .header{
   grid-area: header;
-  background:#007146;
+  /*background:#007146;*/
+  background:#605e8ed4;
+  /*background:#0ac5a8;*/
+  width: 100%;
+  margin-top:20px;
+  height: 30px;
 }
 .header_logo{
-  width: inherit;
-  max-height: 60px;
+  margin-top:-10px;
+  width: 233px;
+  height: 60px;
 }

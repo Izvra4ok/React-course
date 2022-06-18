@@ -1,13 +1,13 @@
 import React from 'react';
 import mod from "./Profile.module.css";
 import About from "./About_me/About/About";
-import MyPost from "./My_post/MyPost";
+import NavbarPost from "./NavbarPost/NavbarPost"
 
 const Profile = () => {
     return (
         <section className={mod.profile}>
             <About/>
-            <MyPost/>
+            <NavbarPost/>
         </section>
     );
 };

@@ -2,12 +2,11 @@ import mod from "./About.module.css";
 import Ava from "../Ava/Ava";
 
 const About = () => {
-    debugger
     return (<div className={mod.about}>
         <Ava/>
         <div className={mod.about_me}>
             <p className={mod.about_info}>Name:
-                <span className={mod.about_span}>Sergey Barzakouski</span>
+                <span className={`${mod.about_span} ${mod.name}`}>Sergey Barzakouski</span>
             </p>
             <div className={mod.separator}></div>
             <p className={mod.about_info}>Birthday:
@@ -21,7 +20,7 @@ const About = () => {
             </p>
             <p className={mod.about_info}>Website:
                 <span className={mod.about_span}>
-                    <a href="https://github.com/Izvra4ok">https://github.com/Izvra4ok</a>
+                    <a href="https://github.com/Izvra4ok" target="_blank">github.com/Izvra4ok</a>
                 </span>
             </p>
         </div>

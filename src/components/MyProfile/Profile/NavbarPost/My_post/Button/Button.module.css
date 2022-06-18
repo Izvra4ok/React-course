@@ -1,0 +1,12 @@
+.button{
+  display: inline-block;
+  background:#007146;
+  text-align: center;
+  line-height: 50px;;
+  font-size: 18px;
+  width:160px;
+  height: 56px;
+  border:none;
+  margin-left:10px;
+  color:white;
+}

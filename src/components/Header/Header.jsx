@@ -1,16 +1,18 @@
 import React from "react";
 import mod from "./Header.module.css";
+import logo from "./obrez.png";
+import {Link} from "react-router-dom";
 
 const Header = () => {
   return (
     <header className={mod.header}>
-      <a  href="#s">
+     <Link to={"/profile"}>
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHJ-Qh4ynpRRSaheLuvFvsS_mQxLSbI5Yh0A&usqp=CAU"
+          src={logo}
           className={mod.header_logo}
           alt="header_logo"
         />
-      </a>
+      </Link>
     </header>
   );
 };
