@@ -8,7 +8,9 @@ const Post = (props) => {
             <div className={mod.message}> { props.message }</div>
         </div>
         {/*<div className={mod.like}>{props.likes} likes</div>*/}
-        <div className={mod.like}> <a href="#s"> { props.likes } likes</a></div>
+        <div className={mod.like}> <a href="#s"> { props.likes } likes</a>
+        <div>{"id "+props.id}</div>
+        </div>
 
     </div>);
 };

@@ -3,7 +3,7 @@ import mod from "./Button.module.css";
 const Button = (props) => {
     return (
         <span>
-            <a className={mod.button} href="#s">{ props.type }</a>
+            <a className={mod.button} href="#s">SEND</a>
         </span>
     );
 };

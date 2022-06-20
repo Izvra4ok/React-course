@@ -4,10 +4,10 @@ import Dialogues from "./Dialogues/Dialogues";
 import Messages from "./Messages/Messages";
 
 
-const Messenger = () => {
+const Messenger = (props) => {
     return (
         <section className={mod.messenger}>
-            <Dialogues/>
+            <Dialogues />
             <Messages/>
 
         </section>

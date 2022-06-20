@@ -11,11 +11,11 @@ const SelectedLink = () => {
 
 
 const Dialog = (props) => {
-    let path = "/messenger/" + props.id;
+    let url = "/messenger/" + props.id;
     return (
         <div className={mod.dialogues_items}>
             <div className={mod.dialog}>
-                <NavLink to={path}
+                <NavLink to={url}
                          className={SelectedLink()}>{props.name}</NavLink>
             </div>
         </div>

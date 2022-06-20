@@ -18,6 +18,7 @@
 .about_info {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     font-size: 16px;
     margin: 20px 0px 10px 0px;
@@ -26,13 +27,14 @@
     margin-bottom: 5px;
 }
 .about_span {
+
     width: 70%;
     margin: 0px 0px 0px auto;
     font-size: 20px;
 }
 .name{
-    font-size: 24px;
-    line-height: 0px;
+    font-size: 23px;
+    line-height: 1px;
 
 }
 
