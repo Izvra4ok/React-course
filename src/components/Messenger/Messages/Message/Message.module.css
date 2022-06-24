@@ -2,7 +2,3 @@
 .message {
     padding: 10px;
 }
-
-.message.active {
-    color: red;
-}

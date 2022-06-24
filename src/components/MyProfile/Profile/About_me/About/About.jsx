@@ -1,45 +1,26 @@
 import mod from "./About.module.css";
-import Ava from "../Ava/Ava";
+import AvaProfile from "../AvaProfile/AvaProfile";
 
 const About = (props) => {
-        let aboutMeData = [
-            {
-                id: 1,
-                name: "Sergey Barzakouski",
-                birthday: "18.08.1990",
-                country: "Republic of Belarus",
-                university: "Yanka Kupala State University of Grodno, facult: Law'18",
-                website: "https://github.com/Izvra4ok"
-            },
-            {
-                id: 2,
-                name: "Alina Grigas",
-                birthday: "29.12.1994",
-                country: "Republic of Belarus",
-                university: "Yanka Kupala State University of Grodno, facult: Psiho'18",
-                website: "https://github.com/Izvra4ok"
-            },
-        ];
         return (
             <div className={mod.about}>
-                <Ava/>
+                <AvaProfile/>
                 <div className={mod.about_me}>
                     <p className={mod.about_info}>Name:
-                        <span className={`${mod.about_span} ${mod.name}`}>{aboutMeData[0].name}</span>
+                        <span className={`${mod.about_span} ${mod.name}`}>{props.name}</span>
                     </p>
                     <div className={mod.separator}></div>
                     <p className={mod.about_info}>Birthday:
-                        <span className={mod.about_span}>18.08.1990</span>
+                        <span className={mod.about_span}>{props.birthday}</span>
                     </p>
                     <p className={mod.about_info}>Country:
-                        <span className={mod.about_span}>Republic of Belarus, Grodno</span>
+                        <span className={mod.about_span}>{props.country}</span>
                     </p>
-                    <p className={mod.about_info}>Education: <span className={mod.about_span}>Yanka
-                Kupala State University of Grodno, facult: Law'18</span>
+                    <p className={mod.about_info}>Education: <span className={mod.about_span}>{props.degree}</span>
                     </p>
                     <p className={mod.about_info}>Website:
                         <span className={mod.about_span}>
-                    <a href="https://github.com/Izvra4ok" target="_blank">github.com/Izvra4ok</a>
+                    <a href="https://github.com/Izvra4ok" target="_blank">{props.web}</a>
                 </span>
                     </p>
                 </div>

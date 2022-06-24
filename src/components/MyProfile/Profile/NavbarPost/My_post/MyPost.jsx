@@ -5,21 +5,16 @@ import TextareaButton from "./TextArea/TextArea";
 
 const MyPost = () => {
     let postData = [
-        {id: 1, message: "Hello", likes: 10},
-        {id: 2, message: "Hi", likes: 15},
-        {id: 3, message: "Good bye", likes: 25},
+        {id: 1, message: "Hello! What's new?", likes: 10, first: "Sergey", last: "Barzakouski",},
+        {id: 2, message: "Hi, how are you my friend?", likes: 15, first: "Alina", last: "Grigas",},
+        {id: 3, message: "Good bye bro", likes: 25, first: "Denis", last: "Barzakouski",},
     ];
     const postElement = postData
-        .map( p => <Post message={p.message} likes={p.likes} id={p.id}/>);
+        .map(p => <Post message={p.message} likes={p.likes} id={p.id} first={p.first} last={p.last}/>);
     return (
         <div className={mod.mypost}>
             <TextareaButton/>
             {postElement}
-            {/*<Post message={postData[0].message} likes={postData[0].likes}/>*/}
-            {/*<Post message={postData[0].message} likes={postData[0].likes}/>*/}
-            {/*<Post message={postData[0].message} likes={postData[0].likes}/>*/}
-            {/*<Post message={postData[0].message} likes={postData[0].likes}/>*/}
-
         </div>
     );
 };
