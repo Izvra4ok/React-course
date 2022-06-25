@@ -4,10 +4,9 @@
 
 .subnavbar {
     margin: 10px 10px 0px 0px;
-    height: 100%;
+    max-height: 27%;
     /*background-color: #007146;*/
-    background: #605e8ed4
-    /*background:#0ac5a8;*/
+    background-color: #605e8ed4
 }
 
 .subnavbar_list {

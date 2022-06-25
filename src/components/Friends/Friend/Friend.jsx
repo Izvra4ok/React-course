@@ -20,6 +20,7 @@ const Friend = (props) => {
                 </div>
                 <div className={mod.friend_info}>{props.age} years old, from {props.country} {props.city}</div>
                 <div className={mod.friend_links}>
+                    {props.ava}
                     <span><NavLink to={"/friends/write"} className={mod.friend_link}>Write message</NavLink></span>
                     <span><NavLink to={"/friends/call"} className={mod.friend_link}>Call</NavLink></span>
                 </div>

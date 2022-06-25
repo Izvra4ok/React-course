@@ -9,19 +9,7 @@ import {Routes, Route} from "react-router-dom"
 import Friends from "../Friends/Friends";
 
 
-// let dialogsData = [
-//     {id: 1, name: "Sergey"},
-//     {id: 2, name: "Alina"},
-//     {id: 3, name: "Denis"},
-//     {id: 4, name: "Anna"},
-//     {id: 5, name: "Vladimir"},
-// ];
-// let messagesData = [
-//     {id: 1, text: "Hi"},
-//     {id: 2, text: "Hello"},
-//     {id: 3, text: "Good bye"},
-//     {id: 4, text: "How are you?"},
-// ];
+
 const App = (props) => {
     return (
         <div className="app_wrapper">
@@ -29,10 +17,16 @@ const App = (props) => {
             <Navbar/>
             <div className="app_wrapper_content">
                 <Routes>
-                    <Route path="/profile/*" element={<Profile/>}></Route>
+                    <Route path="/profile/*"
+                           element={<Profile
+                               posts={props.state.profilePage.posts}
+                               about={props.state.profilePage.aboutme}/>}></Route>
                     <Route path="/messenger/*"
-                           element={<Messenger dialogues={props.dialogues} messages={props.messages}/>}></Route>
-                    <Route path="/friends/*" element={<Friends/>}></Route>
+                           element={<Messenger
+                               messages={props.state.messengerPage.messegaes}
+                               dialogues={props.state.messengerPage.dialogues}/>}></Route>
+                    <Route path="/friends/*"
+                           element={<Friends friends={props.state.friendsPage.friends}/>}></Route>
                 </Routes>
             </div>
 

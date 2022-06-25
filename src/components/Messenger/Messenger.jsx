@@ -11,7 +11,7 @@ const Messenger = (props) => {
     const dialogElement = props.dialogues
         .map(d => <Dialog id={d.id} name={d.name}/>)
     const messagesElement = props.messages
-        .map(m => <Message message={m.text} id={m.id}/>)
+        .map(m => <Message message={m.text} id={m.id}/>);
     return (
         <section className={mod.messenger}>
             <Dialogues dialogues={dialogElement}/>
