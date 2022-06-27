@@ -1,4 +1,20 @@
 
 .message {
+    width: 60%;
+    display: flex;
     padding: 10px;
+    margin-bottom: 10px;
+}
+
+.message:nth-child(even){
+    transform: translate(65%);
+    justify-content: flex-end;
+    background-color: #605e8e73;
+    border-radius:10px;
+}
+.message:nth-child(odd){
+
+    justify-content: flex-start;
+    background-color: #80808042;
+    border-radius: 10px;
 }

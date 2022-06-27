@@ -1,16 +1,14 @@
 .messages {
-    border:1px solid black;
+    display: grid;
     padding: 10px;
+    height: 40%;
+    overflow-x:  scroll;
+    margin-bottom: 10px;
 }
 
 .messages_items {
     font-size: 20px;
 }
-
-.message {
+.as{
     padding: 10px;
-}
-
-.message.active {
-    color: gold;
 }

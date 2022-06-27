@@ -14,7 +14,7 @@ const App = (props) => {
     return (
         <div className="app_wrapper">
             <Header/>
-            <Navbar/>
+            <Navbar online={props.state.navbarPage.onlinefriends}/>
             <div className="app_wrapper_content">
                 <Routes>
                     <Route path="/profile/*"
@@ -26,7 +26,9 @@ const App = (props) => {
                                messages={props.state.messengerPage.messegaes}
                                dialogues={props.state.messengerPage.dialogues}/>}></Route>
                     <Route path="/friends/*"
-                           element={<Friends friends={props.state.friendsPage.friends}/>}></Route>
+                           element={<Friends
+                               online={props.state.friendsPage.online}
+                               allfriends={props.state.friendsPage.friends}/>}></Route>
                 </Routes>
             </div>
 

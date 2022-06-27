@@ -1,4 +1,18 @@
-.friends{
-    color:black;
+.friends {
+    color: black;
     font-size: 20px;
+}
+
+.friends_available {
+    font-size: 21px;
+    display: flex;
+    padding: 10px;
+}
+
+.friends_available div{
+    margin-right: 50px;
+}
+.active_link {
+    padding: 10px;
+    font-weight: 500;
 }

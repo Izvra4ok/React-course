@@ -10,7 +10,7 @@ const Friend = (props) => {
             SelectedLink => SelectedLink.isActive ? mod.active_link : mod.friend_name
             );
         };
-        let url = "/friends/id" + props.first + props.last
+        let url = "/friends/id" + props.id + "=" + props.first + props.last
         return (
         <div className={mod.about_friend}>
             <FriendAva/>

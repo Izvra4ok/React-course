@@ -1,7 +1,7 @@
 .navbar {
     grid-area: nav;
     margin-left: 10px;
-    height: 550px;
+    height: 610px;
     min-width: 151px;
     /*background-color: #007146;*/
     background: #605e8ed4;
@@ -13,14 +13,18 @@
     flex-direction: column;
     align-content: center;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .navbar_li {
     position: relative;
-    margin: 10px auto 10px 0px;
+    margin: 5px auto 10px 0px;
 }
 
+.navbar_li:last-child{
+    margin-top:20px
+
+}
 .navbar_li:before {
     content: "";
     position: absolute;
@@ -31,24 +35,30 @@
     background: url("icons/navbarIcon.png") center no-repeat;
 }
 
-.navbar_li:nth-last-child(2) {
-    margin-top: 30px
-}
-
 .navbar_link {
     color: white;
     padding: 10px 9px 10px 25px;
     font-size: 18px;
 }
 
-
 .active_link {
     color: black;
+    font-weight: 500;
     padding: 10px 9px 10px 25px;
     font-size: 18px;
 }
 
+
 .separator {
     max-width: 100%;
     border-top: 1px solid white;
+}
+
+.onlineFriend {
+    overflow: hidden;
+    display: flex;
+    height: 180px;
+    margin:0px 5px 0px 5px;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }

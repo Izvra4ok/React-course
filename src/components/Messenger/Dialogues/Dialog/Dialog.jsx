@@ -8,12 +8,16 @@ const Dialog = (props) => {
             SelectedLink => SelectedLink.isActive ? mod.active_link : mod.dialog
         )
     };
-    let url = "/messenger/id" + props.id + "=" + props.name;
+    let url = "/messenger/id" + props.id + "=" + props.first + props.last;
     return (
         <div className={mod.dialogues_items}>
             <div className={mod.dialog}>
                 <NavLink to={url}
-                         className={SelectedLink()}>{props.name}</NavLink>
+                         className={SelectedLink()}>
+                    <img className={mod.dialogAva}
+                         src={"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}
+                         alt="avatar"/>
+                    {props.first} {props.last}  </NavLink>
             </div>
         </div>
     );

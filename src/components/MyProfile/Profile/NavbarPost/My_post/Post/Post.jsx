@@ -1,14 +1,14 @@
 import React from 'react';
 import mod from "./Post.module.css";
 import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const Post = (props) => {
-    let url = "/profile/" + props.first + props.last
+    let url = "/friends/id" + props.first + props.last
     return (
         <div className={mod.post}>
-            {props.first} {props.last}
+            <NavLink to={url}> {props.first} {props.last}</NavLink>
             <div className={mod.post_item}>
-                {/*component Avatars answers*/}
                 <Link to={url} className={mod.link_avatar}>
                     <img className={mod.image}
                          src="https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg"

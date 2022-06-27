@@ -9,7 +9,7 @@ import Message from "./Messages/Message/Message";
 
 const Messenger = (props) => {
     const dialogElement = props.dialogues
-        .map(d => <Dialog id={d.id} name={d.name}/>)
+        .map(d => <Dialog id={d.id} first={d.first} last={d.last}/>)
     const messagesElement = props.messages
         .map(m => <Message message={m.text} id={m.id}/>);
     return (

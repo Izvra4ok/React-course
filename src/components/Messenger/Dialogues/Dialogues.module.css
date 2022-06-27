@@ -1,6 +1,7 @@
 .dialogues {
     padding: 10px;
-    border:1px solid black;
+    background-color: #605e8e73;
     border-radius: 10px;
-
+    height: 620px;
+    overflow-y:  scroll;
 }
