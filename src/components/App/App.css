@@ -1,5 +1,5 @@
 .app_wrapper {
-    max-width: 1480px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
     grid-template-rows: 60px 1fr;

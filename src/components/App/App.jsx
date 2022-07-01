@@ -9,25 +9,26 @@ import {Routes, Route} from "react-router-dom"
 import Friends from "../Friends/Friends";
 
 
-
 const App = (props) => {
     return (
         <div className="app_wrapper">
             <Header/>
-            <Navbar online={props.state.navbarPage.onlinefriends}/>
+            <Navbar allfriends={props.state.friendsPage.friends}
+                online={props.state.navbarPage.onlinefriends}/>
             <div className="app_wrapper_content">
                 <Routes>
                     <Route path="/profile/*"
                            element={<Profile
+                               addpost={props.addpost}
                                posts={props.state.profilePage.posts}
                                about={props.state.profilePage.aboutme}/>}></Route>
                     <Route path="/messenger/*"
                            element={<Messenger
+                               addmessages={props.addmessages}
                                messages={props.state.messengerPage.messegaes}
                                dialogues={props.state.messengerPage.dialogues}/>}></Route>
                     <Route path="/friends/*"
                            element={<Friends
-                               online={props.state.friendsPage.online}
                                allfriends={props.state.friendsPage.friends}/>}></Route>
                 </Routes>
             </div>

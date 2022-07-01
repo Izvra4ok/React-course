@@ -5,7 +5,7 @@ import TextareaButton from "./TextArea/TextArea";
 const MyPost = (props) => {
     return (
         <div className={mod.mypost}>
-            <TextareaButton/>
+            <TextareaButton addpost={props.addpost}/>
             {props.posts}
         </div>
     );

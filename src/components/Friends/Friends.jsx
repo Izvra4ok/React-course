@@ -2,7 +2,6 @@ import React from "react";
 import mod from "./Friends.module.css";
 import Friend from "./Friend/Friend";
 import {NavLink} from "react-router-dom";
-// import OnlineFriends from "../Navbar/OnlineNavbarFriends/OnlineFriends";
 
 
 const Friends = (props) => {
@@ -12,9 +11,7 @@ const Friends = (props) => {
     };
     const FriendElement = props.allfriends.map(fr => <Friend id={fr.id} first={fr.first}
                                                              last={fr.last} age={fr.age} country={fr.country}
-                                                             city={fr.city}/>)
-    // const OnlineFriendsElement = props.online.map(fr => <OnlineFriends id={fr.id} first={fr.first} last={fr.last} age={fr.age}
-    //                                                             country={fr.country}/>);
+                                                             city={fr.city}/>);
     return (
         <section className={mod.friends}>
             <div className={mod.friends_available}>

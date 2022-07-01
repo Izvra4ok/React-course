@@ -16,7 +16,7 @@ const Profile = (props) => {
             {AboutMeElement}
             <div className={mod.navbarpost}>
             <NavbarPost/>
-            <MyPost posts={postElement}/>
+            <MyPost posts={postElement} addpost={props.addpost}/>
             </div>
         </section>
     );

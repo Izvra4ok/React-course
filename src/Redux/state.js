@@ -1,3 +1,5 @@
+import {renderEntireTree} from "../render";
+
 let state = {
     navbarPage: {
         onlinefriends: [
@@ -33,15 +35,6 @@ let state = {
             {id: 2, first: "Alina", last: "Grigas"},
             {id: 3, first: "Denis", last: "Barzakouski"},
             {id: 4, first: "Anna", last: "Barzakouski"},
-            {id: 5, first: "Vladimir", last: "Barzakouski"},
-            {id: 5, first: "Vladimir", last: "Barzakouski"},
-            {id: 5, first: "Vladimir", last: "Barzakouski"},
-            {id: 5, first: "Vladimir", last: "Barzakouski"},
-            {id: 5, first: "Vladimir", last: "Barzakouski"},
-            {id: 5, first: "Vladimir", last: "Barzakouski"},
-            {id: 5, first: "Vladimir", last: "Barzakouski"},
-            {id: 5, first: "Vladimir", last: "Barzakouski"},
-            {id: 4, first: "Anna", last: "Barzakouski"},
 
         ],
         messegaes: [
@@ -53,26 +46,6 @@ let state = {
             {id: 3, text: "Good bye"},
             {id: 4, text: "How are you?"},
             {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-            {id: 5, text: "Hello! I'm fine and you?"},
-
-
         ],
     },
     friendsPage: {
@@ -85,14 +58,26 @@ let state = {
             {id: 6, first: "Alexsadra", last: "Grigas", age: 60, country: "Belarus", city: "Grodno",},
             {id: 7, first: "Vova", last: "Barzakouski", age: 8, country: "The Netherlands", city: "Amsterdam",},
         ],
-        online: [
-            {id: 5, first: "Vladimir", last: "Barzakouski", age: 38, country: "Belarus", city: "Grodno",},
-            {id: 6, first: "Alexsadra", last: "Grigas", age: 60, country: "Belarus", city: "Grodno",},
-            {id: 7, first: "Vova", last: "Barzakouski", age: 8, country: "The Netherlands", city: "Amsterdam",},
-        ],
     },
 
 };
+
+export let addPost = (postMessage) => {
+    let newPost = {
+        id: 6, message: postMessage, likes: 0, first: "Denis", last: "Barzakouski",
+    };
+    state.profilePage.posts.push(newPost);
+    renderEntireTree(state)
+
+};
+export let addMessages = (postMessage) => {
+    let newMessage = {
+        id: 6, text: postMessage,
+    };
+    state.messengerPage.messegaes.push(newMessage);
+    renderEntireTree(state)
+};
+
 
 export default state;
 

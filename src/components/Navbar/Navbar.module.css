@@ -6,6 +6,7 @@
     /*background-color: #007146;*/
     background: #605e8ed4;
     /*background:#0ac5a8;*/
+    border-radius: 10px;
 }
 
 .navbar_list {
@@ -21,10 +22,11 @@
     margin: 5px auto 10px 0px;
 }
 
-.navbar_li:last-child{
-    margin-top:20px
+.navbar_li:last-child {
+    margin-top: 20px
 
 }
+
 .navbar_li:before {
     content: "";
     position: absolute;
@@ -49,16 +51,11 @@
 }
 
 
-.separator {
-    max-width: 100%;
-    border-top: 1px solid white;
-}
-
 .onlineFriend {
     overflow: hidden;
     display: flex;
     height: 180px;
-    margin:0px 5px 0px 5px;
+    margin: 0px 5px 0px 5px;
     justify-content: space-around;
     flex-wrap: wrap;
 }

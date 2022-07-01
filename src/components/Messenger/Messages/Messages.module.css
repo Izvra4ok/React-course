@@ -1,14 +1,32 @@
 .messages {
     display: grid;
     padding: 10px;
-    height: 40%;
-    overflow-x:  scroll;
+    height: 530px;
+    overflow-y:  auto;
     margin-bottom: 10px;
 }
 
 .messages_items {
     font-size: 20px;
 }
-.as{
+.form {
     padding: 10px;
+    display: flex;
+    width: 100%;
+}
+.areatext{
+    flex: 0 1 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.button{
+    display: inline-block;
+    background:#007146;
+    text-align: center;
+    line-height: 50px;;
+    font-size: 18px;
+    width:160px;
+    height: 56px;
+    border:none;
+    margin-left:10px;
+    color:white;
 }

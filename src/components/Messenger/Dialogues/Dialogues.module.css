@@ -2,6 +2,6 @@
     padding: 10px;
     background-color: #605e8e73;
     border-radius: 10px;
-    height: 620px;
-    overflow-y:  scroll;
+    height: 610px;
+    overflow-y:  auto;
 }

@@ -11,7 +11,7 @@ const Navbar = (props) => {
             SelectedLink => SelectedLink.isActive ? mod.active_link : mod.navbar_link
         );
   };
-        const onEl = props.online.map( on => <OnlineFriends id={on.id} first={on.first} last={on.last}/>);
+        const onlineFriendsElement = props.online.map( on => <OnlineFriends id={on.id} first={on.first} last={on.last}/>);
     return (
         <nav className={mod.navbar}>
             <ul className={mod.navbar_list}>
@@ -54,7 +54,7 @@ const Navbar = (props) => {
 
             </ul>
             <ul className={mod.onlineFriend}>
-                {onEl}
+                {onlineFriendsElement}
 
             </ul>
         </nav>

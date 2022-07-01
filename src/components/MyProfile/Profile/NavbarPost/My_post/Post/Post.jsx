@@ -4,10 +4,15 @@ import {Link} from "react-router-dom";
 import {NavLink} from "react-router-dom";
 
 const Post = (props) => {
-    let url = "/friends/id" + props.first + props.last
+    let addLikesElement = React.createRef();
+    let addLikes = () => {
+        let text = addLikesElement.current.value;
+        alert(props.likes + 1)
+    }
+    let url = "/friends/id" + props.first + props.last;
     return (
         <div className={mod.post}>
-            <NavLink to={url}> {props.first} {props.last}</NavLink>
+            <NavLink  to={url}> {props.first} {props.last}</NavLink>
             <div className={mod.post_item}>
                 <Link to={url} className={mod.link_avatar}>
                     <img className={mod.image}
@@ -17,7 +22,7 @@ const Post = (props) => {
                 <div className={mod.message}> {props.message}</div>
             </div>
             <div className={mod.like}>
-                <Link to={"/profile"}>{props.likes} likes</Link>
+                <Link onClick={addLikes} ref={addLikesElement} to={"/profile"}>{props.likes} likes</Link>
             </div>
 
         </div>);
