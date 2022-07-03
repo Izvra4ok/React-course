@@ -28,6 +28,9 @@ let state = {
             {id: 4, message: "Good bye bro", likes: 25, first: "Denis", last: "Barzakouski",},
             {id: 5, message: "Good bye bro", likes: 25, first: "Denis", last: "Barzakouski",},
         ],
+        newPostText: "Write"
+
+
     },
     messengerPage: {
         dialogues: [
@@ -62,14 +65,20 @@ let state = {
 
 };
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let newPost = {
-        id: 6, message: postMessage, likes: 0, first: "Denis", last: "Barzakouski",
+        id: 6, message: state.profilePage.newPostText, likes: 0, first: "Denis", last: "Barzakouski",
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = "";
     renderEntireTree(state)
-
 };
+
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    renderEntireTree(state)
+}
+
 export let addMessages = (postMessage) => {
     let newMessage = {
         id: 6, text: postMessage,

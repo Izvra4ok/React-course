@@ -19,7 +19,9 @@ const App = (props) => {
                 <Routes>
                     <Route path="/profile/*"
                            element={<Profile
-                               addpost={props.addpost}
+                               addPost={props.addPost}
+                               newPostText={props.state.profilePage.newPostText}
+                               updateNewPostText={props.updateNewPostText}
                                posts={props.state.profilePage.posts}
                                about={props.state.profilePage.aboutme}/>}></Route>
                     <Route path="/messenger/*"
