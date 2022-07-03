@@ -1,5 +1,8 @@
-import {renderEntireTree} from "../render";
+// import {renderEntireTree} from "../render";
 
+let renderEntireTree = () => {
+    alert("Stage changed")
+};
 let state = {
     navbarPage: {
         onlinefriends: [
@@ -65,7 +68,7 @@ let state = {
 
 };
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: 6, message: state.profilePage.newPostText, likes: 0, first: "Denis", last: "Barzakouski",
     };
@@ -74,18 +77,22 @@ export let addPost = () => {
     renderEntireTree(state)
 };
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
     renderEntireTree(state)
 }
 
-export let addMessages = (postMessage) => {
+export const addMessages = (postMessage) => {
     let newMessage = {
         id: 6, text: postMessage,
     };
     state.messengerPage.messegaes.push(newMessage);
     renderEntireTree(state)
 };
+
+export const subscriber = (observer) => {
+    renderEntireTree = observer;
+}
 
 
 export default state;
