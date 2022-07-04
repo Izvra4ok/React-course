@@ -1,0 +1,10 @@
+.form {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+}
+.areatext{
+  flex: 0 1 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+

@@ -1,9 +1,9 @@
 import React from 'react';
 import mod from "./Profile.module.css";
-import About from "./About_me/About/About";
-import NavbarPost from "./NavbarPost/NavbarPost"
-import MyPost from "./NavbarPost/My_post/MyPost";
-import Post from "./NavbarPost/My_post/Post/Post";
+import About from "./About_me/AboutInform/About";
+import SubNavbar from "./SubNavbar/SubNavbar";
+import MyPost from "./My_post/MyPost";
+import Post from "./My_post/Post/Post";
 
 const Profile = (props) => {
     let AboutMeElement = props.about
@@ -15,7 +15,7 @@ const Profile = (props) => {
         <section className={mod.profile}>
             {AboutMeElement}
             <div className={mod.navbarpost}>
-            <NavbarPost/>
+            <SubNavbar/>
             <MyPost
                 posts={postElement}
                 addPost={props.addPost}

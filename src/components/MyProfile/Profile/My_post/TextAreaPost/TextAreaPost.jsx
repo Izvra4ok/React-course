@@ -3,7 +3,6 @@ import mod from "./TextAreaPost.module.css";
 import ButtonPost from "../ButtonPost/ButtonPost";
 
 const TextareaPost = (props) => {
-    debugger
 
     let newPostElement = React.createRef();
 

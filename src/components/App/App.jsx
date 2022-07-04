@@ -19,19 +19,24 @@ const App = (props) => {
                 <Routes>
                     <Route path="/profile/*"
                            element={<Profile
+                               posts={props.state.profilePage.posts}
+                               about={props.state.profilePage.aboutme}
                                addPost={props.addPost}
                                newPostText={props.state.profilePage.newPostText}
-                               updateNewPostText={props.updateNewPostText}
-                               posts={props.state.profilePage.posts}
-                               about={props.state.profilePage.aboutme}/>}></Route>
+                               updateNewPostText={props.updateNewPostText}/>}>
+                    </Route>
                     <Route path="/messenger/*"
                            element={<Messenger
-                               addmessages={props.addmessages}
                                messages={props.state.messengerPage.messegaes}
-                               dialogues={props.state.messengerPage.dialogues}/>}></Route>
+                               dialogues={props.state.messengerPage.dialogues}
+                               addmessages={props.addmessages}
+                               newMessageText={props.state.messengerPage.newMessageText}
+                               updateNewMessageText={props.updateNewMessageText}/>}>
+                    </Route>
                     <Route path="/friends/*"
                            element={<Friends
-                               allfriends={props.state.friendsPage.friends}/>}></Route>
+                               allfriends={props.state.friendsPage.friends}/>}>
+                    </Route>
                 </Routes>
             </div>
 

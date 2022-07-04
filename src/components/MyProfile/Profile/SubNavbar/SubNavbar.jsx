@@ -11,6 +11,7 @@ const SelectedLink = (props) => {
 };
 const SubNavbar = () => {
     return (
+        <div className={mod.navbar}>
         <nav className={mod.subnavbar}>
             <ul className={mod.subnavbar_list}>
                 <li className={mod.subnavbar_li}>
@@ -27,6 +28,7 @@ const SubNavbar = () => {
                 </li>
             </ul>
         </nav>
+        </div>
     );
 };
 export default SubNavbar;

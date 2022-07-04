@@ -31,9 +31,7 @@ let state = {
             {id: 4, message: "Good bye bro", likes: 25, first: "Denis", last: "Barzakouski",},
             {id: 5, message: "Good bye bro", likes: 25, first: "Denis", last: "Barzakouski",},
         ],
-        newPostText: "Write"
-
-
+        newPostText: "Message from Post"
     },
     messengerPage: {
         dialogues: [
@@ -45,14 +43,12 @@ let state = {
         ],
         messegaes: [
             {id: 1, text: "Hi"},
-            {
-                id: 2,
-                text: "Hello!#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;"
-            },
+            {id: 2, text: "Hello!#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;#605e8e73;"},
             {id: 3, text: "Good bye"},
             {id: 4, text: "How are you?"},
             {id: 5, text: "Hello! I'm fine and you?"},
         ],
+        newMessageText: "Message from Messenger"
     },
     friendsPage: {
         friends: [
@@ -82,15 +78,21 @@ export const updateNewPostText = (newText) => {
     renderEntireTree(state)
 }
 
-export const addMessages = (postMessage) => {
+export const addMessages = () => {
     let newMessage = {
-        id: 6, text: postMessage,
+        id: 6, text: state.messengerPage.newMessageText,
     };
     state.messengerPage.messegaes.push(newMessage);
+    state.messengerPage.newMessageText = "";
     renderEntireTree(state)
 };
 
-export const subscriber = (observer) => {
+export const updateNewMessageText = (newMessage) => {
+    state.messengerPage.newMessageText = newMessage;
+    renderEntireTree(state)
+}
+
+export const  subscriber = (observer) => {
     renderEntireTree = observer;
 }
 

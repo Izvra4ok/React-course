@@ -15,7 +15,9 @@ const Messenger = (props) => {
     return (
         <section className={mod.messenger}>
             <Dialogues dialogues={dialogElement}/>
-            <Messages messages={messagesElement} addmessages={props.addmessages}/>
+            <Messages messages={messagesElement} addmessages={props.addmessages}
+                      newMessageText={props.newMessageText}
+                      updateNewMessageText={props.updateNewMessageText}/>
 
         </section>
     );

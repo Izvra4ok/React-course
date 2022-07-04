@@ -5,7 +5,9 @@ import {NavLink} from "react-router-dom";
 const ButtonPost = (props) => {
     return (
         <span>
-            <NavLink onClick={props.addpost} to={"send"} className={mod.button}>SEND</NavLink>
+            <NavLink to={"send"}>
+                <button className={mod.button} onClick={props.addpost}>SEND</button>
+            </NavLink>
         </span>
     );
 };

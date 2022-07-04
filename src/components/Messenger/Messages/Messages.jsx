@@ -1,14 +1,10 @@
 import React from "react";
 import mod from "./Messages.module.css";
 import {NavLink} from "react-router-dom";
+import TextAreaMessages from "./TextAreaMessage/TextAreaMessages";
 
 
 const Messages = (props) => {
-    let newMessagesElement = React.createRef();
-    let addMessages = () => {
-        let text = newMessagesElement.current.value;
-        props.addmessages(text);
-    };
     return (
         <div>
             <div className={mod.messages}>
@@ -16,15 +12,11 @@ const Messages = (props) => {
                     {props.messages}
                 </div>
             </div>
-            <form className={mod.form} action="#" method="post"  encType="multipart/form-data">
-            <textarea ref={newMessagesElement} className={mod.areatext} name="text" id="textarea"    rows="3" placeholder="Write...">
-            </textarea>
-                <span>
-            <NavLink onClick={addMessages} to={"send"} className={mod.button}>SEND</NavLink>
-        </span>
-            </form>
+            <TextAreaMessages addmessages={props.addmessages}
+                              newMessageText={props.newMessageText}
+                              updateNewMessageText={props.updateNewMessageText}/>
         </div>
-);
+    );
 };
 
 export default Messages;
