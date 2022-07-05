@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 
 
 const OnlineFriends = (props) => {
-    let url = "/friends/id" + props.first + props.last;
+    let url = "/friends/online/id" + props.first + props.last;
     return (
         <div>
             <NavLink to={url} className={mod.onlineFriend_Ava}>

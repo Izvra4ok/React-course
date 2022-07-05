@@ -35,7 +35,8 @@ const App = (props) => {
                     </Route>
                     <Route path="/friends/*"
                            element={<Friends
-                               allfriends={props.state.friendsPage.friends}/>}>
+                               allfriends={props.state.friendsPage.friends}
+                               online={props.state.navbarPage.onlinefriends}/>}>
                     </Route>
                 </Routes>
             </div>

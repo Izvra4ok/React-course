@@ -1,18 +1,16 @@
-// import {renderEntireTree} from "../render";
-
 let renderEntireTree = () => {
     alert("Stage changed")
 };
 let state = {
     navbarPage: {
         onlinefriends: [
-            {id: 1, first: "Yura", last: "Grigas"},
-            {id: 2, first: "Alina", last: "Grigas"},
-            {id: 3, first: "Denis", last: "Barzakouski"},
-            {id: 4, first: "Anna", last: "Barzakouskaya"},
-            {id: 5, first: "Vladimir", last: "Barzakouski"},
-            {id: 6, first: "Alexsadra", last: "Grigas"},
-            {id: 7, first: "Vova", last: "Barzakouski",},
+            {id: 1, first: "Yura", last: "Grigas", age: 40, country: "Belarus", city: "Grodno",},
+            {id: 2, first: "Alina", last: "Grigas", age: 18, country: "Belarus", city: "Grodno",},
+            {id: 3, first: "Denis", last: "Barzakouski", age: 38, country: "The Netherlands", city: "Amsterdam",},
+            {id: 4, first: "Anna", last: "Barzakouskaya", age: 38, country: "The Netherlands", city: "Amsterdam",},
+            {id: 5, first: "Vladimir", last: "Barzakouski", age: 38, country: "Belarus", city: "Grodno",},
+            {id: 6, first: "Alexsadra", last: "Grigas", age: 60, country: "Belarus", city: "Grodno",},
+            {id: 7, first: "Vova", last: "Barzakouski", age: 8, country: "The Netherlands", city: "Amsterdam",},
         ],
     },
     profilePage: {
@@ -56,9 +54,10 @@ let state = {
             {id: 2, first: "Alina", last: "Grigas", age: 18, country: "Belarus", city: "Grodno",},
             {id: 3, first: "Denis", last: "Barzakouski", age: 38, country: "The Netherlands", city: "Amsterdam",},
             {id: 4, first: "Anna", last: "Barzakouskaya", age: 38, country: "The Netherlands", city: "Amsterdam",},
-            {id: 5, first: "Vladimir", last: "Barzakouski", age: 38, country: "Belarus", city: "Grodno",},
-            {id: 6, first: "Alexsadra", last: "Grigas", age: 60, country: "Belarus", city: "Grodno",},
+            {id: 5, first: "Vladimir", last: "Barzakouski", age: 60, country: "Belarus", city: "Grodno",},
+            {id: 6, first: "Alexsadra", last: "Grigas", age: 40, country: "Belarus", city: "Grodno",},
             {id: 7, first: "Vova", last: "Barzakouski", age: 8, country: "The Netherlands", city: "Amsterdam",},
+            {id: 8, first: "Raya", last: "Barzakouskaya", age: 59, country: "Belarus", city: "Grodno",},
         ],
     },
 

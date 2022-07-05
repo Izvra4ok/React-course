@@ -1,6 +1,7 @@
 .friends {
     color: black;
     font-size: 20px;
+    display:flex;
 }
 
 .friends_available {
@@ -9,9 +10,6 @@
     padding: 10px;
 }
 
-.friends_available div{
-    margin-right: 50px;
-}
 .active_link {
     padding: 10px;
     font-weight: 500;

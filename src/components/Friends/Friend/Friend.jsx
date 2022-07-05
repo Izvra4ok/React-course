@@ -10,7 +10,7 @@ const Friend = (props) => {
             SelectedLink => SelectedLink.isActive ? mod.active_link : mod.friend_name
             );
         };
-        let url = "/friends/id" + props.first + props.last
+        let url = "id" + props.first + props.last
         return (
         <div className={mod.about_friend}>
             <FriendAva/>
@@ -21,8 +21,8 @@ const Friend = (props) => {
                 <div className={mod.friend_info}>{props.age} years old, from {props.country} {props.city}</div>
                 <div className={mod.friend_links}>
                     {props.ava}
-                    <span><NavLink to={"/friends/write"} className={mod.friend_link}>Write message</NavLink></span>
-                    <span><NavLink to={"/friends/call"} className={mod.friend_link}>Call</NavLink></span>
+                    <span><NavLink to={"all/write" + props.first + props.last} className={mod.friend_link}>Write message</NavLink></span>
+                    <span><NavLink to={"all/call" + props.first + props.last} className={mod.friend_link}>Call</NavLink></span>
                 </div>
             </div>
 

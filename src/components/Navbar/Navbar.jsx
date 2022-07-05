@@ -49,7 +49,7 @@ const Navbar = (props) => {
                     <NavLink to="/files/" className={SelectedLink()}>Files</NavLink>
                 </li>
                 <li className={mod.navbar_li}>
-                    <NavLink to="/friends/online/" className={mod.navbar_link}>Friends online</NavLink>
+                    <NavLink to="/friends/online" className={SelectedLink()}>Friends online</NavLink>
                 </li>
 
             </ul>
