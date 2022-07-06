@@ -6,12 +6,15 @@ import OnlineFriends from "./OnlineNavbarFriends/OnlineFriends";
 
 
 const Navbar = (props) => {
-    const SelectedLink = () => {
+
+    let SelectedLink = () => {
         return (
             SelectedLink => SelectedLink.isActive ? mod.active_link : mod.navbar_link
         );
   };
-        const onlineFriendsElement = props.online.map( on => <OnlineFriends id={on.id} first={on.first} last={on.last}/>);
+
+        let onlineFriendsElement = props.online.map( on => <OnlineFriends id={on.id} first={on.first} last={on.last}/>);
+
     return (
         <nav className={mod.navbar}>
             <ul className={mod.navbar_list}>

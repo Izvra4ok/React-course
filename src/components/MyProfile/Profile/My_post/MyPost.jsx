@@ -9,7 +9,7 @@ const MyPost = (props) => {
                 addPost={props.addPost}
                 newPostText={props.newPostText}
                 updateNewPostText={props.updateNewPostText}/>
-            {props.posts}
+                {props.posts}
         </div>
     );
 };

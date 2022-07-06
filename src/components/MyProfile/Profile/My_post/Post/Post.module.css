@@ -3,7 +3,10 @@
     padding: 10px;
     border: 1px solid rgba(73, 69, 69, 0.40);
 }
-
+.postUser{
+    font-size: 18px;
+    font-weight: 500;
+}
 .post_item {
     display: flex;
     align-items: center;
@@ -19,9 +22,5 @@
 
 .message {
     margin-left: 10px;
+    font-size: 14px;
 }
-
-/*.like {*/
-/*    cursor: pointer;*/
-/*    margin-top: 5px;*/
-/*}*/

@@ -7,13 +7,16 @@ import FriendsOnline from "./OnlineFriends/FriendsOnline";
 
 
 const Friends = (props) => {
+
     const SelectedLink = () => {
         return (
             SelectLink => SelectLink.isActive ? mod.active_link : mod.friends_available)
     };
+
     let FriendElement = props.allfriends.map(fr => <Friend id={fr.id} first={fr.first}
                                                            last={fr.last} age={fr.age} country={fr.country}
                                                            city={fr.city}/>);
+
     let onlineFriendElement = props.online.map(fr => <FriendsOnline id={fr.id} first={fr.first}
                                                              last={fr.last} age={fr.age} country={fr.country}
                                                              city={fr.city}/>);

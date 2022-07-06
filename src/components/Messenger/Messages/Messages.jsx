@@ -1,6 +1,5 @@
 import React from "react";
 import mod from "./Messages.module.css";
-import {NavLink} from "react-router-dom";
 import TextAreaMessages from "./TextAreaMessage/TextAreaMessages";
 
 

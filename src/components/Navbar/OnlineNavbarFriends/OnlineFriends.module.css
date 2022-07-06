@@ -1,4 +1,4 @@
-.onlineFriend_Ava {
+.onlineFriendAva {
     font-size: 15px;
     display: flex;
     flex-wrap: wrap;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.onlineFriend_Ava img {
+.onlineFriendAva img {
     margin:0px 10px 0px 10px;
     border-radius: 100%;
     width: 50px;
