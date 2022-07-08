@@ -3,12 +3,15 @@ import mod from "./Dialog.module.css";
 import {NavLink} from "react-router-dom";
 
 const Dialog = (props) => {
-    const SelectedLink = () => {
+
+    let SelectedLink = () => {
         return (
             SelectedLink => SelectedLink.isActive ? mod.active_link : mod.dialog
         )
     };
+
     let url = "/messenger/id" + props.id + "=" + props.first + props.last;
+
     return (
         <div className={mod.dialogues_items}>
             <div className={mod.dialog}>

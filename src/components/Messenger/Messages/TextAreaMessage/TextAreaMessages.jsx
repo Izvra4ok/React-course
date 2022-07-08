@@ -7,13 +7,16 @@ const TextAreaMessages = (props) => {
     let newMessagesElement = React.createRef();
 
     let addMessage = () => {
-        let text = newMessagesElement.current.value;
-        props.addmessages(text);
+        // let action = {type: "ADD-MESSAGE"};
+        // props.dispatch(action);
+        props.dispatch({type: "ADD-MESSAGE"});
     };
 
     let onMessageChange = () => {
+        debugger
         let text = newMessagesElement.current.value;
-        props.updateNewMessageText(text)
+        let action = {type: "UPDATE-NEW-MESSAGE-TEXT", newMessage: text};
+        props.dispatch(action)
     }
 
     return (

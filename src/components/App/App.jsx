@@ -10,6 +10,7 @@ import Friends from "../Friends/Friends";
 
 
 const App = (props) => {
+
     return (
         <div className="app_wrapper">
             <Header/>
@@ -17,27 +18,29 @@ const App = (props) => {
                 online={props.state.navbarPage.onlinefriends}/>
             <div className="app_wrapper_content">
                 <Routes>
+
                     <Route path="/profile/*"
                            element={<Profile
                                posts={props.state.profilePage.posts}
                                about={props.state.profilePage.aboutme}
-                               addPost={props.addPost}
                                newPostText={props.state.profilePage.newPostText}
-                               updateNewPostText={props.updateNewPostText}/>}>
+                               dispatch={props.dispatch}/>}>
                     </Route>
+
                     <Route path="/messenger/*"
                            element={<Messenger
                                messages={props.state.messengerPage.messegaes}
                                dialogues={props.state.messengerPage.dialogues}
-                               addmessages={props.addmessages}
                                newMessageText={props.state.messengerPage.newMessageText}
-                               updateNewMessageText={props.updateNewMessageText}/>}>
+                               dispatch={props.dispatch}/>}>
                     </Route>
+
                     <Route path="/friends/*"
                            element={<Friends
                                allfriends={props.state.friendsPage.friends}
                                online={props.state.navbarPage.onlinefriends}/>}>
                     </Route>
+
                 </Routes>
             </div>
 

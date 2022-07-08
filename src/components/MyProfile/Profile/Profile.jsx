@@ -6,6 +6,7 @@ import MyPost from "./My_post/MyPost";
 import Post from "./My_post/Post/Post";
 
 const Profile = (props) => {
+
     let AboutMeElement = props.about
         .map(info => <About id={info.id} name={info.name} birthday={info.birthday} country={info.country}
                             degree={info.university} web={info.website}/>)
@@ -20,9 +21,8 @@ const Profile = (props) => {
             <SubNavbar/>
             <MyPost
                 posts={postElement}
-                addPost={props.addPost}
                 newPostText={props.newPostText}
-                updateNewPostText={props.updateNewPostText}/>
+                dispatch={props.dispatch}/>
             </div>
         </section>
     );

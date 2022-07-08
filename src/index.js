@@ -14,10 +14,7 @@ let renderEntireTree = (state) => {
         <React.StrictMode>
             <BrowserRouter>
                 <App state={state}
-                     addPost={store.addPost.bind(store)}
-                     addmessages={store.addMessages.bind(store)}
-                     updateNewPostText={store.updateNewPostText.bind(store)}
-                     updateNewMessageText={store.updateNewMessageText.bind(store)}/>
+                     dispatch={store.dispatch.bind(store)}/>
             </BrowserRouter>
         </React.StrictMode>
     );

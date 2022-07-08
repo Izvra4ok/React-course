@@ -4,6 +4,7 @@ import TextAreaMessages from "./TextAreaMessage/TextAreaMessages";
 
 
 const Messages = (props) => {
+
     return (
         <div>
             <div className={mod.messages}>
@@ -11,9 +12,8 @@ const Messages = (props) => {
                     {props.messages}
                 </div>
             </div>
-            <TextAreaMessages addmessages={props.addmessages}
-                              newMessageText={props.newMessageText}
-                              updateNewMessageText={props.updateNewMessageText}/>
+            <TextAreaMessages newMessageText={props.newMessageText}
+                              dispatch={props.dispatch}/>
         </div>
     );
 };

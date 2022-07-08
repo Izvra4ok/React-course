@@ -4,12 +4,16 @@ import {NavLink} from "react-router-dom";
 
 
 
-const SelectedLink = (props) => {
-    return (
-        SelectedLink => SelectedLink.isActive ? mod.active_link : mod.subnavbar_link
-    );
-};
+
 const SubNavbar = () => {
+
+    const SelectedLink = (props) => {
+
+        return (
+            SelectedLink => SelectedLink.isActive ? mod.active_link : mod.subnavbar_link
+        );
+    };
+
     return (
         <div className={mod.navbar}>
         <nav className={mod.subnavbar}>
