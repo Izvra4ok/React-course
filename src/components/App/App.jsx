@@ -18,35 +18,29 @@ const App = (props) => {
                 online={props.state.navbarPage.onlinefriends}/>
             <div className="app_wrapper_content">
                 <Routes>
-
                     <Route path="/profile/*"
                            element={<Profile
                                posts={props.state.profilePage.posts}
-                               about={props.state.profilePage.aboutme}
+                               aboutme={props.state.profilePage.aboutme}
                                newPostText={props.state.profilePage.newPostText}
                                dispatch={props.dispatch}/>}>
-                    </Route>
 
+                    </Route>
                     <Route path="/messenger/*"
                            element={<Messenger
-                               messages={props.state.messengerPage.messegaes}
+                               messages={props.state.messengerPage.messages}
                                dialogues={props.state.messengerPage.dialogues}
                                newMessageText={props.state.messengerPage.newMessageText}
                                dispatch={props.dispatch}/>}>
                     </Route>
-
                     <Route path="/friends/*"
                            element={<Friends
                                allfriends={props.state.friendsPage.friends}
                                online={props.state.navbarPage.onlinefriends}/>}>
                     </Route>
-
                 </Routes>
             </div>
-
         </div>
-
-
     );
 }
 

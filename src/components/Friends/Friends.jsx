@@ -5,7 +5,6 @@ import {NavLink, Route, Routes} from "react-router-dom";
 import FriendsOnline from "./OnlineFriends/FriendsOnline";
 
 
-
 const Friends = (props) => {
 
     const SelectedLink = () => {
@@ -13,33 +12,37 @@ const Friends = (props) => {
             SelectLink => SelectLink.isActive ? mod.active_link : mod.friends_available)
     };
 
-    let FriendElement = props.allfriends.map(fr => <Friend id={fr.id} first={fr.first}
+    let FriendStatePropsMap = props.allfriends.map(fr => <Friend key={fr.toString()} id={fr.id} first={fr.first}
                                                            last={fr.last} age={fr.age} country={fr.country}
-                                                           city={fr.city}/>);
+                                                           city={fr.city} ava={fr.ava}/>);
 
-    let onlineFriendElement = props.online.map(fr => <FriendsOnline id={fr.id} first={fr.first}
+    let onlineFriendsStatePropsMap = props.online.map(fr => <FriendsOnline id={fr.id} first={fr.first}
                                                              last={fr.last} age={fr.age} country={fr.country}
                                                              city={fr.city}/>);
     return (
-        <div>
-        <section className={mod.friends}>
+        <section className={mod.allFriends}>
+        <div className={mod.friends}>
             <NavLink to={"online"} className={SelectedLink()}>
-                <div className={mod.friends_available}>Online friends</div></NavLink>
+                <div className={mod.friends_available}>
+                    Online friends
+                </div>
+            </NavLink>
             <NavLink to={"all"} className={SelectedLink()}>
-                <div className={mod.friends_available}>All friends</div></NavLink>
-        </section>
+                <div className={mod.friends_available}>
+                    All friends
+                </div>
+            </NavLink>
+        </div>
             <Routes>
                 <Route path="online/*"
-                       element={onlineFriendElement}>
+                       element={onlineFriendsStatePropsMap}>
                 </Route>
                 <Route path="*"
-                       element={FriendElement}>
+                       element={FriendStatePropsMap}>
                 </Route>
-
             </Routes>
-
-
-        </div>
+        </section>
     );
-}
+};
+
 export default Friends;

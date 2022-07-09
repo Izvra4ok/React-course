@@ -3,10 +3,14 @@ import mod from "./ButtonPost.module.css";
 import {NavLink} from "react-router-dom";
 
 const ButtonPost = (props) => {
+
     return (
         <span>
             <NavLink to={"send"}>
-                <button className={mod.button} onClick={props.addpost}>SEND</button>
+                <button className={mod.button}
+                        onClick={props.onAddPostClick}>
+                    SEND
+                </button>
             </NavLink>
         </span>
     );

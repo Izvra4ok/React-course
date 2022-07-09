@@ -1,31 +1,29 @@
 import React from "react";
 import mod from "./TextAreaMessages.module.css";
 import ButtonMessage from "../ButtonMessage/ButtonMessage";
+import {addMessageActionCreator,updateNewMessageTextActionCreator} from "../../../../Redux/state";
 
 const TextAreaMessages = (props) => {
 
-    let newMessagesElement = React.createRef();
 
-    let addMessage = () => {
-        // let action = {type: "ADD-MESSAGE"};
-        // props.dispatch(action);
-        props.dispatch({type: "ADD-MESSAGE"});
+    let onAddMessageClick = () => {
+        props.dispatch(addMessageActionCreator());
     };
 
-    let onMessageChange = () => {
-        debugger
-        let text = newMessagesElement.current.value;
-        let action = {type: "UPDATE-NEW-MESSAGE-TEXT", newMessage: text};
-        props.dispatch(action)
+    let onMessageChange = (event) => {
+        let text = event.target.value;
+        props.dispatch(updateNewMessageTextActionCreator(text))
     }
 
     return (
         <div>
             <form className={mod.form} action="#" method="post" encType="multipart/form-data">
-                <textarea ref={newMessagesElement} onChange={onMessageChange} value={props.newMessageText}
-                          className={mod.areatext} name="text" id="textarea" rows="3"/>
+                <textarea className={mod.areatext} name="text" id="textarea" rows="3"
+                          placeholder={"Enter your message"}
+                          onChange={onMessageChange}
+                          value={props.newMessageText}/>
                 <span>
-                    <ButtonMessage addMessage={addMessage}/>
+                    <ButtonMessage onAddMessageClick={onAddMessageClick}/>
         </span>
             </form>
         </div>

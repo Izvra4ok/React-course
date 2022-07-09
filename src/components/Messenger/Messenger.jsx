@@ -6,22 +6,20 @@ import Dialog from "./Dialogues/Dialog/Dialog";
 import Message from "./Messages/Message/Message";
 
 
-
 const Messenger = (props) => {
 
-    const dialogElement = props.dialogues
+    const dialogStatePropsMap = props.dialogues
         .map(d => <Dialog id={d.id} first={d.first} last={d.last}/>)
 
-    const messagesElement = props.messages
+    const messagesStatePropsMap = props.messages
         .map(m => <Message message={m.text} id={m.id}/>);
 
     return (
         <section className={mod.messenger}>
-            <Dialogues dialogues={dialogElement}/>
-            <Messages messages={messagesElement}
+            <Dialogues dialogues={dialogStatePropsMap}/>
+            <Messages messages={messagesStatePropsMap}
                       newMessageText={props.newMessageText}
                       dispatch={props.dispatch}/>
-
         </section>
     );
 };

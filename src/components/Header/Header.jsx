@@ -3,6 +3,7 @@ import mod from "./Header.module.css";
 import logo from "./obrez.png";
 import {Link} from "react-router-dom";
 
+
 const Header = () => {
   return (
     <header className={mod.header}>
@@ -10,8 +11,7 @@ const Header = () => {
         <img
           src={logo}
           className={mod.header_logo}
-          alt="header_logo"
-        />
+          alt="header_logo"/>
       </Link>
     </header>
   );

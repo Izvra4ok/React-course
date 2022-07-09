@@ -1,30 +1,27 @@
 import React from "react";
 import mod from "./TextAreaPost.module.css";
 import ButtonPost from "../ButtonPost/ButtonPost";
+import {addPostActionCreator,updateNewPostTextActionCreator} from "../../../../../Redux/state";
 
 const TextareaPost = (props) => {
 
-    let newPostElement = React.createRef();
+    let onAddPostClick = () => {
+        props.dispatch(addPostActionCreator());
+    };
 
-    let addPost = () => {
-        // let action = {type: "ADD-POST"};
-        // props.dispatch(action);
-        props.dispatch({type: "ADD-POST"});
-
-    }
-
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
-        let action = {type: "UPDATE-NEW-POST-TEXT", newText: text};
-        props.dispatch(action);
-    }
+    let onPostChange = (event) => {
+        let text = event.target.value;
+        props.dispatch(updateNewPostTextActionCreator(text));
+    };
 
     return (
         <div className={mod.post}>
             <form className={mod.form} action="#" method="post" encType="multipart/form-data">
-            <textarea ref={newPostElement} onChange={onPostChange} className={mod.areatext} name="text" id="textarea" rows="3"
+            <textarea className={mod.areatext} name="text" id="textarea" rows="3"
+                      placeholder={"Enter your post"}
+                      onChange={onPostChange}
                       value={props.newPostText}/>
-                <ButtonPost addpost={addPost}/>
+                <ButtonPost onAddPostClick={onAddPostClick}/>
             </form>
         </div>
     );
