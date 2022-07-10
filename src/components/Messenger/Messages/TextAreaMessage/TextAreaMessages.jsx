@@ -1,7 +1,7 @@
 import React from "react";
 import mod from "./TextAreaMessages.module.css";
 import ButtonMessage from "../ButtonMessage/ButtonMessage";
-import {addMessageActionCreator,updateNewMessageTextActionCreator} from "../../../../Redux/state";
+import {addMessageActionCreator,updateNewMessageTextActionCreator} from "../../../../Redux/messengerPageReducer";
 
 const TextAreaMessages = (props) => {
 

@@ -1,7 +1,7 @@
 import React from "react";
 import mod from "./TextAreaPost.module.css";
 import ButtonPost from "../ButtonPost/ButtonPost";
-import {addPostActionCreator,updateNewPostTextActionCreator} from "../../../../../Redux/state";
+import {addPostActionCreator,updateNewPostTextActionCreator} from "../../../../../Redux/profilePageReducer";
 
 const TextareaPost = (props) => {
 
@@ -21,6 +21,7 @@ const TextareaPost = (props) => {
                       placeholder={"Enter your post"}
                       onChange={onPostChange}
                       value={props.newPostText}/>
+
                 <ButtonPost onAddPostClick={onAddPostClick}/>
             </form>
         </div>
