@@ -67,25 +67,24 @@ let store = {
             ],
         },
     },
-    _callSubscriber() {
+    _callSubscribe() {
         alert("Stage changed")
     },
 
     getState() {
         return this._state
     },
-    subscriber(observer) {
-        this._callSubscriber = observer;
+    subscribe(observer) {
+        this._callSubscribe = observer;
     },
 
     dispatch(action) {
         this._state.profilePage = profilePageReducer(this._state.profilePage, action)
         this._state.messengerPage = messengerPageReducer(this._state.messengerPage, action)
 
-        this._callSubscriber(this._state)
+        this._callSubscribe(this._state)
     }}
 
 export default store;
-window.store = store;
 
 

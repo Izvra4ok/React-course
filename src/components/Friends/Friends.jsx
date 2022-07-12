@@ -32,12 +32,15 @@ const Friends = (props) => {
                     All friends
                 </div>
             </NavLink>
+
         </div>
             <Routes>
                 <Route path="online/*"
                        element={onlineFriendsStatePropsMap}>
                 </Route>
-                <Route path="*"
+            </Routes>
+            <Routes>
+                <Route path="all/*"
                        element={FriendStatePropsMap}>
                 </Route>
             </Routes>

@@ -30,7 +30,7 @@ const About = (props) => {
                     </p>
                     <p className={mod.about_info}>Website:
                         <span className={mod.about_span}>
-                    <a href="https://github.com/Izvra4ok" target="_blank">
+                    <a href="https://github.com/Izvra4ok">
                         {props.web}
                     </a>
                         </span>

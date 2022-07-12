@@ -23,7 +23,7 @@ const Navbar = (props) => {
                     </NavLink>
                 </li>
                 <li className={mod.navbar_li}>
-                    <NavLink to="/friends/" className={SelectedLink()}>
+                    <NavLink to="/friends/all" className={SelectedLink()}>
                         Friends
                     </NavLink>
                 </li>

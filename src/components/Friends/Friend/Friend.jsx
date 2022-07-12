@@ -29,11 +29,11 @@ const Friend = (props) => {
                 <div className={mod.friend_links}>
                     {props.ava}
                     <span>
-                        <NavLink to={"all/write" + props.first + props.last} className={mod.friend_link}>Write message
+                        <NavLink to={"write" + props.first + props.last} className={mod.friend_link}>Write message
                         </NavLink>
                     </span>
                     <span>
-                        <NavLink to={"all/call" + props.first + props.last} className={mod.friend_link}>
+                        <NavLink to={"call" + props.first + props.last} className={mod.friend_link}>
                             Call
                         </NavLink>
                     </span>
