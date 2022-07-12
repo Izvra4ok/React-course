@@ -10,12 +10,13 @@ import store from "./Redux/reduxStore"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 let renderEntireTree = (state) => {
-    debugger
     root.render(
         <React.StrictMode>
             <BrowserRouter>
                 <App state={state}
-                     dispatch={store.dispatch.bind(store)}/>
+                     store={store}
+                     //dispatch={store.dispatch.bind(store)}
+                />
             </BrowserRouter>
         </React.StrictMode>
     );

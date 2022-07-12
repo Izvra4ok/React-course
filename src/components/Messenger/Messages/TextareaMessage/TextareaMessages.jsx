@@ -1,18 +1,17 @@
 import React from "react";
-import mod from "./TextAreaMessages.module.css";
+import mod from "./TextareaMessages.module.css";
 import ButtonMessage from "../ButtonMessage/ButtonMessage";
-import {addMessageActionCreator,updateNewMessageTextActionCreator} from "../../../../Redux/messengerPageReducer";
 
-const TextAreaMessages = (props) => {
+const TextareaMessages = (props) => {
 
 
     let onAddMessageClick = () => {
-        props.dispatch(addMessageActionCreator());
+        props.addMessage();
     };
 
     let onMessageChange = (event) => {
         let text = event.target.value;
-        props.dispatch(updateNewMessageTextActionCreator(text))
+        props.updateNewMessageText(text)
     }
 
     return (
@@ -21,13 +20,13 @@ const TextAreaMessages = (props) => {
                 <textarea className={mod.areatext} name="text" id="textarea" rows="3"
                           placeholder={"Enter your message"}
                           onChange={onMessageChange}
-                          value={props.newMessageText}/>
+                          value={props.newMessageText} />
                 <span>
-                    <ButtonMessage onAddMessageClick={onAddMessageClick}/>
+                    <ButtonMessage onAddMessageClick={onAddMessageClick} />
         </span>
             </form>
         </div>
     );
 };
 
-export default TextAreaMessages;
+export default TextareaMessages;

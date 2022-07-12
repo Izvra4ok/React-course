@@ -1,17 +1,16 @@
 import React from "react";
-import mod from "./TextAreaPost.module.css";
+import mod from "./TextareaPost.module.css";
 import ButtonPost from "../ButtonPost/ButtonPost";
-import {addPostActionCreator,updateNewPostTextActionCreator} from "../../../../../Redux/profilePageReducer";
 
 const TextareaPost = (props) => {
 
     let onAddPostClick = () => {
-        props.dispatch(addPostActionCreator());
+        props.addPost();
     };
 
     let onPostChange = (event) => {
         let text = event.target.value;
-        props.dispatch(updateNewPostTextActionCreator(text));
+        props.updateNewPostText(text)
     };
 
     return (
@@ -20,9 +19,9 @@ const TextareaPost = (props) => {
             <textarea className={mod.areatext} name="text" id="textarea" rows="3"
                       placeholder={"Enter your post"}
                       onChange={onPostChange}
-                      value={props.newPostText}/>
+                      value={props.newPostText} />
 
-                <ButtonPost onAddPostClick={onAddPostClick}/>
+                <ButtonPost onAddPostClick={onAddPostClick} />
             </form>
         </div>
     );

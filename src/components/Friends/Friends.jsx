@@ -14,11 +14,11 @@ const Friends = (props) => {
 
     let FriendStatePropsMap = props.allfriends.map(fr => <Friend key={fr.toString()} id={fr.id} first={fr.first}
                                                            last={fr.last} age={fr.age} country={fr.country}
-                                                           city={fr.city} ava={fr.ava}/>);
+                                                           city={fr.city} ava={fr.ava} />);
 
     let onlineFriendsStatePropsMap = props.online.map(fr => <FriendsOnline id={fr.id} first={fr.first}
                                                              last={fr.last} age={fr.age} country={fr.country}
-                                                             city={fr.city}/>);
+                                                             city={fr.city} />);
     return (
         <section className={mod.allFriends}>
         <div className={mod.friends}>

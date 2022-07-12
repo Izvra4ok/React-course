@@ -1,6 +1,6 @@
 import React from "react";
 import mod from "./Messages.module.css";
-import TextAreaMessages from "./TextAreaMessage/TextAreaMessages";
+import TextareaMessagesContainer from "./TextareaMessage/TextareaMessagesContainer";
 
 
 const Messages = (props) => {
@@ -12,8 +12,8 @@ const Messages = (props) => {
                     {props.messages}
                 </div>
             </div>
-            <TextAreaMessages newMessageText={props.newMessageText}
-                              dispatch={props.dispatch}/>
+            <TextareaMessagesContainer newMessageText={props.newMessageText}
+                                       store={props.store}/>
         </div>
     );
 };

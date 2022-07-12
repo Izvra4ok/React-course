@@ -10,33 +10,32 @@ import Friends from "../Friends/Friends";
 
 
 const App = (props) => {
-
+debugger
     return (
         <div className="app_wrapper">
             <Header/>
-            <Navbar online={props.state.friendsPage.onlinefriends}/>
-
+            <Navbar online={props.state.friendsPage.onlinefriends} />
             <div className="app_wrapper_content">
                 <Routes>
                     <Route path="/profile/*"
                            element={<Profile
+                               store={props.store}
                                posts={props.state.profilePage.posts}
                                aboutme={props.state.profilePage.aboutme}
-                               newPostText={props.state.profilePage.newPostText}
-                               dispatch={props.dispatch}/>}>
+                           />}>
 
                     </Route>
                     <Route path="/messenger/*"
                            element={<Messenger
+                               store={props.store}
                                messages={props.state.messengerPage.messages}
                                dialogues={props.state.messengerPage.dialogues}
-                               newMessageText={props.state.messengerPage.newMessageText}
-                               dispatch={props.dispatch}/>}>
+                           />}>
                     </Route>
                     <Route path="/friends/*"
                            element={<Friends
                                allfriends={props.state.friendsPage.friends}
-                               online={props.state.friendsPage.onlinefriends}/>}>
+                               online={props.state.friendsPage.onlinefriends} />}>
                     </Route>
                 </Routes>
             </div>
