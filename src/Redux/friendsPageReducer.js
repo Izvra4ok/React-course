@@ -1,6 +1,7 @@
 
 let initialstate = {
-    friends: [
+
+    allfriends: [
         {id: 1, first: "Yura", last: "Grigas", age: 40, country: "Belarus", city: "Grodno",},
         {id: 2, first: "Alina", last: "Grigas", age: 18, country: "Belarus", city: "Grodno",},
         {id: 3, first: "Denis", last: "Barzakouski", age: 38, country: "The Netherlands", city: "Amsterdam",},
@@ -11,6 +12,7 @@ let initialstate = {
         {id: 8, first: "Raya", last: "Barzakouskaya", age: 59, country: "Belarus", city: "Grodno",},
         {id: 9, first: "Eva", last: "Barzakouskaya", age: 4, country: "Belarus", city: "Grodno",},
     ],
+
     onlinefriends: [
         {id: 1, first: "Yura", last: "Grigas", age: 40, country: "Belarus", city: "Grodno",},
         {id: 2, first: "Alina", last: "Grigas", age: 18, country: "Belarus", city: "Grodno",},

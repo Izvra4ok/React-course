@@ -6,7 +6,7 @@ const Dialogues = (props) => {
 
     return (
         <div className={mod.dialogues}>
-            {props.dialogues}
+            {props.dialogStateMap}
         </div>
     );
 };

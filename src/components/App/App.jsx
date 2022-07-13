@@ -1,41 +1,30 @@
 import React from "react";
 import "../nullstyle.css";
 import "./App.css";
-import Profile from "../MyProfile/Profile/Profile";
 import Header from "../Header/Header";
-import Navbar from "../Navbar/Navbar";
-import Messenger from "../Messenger/Messenger";
 import {Routes, Route} from "react-router-dom"
-import Friends from "../Friends/Friends";
+import ProfileContainer from "../MyProfile/Profile/ProfileContainer";
+import MessengerContainer from "../Messenger/MessengerContainer";
+import NavbarContainer from "../Navbar/NavbarContainer";
+import FriendsContainer from "../Friends/FriendsContainer";
 
 
-const App = (props) => {
+const App = () => {
 debugger
     return (
         <div className="app_wrapper">
             <Header/>
-            <Navbar online={props.state.friendsPage.onlinefriends} />
+            <NavbarContainer />
             <div className="app_wrapper_content">
                 <Routes>
                     <Route path="/profile/*"
-                           element={<Profile
-                               store={props.store}
-                               posts={props.state.profilePage.posts}
-                               aboutme={props.state.profilePage.aboutme}
-                           />}>
-
+                           element={<ProfileContainer />}>
                     </Route>
                     <Route path="/messenger/*"
-                           element={<Messenger
-                               store={props.store}
-                               messages={props.state.messengerPage.messages}
-                               dialogues={props.state.messengerPage.dialogues}
-                           />}>
+                           element={<MessengerContainer />}>
                     </Route>
                     <Route path="/friends/*"
-                           element={<Friends
-                               allfriends={props.state.friendsPage.friends}
-                               online={props.state.friendsPage.onlinefriends} />}>
+                           element={<FriendsContainer />}>
                     </Route>
                 </Routes>
             </div>

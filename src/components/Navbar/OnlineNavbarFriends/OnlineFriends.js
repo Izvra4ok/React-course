@@ -19,4 +19,5 @@ const OnlineFriends = (props) => {
         </div>
     );
 };
+
 export default OnlineFriends;

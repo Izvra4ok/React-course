@@ -7,7 +7,9 @@ import {NavLink} from "react-router-dom";
 const FriendsOnline = (props) => {
 
     let SelectedLink = () => {
+
         return (
+
             SelectedLink => SelectedLink.isActive ? mod.active_link : mod.friend_name
         );
     };
@@ -15,6 +17,7 @@ const FriendsOnline = (props) => {
     let url = "id" + props.first + props.last;
 
     return (
+
         <div className={mod.about_friend}>
             <FriendAva/>
             <div>
