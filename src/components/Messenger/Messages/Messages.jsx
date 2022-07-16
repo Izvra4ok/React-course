@@ -6,16 +6,15 @@ import TextareaMessagesContainer from "./TextareaMessage/TextareaMessagesContain
 const Messages = (props) => {
 
     return (
-
         <div>
             <div className={mod.messages}>
                 <div className={mod.messages_items}>
-                    {props.messagesStateMap}
+                    {props.mapStateMessage}
                 </div>
             </div>
-            <TextareaMessagesContainer newMessageText={props.newMessageText}/>
+            <TextareaMessagesContainer />
         </div>
-    );
+    )
 };
 
 export default Messages;

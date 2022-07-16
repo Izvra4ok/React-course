@@ -30,12 +30,12 @@ const Friends = (props) => {
         </div>
             <Routes>
                 <Route path="online/*"
-                       element={props.onlineFriendsStateMap}>
+                       element={props.mapStateOnlinefriends}>
                 </Route>
             </Routes>
             <Routes>
                 <Route path="all/*"
-                       element={props.friendStateMap}>
+                       element={props.mapStateAllfriends}>
                 </Route>
             </Routes>
         </section>

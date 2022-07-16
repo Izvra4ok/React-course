@@ -1,31 +1,23 @@
 import React from "react";
 import Friend from "./Friend/Friend";
 import FriendsOnline from "./OnlineFriends/FriendsOnline";
-import StoreContext from "../../storeContext";
 import Friends from "./Friends";
+import {connect} from "react-redux";
 
+let mapStateToProps = (state) => {
 
-const FriendsContainer = () => {
+    return {
+        mapStateAllfriends: state.friendsPage.allfriends
+            .map(fr => <Friend key={fr.id} first={fr.first} last={fr.last} age={fr.age}
+                               country={fr.country} city={fr.city} ava={fr.ava}/>),
 
-    return <StoreContext.Consumer>
+        mapStateOnlinefriends: state.friendsPage.onlinefriends
+            .map(fr => <FriendsOnline key={fr.id} first={fr.first} last={fr.last} age={fr.age}
+                                      country={fr.country} city={fr.city}/>)
+    }
 
-        {(store) => {
+}
 
-            let state = store.getState().friendsPage
-
-            let friendStateMap = state.allfriends.map(fr => <Friend key={fr.toString()} id={fr.id} first={fr.first}
-                                                                         last={fr.last} age={fr.age}
-                                                                         country={fr.country}
-                                                                         city={fr.city} ava={fr.ava}/>);
-
-            let onlineFriendsStateMap = state.onlinefriends.map(fr => <FriendsOnline id={fr.id} first={fr.first}
-                                                                                   last={fr.last} age={fr.age}
-                                                                                   country={fr.country}
-                                                                                   city={fr.city}/>);
-            return <Friends friendStateMap={friendStateMap}
-                            onlineFriendsStateMap={onlineFriendsStateMap}/>
-        }}
-    </StoreContext.Consumer>
-};
+const FriendsContainer = connect(mapStateToProps)(Friends)
 
 export default FriendsContainer;

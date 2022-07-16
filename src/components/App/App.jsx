@@ -10,7 +10,7 @@ import FriendsContainer from "../Friends/FriendsContainer";
 
 
 const App = () => {
-debugger
+
     return (
         <div className="app_wrapper">
             <Header/>

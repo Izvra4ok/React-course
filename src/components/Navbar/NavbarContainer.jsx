@@ -1,23 +1,17 @@
 import React from "react";
 import OnlineFriends from "./OnlineNavbarFriends/OnlineFriends";
-import StoreContext from "../../storeContext";
 import Navbar from "./Navbar";
+import {connect} from "react-redux";
 
 
-const NavbarContainer = () => {
+let mapStateToProps = (state) => {
 
-    return <StoreContext.Consumer>
+    return {
+        friendsPage: state.friendsPage.onlinefriends.map(on => <OnlineFriends key={on.id} first={on.first}
+                                                     last={on.last}/>)
+    }
+}
 
-        {(store) => {
-
-            let state = store.getState().friendsPage;
-
-            let onlineFriendsStateMap = state.onlinefriends.map(on => <OnlineFriends id={on.id} first={on.first}
-                                                                                   last={on.last}/>);
-
-            return <Navbar onlineFriendsStateMap={onlineFriendsStateMap}/>
-        }}
-    </StoreContext.Consumer>
-};
+const NavbarContainer = connect(mapStateToProps)(Navbar);
 
 export default NavbarContainer;

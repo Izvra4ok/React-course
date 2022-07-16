@@ -9,7 +9,6 @@ const Post = (props) => {
     let url = "/friends/all/id" + props.first + props.last;
 
     return (
-
         <div className={mod.post}>
             <NavLink className={mod.postUser} to={url}>
                 {props.first} {props.last}
@@ -29,8 +28,8 @@ const Post = (props) => {
                     {props.likes} likes
                 </Link>
             </div>
-
-        </div>);
+        </div>
+    )
 };
 
 export default Post;

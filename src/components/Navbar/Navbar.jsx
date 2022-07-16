@@ -1,20 +1,17 @@
 import React from "react";
 import mod from "./Navbar.module.css"
 import {NavLink} from "react-router-dom";
+import OnlineFriends from "./OnlineNavbarFriends/OnlineFriends";
 
 
 const Navbar = (props) => {
 
     let SelectedLink = () => {
 
-        return (
-
-            SelectedLink => SelectedLink.isActive ? mod.active_link : mod.navbar_link
-        );
-  };
+        return SelectedLink => SelectedLink.isActive ? mod.active_link : mod.navbar_link
+    };
 
     return (
-
         <nav className={mod.navbar}>
             <ul className={mod.navbar_list}>
                 <li className={mod.navbar_li}>
@@ -78,7 +75,8 @@ const Navbar = (props) => {
 
             </ul>
             <ul className={mod.onlineFriend}>
-                {props.onlineFriendsStateMap}
+                {/*{onlineFriendsStateMap}*/}
+                {props.friendsPage}
             </ul>
         </nav>
     );

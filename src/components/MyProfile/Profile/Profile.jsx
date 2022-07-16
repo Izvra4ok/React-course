@@ -4,20 +4,17 @@ import SubNavbar from "./SubNavbar/SubNavbar";
 import MyPost from "./My_post/MyPost";
 
 
-
 const Profile = (props) => {
 
     return (
-
         <section className={mod.profile}>
-            {props.aboutmeStateMap}
+            {props.mapStateAbout}
             <div className={mod.navbarpost}>
             <SubNavbar />
-            <MyPost postStateMap={props.postStateMap}
-                    newPostText={props.newPostText}/>
+            <MyPost mapStatePost={props.mapStatePost} />
             </div>
         </section>
-    );
+    )
 };
 
 export default Profile;

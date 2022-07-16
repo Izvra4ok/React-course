@@ -6,10 +6,9 @@ import TextareaPostContainer from "./TextareaPost/TextareaPostContainer";
 const MyPost = (props) => {
 
     return (
-
         <div className={mod.mypost}>
-            <TextareaPostContainer newPostText={props.newPostText} />
-            {props.postStateMap}
+            <TextareaPostContainer />
+            {props.mapStatePost}
         </div>
     );
 };

@@ -11,7 +11,7 @@ const Dialog = (props) => {
         )
     };
 
-    let url = "/messenger/id" + props.id + "=" + props.first + props.last;
+    let url = "/messenger/id" + props.first + props.last;
 
     return (
         <div className={mod.dialogues_items}>

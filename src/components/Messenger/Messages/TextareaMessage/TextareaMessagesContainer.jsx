@@ -1,24 +1,29 @@
 import React from "react";
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../../../Redux/messengerPageReducer";
 import TextareaMessages from "./TextareaMessages";
-import StoreContext from "../../../../storeContext";
+import {connect} from "react-redux";
 
-const TextareaMessagesContainer = (props) => {
+let  mapStateToProps = (state) => {
 
-    return <StoreContext.Consumer>
-        { store => {
-            let addMessage = () => {
-                store.dispatch(addMessageActionCreator());
-            };
-            let updateNewMessageText = (text) => {
-                store.dispatch(updateNewMessageTextActionCreator(text));
-            }
-            return <TextareaMessages updateNewMessageText={updateNewMessageText}
-                                     addMessage={addMessage}
-                                     newMessageText={props.newMessageText}/>
-        }
-        }
-    </StoreContext.Consumer>
+    return {
+        newMessageText: state.messengerPage.newMessageText
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+
+    return {
+        addMessage: () => {
+            dispatch(addMessageActionCreator());
+        },
+
+        updateNewMessageText: (text) => {
+            dispatch(updateNewMessageTextActionCreator(text));
+        }
+    }
+}
+
+const TextareaMessagesContainer = connect(mapStateToProps,mapDispatchToProps)(TextareaMessages)
+
 
 export default TextareaMessagesContainer;
