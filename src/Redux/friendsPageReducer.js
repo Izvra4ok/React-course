@@ -1,26 +1,133 @@
+const FOLLOW = "FOLLOW";
+const UNFOLLOW = "UNFOLLOW";
+const SET_USERS = "SET-USERS";
 
 let initialstate = {
 
     allfriends: [
-        {id: 1, first: "Yura", last: "Grigas", age: 40, country: "Belarus", city: "Grodno",},
-        {id: 2, first: "Alina", last: "Grigas", age: 18, country: "Belarus", city: "Grodno",},
-        {id: 3, first: "Denis", last: "Barzakouski", age: 38, country: "The Netherlands", city: "Amsterdam",},
-        {id: 4, first: "Anna", last: "Barzakouskaya", age: 38, country: "The Netherlands", city: "Amsterdam"},
-        {id: 5, first: "Vladimir", last: "Barzakouski", age: 60, country: "Belarus", city: "Grodno",},
-        {id: 6, first: "Alexsadra", last: "Grigas", age: 40, country: "Belarus", city: "Grodno",},
-        {id: 7, first: "Vova", last: "Barzakouski", age: 8, country: "The Netherlands", city: "Amsterdam",},
-        {id: 8, first: "Raya", last: "Barzakouskaya", age: 59, country: "Belarus", city: "Grodno",},
-        {id: 9, first: "Eva", last: "Barzakouskaya", age: 4, country: "Belarus", city: "Grodno",},
+        {
+            id: 1, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Yura",
+            last: "Grigas", age: 40, location: {country: "Belarus", city: "Grodno"}, status: "I'm boss"
+        },
+        {
+            id: 2, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: false, first: "Alina", last: "Grigas", age: 18,
+            location: {country: "Belarus", city: "Grodno"}, status: "I'm boss"
+        },
+        {
+            id: 3, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Denis", last: "Barzakouski", age: 38,
+            location: {country: "The Netherlands", city: "Amsterdam"}, status: "I'm boss"
+        },
+        {
+            id: 4, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Anna", last: "Barzakouskaya", age: 38,
+            location: {country: "The Netherlands", city: "Amsterdam"}, status: "I'm free"
+        },
+        {
+            id: 5, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Vladimir", last: "Barzakouski", age: 60,
+            location: {country: "Belarus", city: "Grodno",}, status: "Good bye"
+        },
+        {
+            id: 6, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: false, first: "Alexsadra", last: "Grigas", age: 40,
+            location: {country: "Belarus", city: "Grodno",}, status: "Hello"
+        },
+        {
+            id: 7, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Vova", last: "Barzakouski", age: 8,
+            location: {country: "The Netherlands", city: "Amsterdam",}, status: "Hi"
+        },
+        {
+            id: 8, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Raya", last: "Barzakouskaya", age: 59,
+            location: {country: "Belarus", city: "Grodno",}, status: ":)"
+        },
+        {
+            id: 9, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Eva", last: "Barzakouskaya", age: 4,
+            location: {country: "Belarus", city: "Grodno",}, status: "=)"
+        },
+        {
+            id: 10, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Valentina", last: "Svorchuk", age: 23,
+            location: {country: "Belarus", city: "Grodno"}, status: "Have a nice good day"
+        },
+        {
+            id: 11, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Konstantin", last: "Svorchuk", age: 18,
+            location: {country: "Belarus", city: "Grodno"}, status: "Have a nice good day"
+        },
+        {
+            id: 12, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Valentina", last: "Svorchuk", age: 23,
+            location: {country: "Belarus", city: "Grodno"}, status: "Have a nice good day"
+        },
     ],
 
     onlinefriends: [
-        {id: 1, first: "Yura", last: "Grigas", age: 40, country: "Belarus", city: "Grodno",},
-        {id: 2, first: "Alina", last: "Grigas", age: 18, country: "Belarus", city: "Grodno",},
-        {id: 3, first: "Denis", last: "Barzakouski", age: 38, country: "The Netherlands", city: "Amsterdam",},
-        {id: 4, first: "Anna", last: "Barzakouskaya", age: 38, country: "The Netherlands", city: "Amsterdam",},
-        {id: 5, first: "Vladimir", last: "Barzakouski", age: 38, country: "Belarus", city: "Grodno",},
-        {id: 6, first: "Alexsadra", last: "Grigas", age: 60, country: "Belarus", city: "Grodno",},
-        {id: 7, first: "Vova", last: "Barzakouski", age: 8, country: "The Netherlands", city: "Amsterdam",},
+        // {
+        //     id: 1, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        //     followed: true, first: "Yura",
+        //     last: "Grigas", age: 40, location: {country: "Belarus", city: "Grodno"}, status: "I'm boss"
+        // },
+        // {
+        //     id: 2, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        //     followed: false, first: "Alina", last: "Grigas", age: 18,
+        //     location: {country: "Belarus", city: "Grodno"}, status: "I'm boss"
+        // },
+        {
+            id: 3, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Denis", last: "Barzakouski", age: 38,
+            location: {country: "The Netherlands", city: "Amsterdam"}, status: "I'm boss"
+        },
+        {
+            id: 4, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Anna", last: "Barzakouskaya", age: 38,
+            location: {country: "The Netherlands", city: "Amsterdam"}, status: "I'm free"
+        },
+        {
+            id: 5, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Vladimir", last: "Barzakouski", age: 60,
+            location: {country: "Belarus", city: "Grodno",}, status: "Good bye"
+        },
+        {
+            id: 6, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: false, first: "Alexsadra", last: "Grigas", age: 40,
+            location: {country: "Belarus", city: "Grodno",}, status: "Hello"
+        },
+        {
+            id: 7, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Vova", last: "Barzakouski", age: 8,
+            location: {country: "The Netherlands", city: "Amsterdam",}, status: "Hi"
+        },
+        {
+            id: 8, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Raya", last: "Barzakouskaya", age: 59,
+            location: {country: "Belarus", city: "Grodno",}, status: ":)"
+        },
+        {
+            id: 9, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Eva", last: "Barzakouskaya", age: 4,
+            location: {country: "Belarus", city: "Grodno",}, status: "=)"
+        },
+        {
+            id: 10, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Valentina", last: "Svorchuk", age: 23,
+            location: {country: "Belarus", city: "Grodno"}, status: "Have a nice good day"
+        },
+        {
+            id: 11, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Konstantin", last: "Svorchuk", age: 18,
+            location: {country: "Belarus", city: "Grodno"}, status: "Have a nice good day"
+        },
+        {
+            id: 12, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            followed: true, first: "Valentina", last: "Svorchuk", age: 23,
+            location: {country: "Belarus", city: "Grodno"}, status: "Have a nice good day"
+        },
     ],
 
 
@@ -32,4 +139,7 @@ const friendsPageReducer = (state = initialstate, action) => {
 
 }
 
+export const followAC = (userId) => ({type: FOLLOW, userId});
+export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
+export const setUsersAC = (users) => ({type: SET_USERS, users});
 export default friendsPageReducer;

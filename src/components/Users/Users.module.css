@@ -1,0 +1,67 @@
+.users {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-left: 5px;
+}
+
+.all_users {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 10px;
+    align-items: flex-start;
+}
+
+.users_avaButton {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.button {
+    display: block;
+    width: 120px;
+    height: 40px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    background-color: #007146;
+}
+
+.button:active {
+    transform: scale(1.02, 1.02);
+    box-shadow: 1px 1px 5px black;
+}
+
+.users_ava {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+
+.users_about {
+    display: flex;
+    font-size: 14px;
+}
+
+.users_fullname {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.users_info {
+    margin-top: 10px;
+    font-size: 14px;
+
+}
+
+.users_status {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.active_link {
+    font-weight: 500;
+}

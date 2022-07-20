@@ -1,15 +1,15 @@
-.navbar{
+.navbar {
     display: flex;
-}
-.subnavbar {
-    min-width: 250px;
 }
 
 .subnavbar {
-    margin: 10px 10px 0px 0px;
-    max-height: 180px;
+    min-width: 170px;
+}
+
+.subnavbar {
+    margin: 10px 10px 0 0;
+    max-height: 240px;
     border-radius: 10px;
-    /*background-color: #007146;*/
     background-color: #605e8ed4
 }
 
@@ -18,23 +18,24 @@
     flex-direction: column;
     align-content: center;;
     flex-wrap: wrap;
-    margin: 10px 0px;
+    margin: 10px 0;
 
 }
 
 .subnavbar_li {
-    margin: 10px auto 10px 0px;
+    margin: 5px auto 5px 0;
 }
 
 .subnavbar_link {
     color: white;
     padding: 10px 9px 10px 25px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .active_link {
     padding: 10px 9px 10px 25px;
     color: black;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 500;
 
 }

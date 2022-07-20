@@ -1,11 +1,11 @@
 .messages {
     display: grid;
-    padding: 10px;
-    height: 530px;
+    padding: 5px;
+    height: 420px;
     overflow-y:  auto;
     margin-bottom: 10px;
 }
 
 .messages_items {
-    font-size: 20px;
+    font-size: 16px;
 }

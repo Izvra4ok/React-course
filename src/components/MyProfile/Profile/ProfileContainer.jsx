@@ -8,11 +8,11 @@ import {connect} from "react-redux";
 let mapStateToProps = (state) => {
 
     return {
-        mapStateAbout: state.profilePage.aboutme.map(info => <About key={info.id} name={info.name}
+        mapStateAbout: state.profilePage.aboutme.map(info => <About key={info.id} avatar={info.avatarUrl} name={info.name}
                                                                     birthday={info.birthday} country={info.country}
                                                                   degree={info.university} web={info.website}/>),
 
-        mapStatePost: state.profilePage.posts.map(p => <Post key={p.id} message={p.message} likes={p.likes}
+        mapStatePost: state.profilePage.posts.map(p => <Post key={p.id} avatar={p.avatarUrl} message={p.message} likes={p.likes}
                                                              first={p.first} last={p.last}/>),
 
     }

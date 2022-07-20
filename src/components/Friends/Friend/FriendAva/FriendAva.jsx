@@ -5,10 +5,12 @@ import {NavLink} from "react-router-dom";
 
 const FriendAva = (props) => {
 
+    let url = "id" + props.first + props.last;
+
     return (
-            <NavLink to={"#"}>
+            <NavLink to={url}>
                 <img
-                     src="https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                     src={props.avatar}
                     className={mod.friend_avatar}
                     alt="friend_avatar"/>
             </NavLink>

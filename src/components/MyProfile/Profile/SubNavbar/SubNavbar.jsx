@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 
 const SubNavbar = () => {
 
-    const SelectedLink = (props) => {
+    const SelectedLink = () => {
         return (
             SelectedLink => SelectedLink.isActive ? mod.active_link : mod.subnavbar_link
         );

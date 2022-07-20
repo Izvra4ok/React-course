@@ -14,7 +14,7 @@ const Friends = (props) => {
 
     return (
 
-        <section className={mod.allFriends}>
+        <section className={mod.all_friends}>
         <div className={mod.friends}>
             <NavLink to={"online"} className={SelectedLink()}>
                 <div className={mod.friends_available}>

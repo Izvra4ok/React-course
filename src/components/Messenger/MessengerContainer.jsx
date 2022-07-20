@@ -9,7 +9,7 @@ let mapStateToProps = (state) => {
 
     return {
         mapStateDialog: state.messengerPage.dialogues
-            .map(d => <Dialog key={d.id} first={d.first} last={d.last}/>),
+            .map(d => <Dialog key={d.id} avatar={d.avatarUrl} first={d.first} last={d.last}/>),
 
         mapStateMessage: state.messengerPage.messages
             .map(m => <Message key={m.id} message={m.message}/>),

@@ -11,7 +11,7 @@ const OnlineFriends = (props) => {
         <div>
             <NavLink to={url} className={mod.onlineFriendAva}>
                 <img
-                    src={"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}
+                    src={props.avatar}
                     alt="onlineFriend"/>
                 <div>{props.first}</div>
                 <div>{props.last}</div>

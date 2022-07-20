@@ -3,7 +3,7 @@
 }
 
 .about_me {
-    min-height: 250px;
+    min-height: 200px;
     width: 100%;
     padding-left: 10px;
     border: 1px solid black;
@@ -21,19 +21,18 @@
     flex-wrap: wrap;
     flex-direction: row;
     font-size: 16px;
-    margin: 20px 0px 10px 0px;
+    margin: 15px 0 10px 0;
 }
 .about_info:nth-child(1){
     margin-bottom: 5px;
 }
-.about_span {
-
+.about_span{
     width: 70%;
-    margin: 0px 0px 0px auto;
-    font-size: 20px;
+    margin: 0 0 0 auto;
+    font-size: 16px;
 }
 .name{
-    font-size: 23px;
+    font-size: 20px;
     line-height: 1px;
 
 }

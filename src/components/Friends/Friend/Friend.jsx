@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import FriendAva from "./FriendAva/FriendAva"
 
 
+
 const Friend = (props) => {
 
     let SelectedLink = () => {
@@ -19,7 +20,9 @@ const Friend = (props) => {
     return (
 
         <div className={mod.about_friend}>
-            <FriendAva/>
+            <FriendAva avatar={props.avatar}
+                       first={props.first}
+                       last={props.last} />
             <div>
                 <div className={mod.friend_name}>
                     <NavLink to={url} className={SelectedLink()}>

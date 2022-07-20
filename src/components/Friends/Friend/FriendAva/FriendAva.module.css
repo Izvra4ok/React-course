@@ -1,36 +1,9 @@
-.friend{
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-    border: 1px solid black;
-    margin-bottom: 10px;
-    padding: 10px;
-    align-items: center;
-}
-.active_link{
-    color:red;
-}
-.friend_avatar {
-    max-width: 150px;
-    height: 150px;
-    border-radius: 100%;
-    margin:10px;
-}
-.friend_name{
-    font-size: 24px;
-}
-.friend_info{
-    margin-top:10px;
-    font-size: 20px;
-}
-.friend_links{
-    margin-top:20px;
-}
-.friend_link{
-    font-size: 16px;
-    color:blue;
-    margin-right: 20px;
-}
-.friend_link span{
 
-    margin-right: 20px;
+.friend_avatar {
+    max-width: 120px;
+    width: 120px;
+    max-height: 120px;
+    height: 120px;
+    border-radius: 100%;
+
 }

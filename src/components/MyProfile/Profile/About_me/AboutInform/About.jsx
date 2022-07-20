@@ -6,7 +6,7 @@ const About = (props) => {
 
         return (
             <div className={mod.about}>
-                <AvaProfile/>
+                <AvaProfile avatar={props.avatar} />
                 <div className={mod.about_me}>
                     <p className={mod.about_info}>Name:
                         <span className={`${mod.about_span} ${mod.name}`}>
@@ -18,7 +18,7 @@ const About = (props) => {
                             {props.birthday}
                         </span>
                     </p>
-                    <p className={mod.about_info}>Country:
+                    <p className={mod.about_info}>Location:
                         <span className={mod.about_span}>
                             {props.country}
                         </span>

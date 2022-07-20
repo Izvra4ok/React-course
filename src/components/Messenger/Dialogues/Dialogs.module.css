@@ -1,7 +1,7 @@
 .dialogs {
-    padding: 10px;
+    padding: 5px;
     background-color: #605e8e73;
     border-radius: 10px;
-    height: 610px;
+    height: 500px;
     overflow-y:  auto;
 }

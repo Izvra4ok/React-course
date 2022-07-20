@@ -2,12 +2,12 @@ import React from "react";
 import "../nullstyle.css";
 import "./App.css";
 import Header from "../Header/Header";
-import {Routes, Route} from "react-router-dom"
+import {Route, Routes} from "react-router-dom"
 import ProfileContainer from "../MyProfile/Profile/ProfileContainer";
 import MessengerContainer from "../Messenger/MessengerContainer";
 import NavbarContainer from "../Navbar/NavbarContainer";
 import FriendsContainer from "../Friends/FriendsContainer";
-
+import UsersContainer from "../Users/UsersContainer";
 
 const App = () => {
 
@@ -25,6 +25,9 @@ const App = () => {
                     </Route>
                     <Route path="/friends/*"
                            element={<FriendsContainer />}>
+                    </Route>
+                    <Route path="/users/*"
+                           element={<UsersContainer />}>
                     </Route>
                 </Routes>
             </div>

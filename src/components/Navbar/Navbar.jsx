@@ -1,7 +1,6 @@
 import React from "react";
 import mod from "./Navbar.module.css"
 import {NavLink} from "react-router-dom";
-import OnlineFriends from "./OnlineNavbarFriends/OnlineFriends";
 
 
 const Navbar = (props) => {
@@ -63,8 +62,8 @@ const Navbar = (props) => {
                     </NavLink>
                 </li>
                 <li className={mod.navbar_li}>
-                    <NavLink to="/files/" className={SelectedLink()}>
-                        Files
+                    <NavLink to="/users/" className={SelectedLink()}>
+                        Find users
                     </NavLink>
                 </li>
                 <li className={mod.navbar_li}>

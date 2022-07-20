@@ -17,7 +17,7 @@ const TextareaPost = (props) => {
 
         <div className={mod.post}>
             <form className={mod.form} action="#" method="post" encType="multipart/form-data">
-            <textarea className={mod.areatext} name="text" id="textarea" rows="3"
+            <textarea className={mod.areatext} name="text" id="textarea"
                       placeholder={"Enter your post"}
                       onChange={onPostChange}
                       value={props.newPostText} />
