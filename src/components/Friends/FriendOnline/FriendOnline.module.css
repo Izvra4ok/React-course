@@ -1,4 +1,4 @@
-.about_friend {
+.about_friend{
     display: grid;
     grid-template-columns: 2fr 10fr;
     padding: 5px;
@@ -28,34 +28,27 @@
     transform: scale(1.02, 1.02);
     box-shadow: 1px 1px 5px black;
 }
-
-.active_link {
-    font-weight: 500;
+.active_link{
+   font-weight: 500;
 }
-
-.friend_name {
+.friend_name{
     font-size: 20px;
 }
-
-.friend_info {
-    margin-top: 10px;
+.friend_info{
+    margin-top:10px;
     font-size: 14px;
 }
-
-.friend_links {
-    margin-top: 20px;
+.friend_links{
+    margin-top:20px;
 }
-
-.friend_link {
+.friend_link{
     font-size: 14px;
-    color: blue;
+    color:blue;
     margin-right: 20px;
 }
-
-.friend_link:active {
-    color: black;
+.friend_link:active{
+    color:black;
 }
-
-.friend_link span {
+.friend_link span{
     margin-right: 20px;
 }

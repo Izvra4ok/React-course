@@ -1,16 +1,14 @@
 import React from "react";
 import mod from "./Friends.module.css";
 import {NavLink, Route, Routes} from "react-router-dom";
+import FriendOnlineContainer from "./FriendOnline/FriendOnlineContainer";
+import FriendAllContainer from "./Friend/FriendAllContainer";
 
 
 const Friends = (props) => {
 
-    const SelectedLink = () => {
-
-        return (
-
-            SelectLink => SelectLink.isActive ? mod.active_link : mod.friends_available)
-    };
+    let SelectedLink = () => {
+        return SelectLink => SelectLink.isActive ? mod.active_link : mod.friends_available};
 
     return (
 
@@ -30,12 +28,12 @@ const Friends = (props) => {
         </div>
             <Routes>
                 <Route path="online/*"
-                       element={props.mapStateOnlinefriends}>
+                       element={<FriendOnlineContainer />}>
                 </Route>
             </Routes>
             <Routes>
                 <Route path="all/*"
-                       element={props.mapStateAllfriends}>
+                       element={<FriendAllContainer/>}>
                 </Route>
             </Routes>
         </section>

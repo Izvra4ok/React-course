@@ -3,6 +3,7 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
 
 let initialState = {
+
     users: [
         // {
         //     id: 1, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -65,6 +66,7 @@ let initialState = {
         //     location: {country: "Belarus", city: "Grodno"}, status: "Have a nice good day"
         // },
     ],
+
 }; 
 
 const usersPageReducer = (state = initialState, action) => {

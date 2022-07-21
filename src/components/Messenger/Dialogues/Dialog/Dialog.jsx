@@ -6,10 +6,7 @@ import {NavLink} from "react-router-dom";
 const Dialog = (props) => {
 
     let SelectedLink = () => {
-        return (
-            SelectedLink => SelectedLink.isActive ? mod.active_link : mod.dialog
-        )
-    };
+        return SelectedLink => SelectedLink.isActive ? mod.active_link : mod.dialog};
 
     let url = "/messenger/id" + props.first + props.last;
 

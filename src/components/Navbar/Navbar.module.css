@@ -1,7 +1,7 @@
 .navbar {
     grid-area: nav;
     margin-left: 10px;
-    height: 500px;
+    height: 510px;
     min-width: 161px;
     /*background-color: #007146;*/
     background: #605e8ed4;
@@ -19,7 +19,7 @@
 
 .navbar_li {
     position: relative;
-    margin: 5px auto 5px 0px;
+    margin: 5px auto 5px 0;
 }
 
 .navbar_li:last-child {
@@ -31,8 +31,8 @@
     content: "";
     position: absolute;
     top: 25%;
-    left: 0px;
-    margin-left: 0px;
+    left: 0;
+    margin-left: 0;
     padding: 7px;
     background: url("icons/navbarIcon.png") center no-repeat;
 }
@@ -54,8 +54,8 @@
 .onlineFriend {
     overflow: hidden;
     display: flex;
-    height: 150px;
-    margin: 5px 5px 0px 5px;
+    height: 170px;
+    margin: 5px 5px 0 5px;
     justify-content: space-around;
     flex-wrap: wrap;
 }

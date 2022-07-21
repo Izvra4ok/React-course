@@ -6,9 +6,7 @@ import {NavLink} from "react-router-dom";
 const Navbar = (props) => {
 
     let SelectedLink = () => {
-
-        return SelectedLink => SelectedLink.isActive ? mod.active_link : mod.navbar_link
-    };
+        return SelectedLink => SelectedLink.isActive ? mod.active_link : mod.navbar_link};
 
     return (
         <nav className={mod.navbar}>

@@ -1,14 +1,14 @@
 import {combineReducers, legacy_createStore} from "redux";
 import profilePageReducer from "./profilePageReducer";
 import messengerPageReducer from "./messengerPageReducer";
-import friendsPageReducer from "./friendsPageReducer";
 import navbarPageReducer from "./navbarPageReducer";
 import usersPageReducer from "./usersPageReducer";
+import friendsPageReducer from "./friendsPageReducer";
 
 let reducers = combineReducers({
     profilePage: profilePageReducer,
-    messengerPage: messengerPageReducer,
     friendsPage: friendsPageReducer,
+    messengerPage: messengerPageReducer,
     navbarPage: navbarPageReducer,
     usersPage: usersPageReducer,
 });

@@ -1,8 +1,8 @@
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_USERS = "SET-USERS";
+const FOLLOWFR = "FOLLOWFR";
+const UNFOLLOWFR = "UNFOLLOWFR";
+const SET_FR = "SET-FR";
 
-let initialstate = {
+let initialState = {
 
     allfriends: [
         {
@@ -67,7 +67,7 @@ let initialstate = {
         },
     ],
 
-    onlinefriends: [
+    online: [
         // {
         //     id: 1, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         //     followed: true, first: "Yura",
@@ -131,15 +131,42 @@ let initialstate = {
     ],
 
 
-};
+}; 
 
-const friendsPageReducer = (state = initialstate, action) => {
-
+const friendsPageReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case FOLLOWFR:
+            return {
+                ...state,
+                allfriends: state.allfriends.map(fr => {
+                    if (fr.id === action.userId) {
+                        return {...fr, followed: true}
+                    }
+                    return fr;
+                })
+            };
+        case UNFOLLOWFR:
+            return {
+                ...state,
+                allfriends: state.allfriends.map(fr => {
+                    if (fr.id === action.userId) {
+                        return {...fr, followed: false}
+                    }
+                    return fr;
+                })
+            };
+        case SET_FR:
+            return {
+                ...state,
+                allfriends: [...state.allfriends, ...action.users]
+            }
+        default:
             return state;
-
+    }
 }
 
-export const followAC = (userId) => ({type: FOLLOW, userId});
-export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
-export const setUsersAC = (users) => ({type: SET_USERS, users});
+export const followFriendsAC = (userId) => ({type: FOLLOWFR, userId});
+export const unfollowFriendsAC = (userId) => ({type: UNFOLLOWFR, userId});
+export const setFriendsAC = (users) => ({type: SET_FR, users});
+
 export default friendsPageReducer;

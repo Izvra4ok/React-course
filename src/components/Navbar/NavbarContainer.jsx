@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 let mapStateToProps = (state) => {
 
     return {
-        friendsPage: state.friendsPage.onlinefriends.map(on => <OnlineFriends key={on.id} avatar={on.avatarUrl} first={on.first}
+        friendsPage: state.friendsPage.online.map(on => <OnlineFriends key={on.id} avatar={on.avatarUrl} first={on.first}
                                                      last={on.last}/>)
     }
 }
