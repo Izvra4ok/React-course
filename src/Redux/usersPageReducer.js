@@ -41,11 +41,11 @@ const usersPageReducer = (state = initialState, action) => {
         case SET_CURRENT_PAGE:
             return {
                 ...state,currentPage: action.currentPage
-            }
+            };
         case SET_TOTAL_USERS_COUNT:
             return{
                 ...state, totalUsersCount: action.totalCount
-            }
+            };
         default:
             return state;
     }

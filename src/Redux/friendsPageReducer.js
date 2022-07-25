@@ -1,6 +1,6 @@
-const FOLLOWFR = "FOLLOWFR";
-const UNFOLLOWFR = "UNFOLLOWFR";
-const SET_FR = "SET-FR";
+const FOLLOW_FRIEND= "FOLLOW_FRIEND";
+const UNFOLLOW_FRIEND = "UNFOLLOW_FRIEND";
+const SET_FRIEND = "SET_FRIEND";
 
 let initialState = {
 
@@ -135,7 +135,7 @@ let initialState = {
 
 const friendsPageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case FOLLOWFR:
+        case FOLLOW_FRIEND:
             return {
                 ...state,
                 allfriends: state.allfriends.map(fr => {
@@ -145,7 +145,7 @@ const friendsPageReducer = (state = initialState, action) => {
                     return fr;
                 })
             };
-        case UNFOLLOWFR:
+        case UNFOLLOW_FRIEND:
             return {
                 ...state,
                 allfriends: state.allfriends.map(fr => {
@@ -155,7 +155,7 @@ const friendsPageReducer = (state = initialState, action) => {
                     return fr;
                 })
             };
-        case SET_FR:
+        case SET_FRIEND:
             return {
                 ...state,
                 allfriends: [...state.allfriends, ...action.users]
@@ -165,8 +165,8 @@ const friendsPageReducer = (state = initialState, action) => {
     }
 }
 
-export const followFriendsAC = (userId) => ({type: FOLLOWFR, userId});
-export const unfollowFriendsAC = (userId) => ({type: UNFOLLOWFR, userId});
-export const setFriendsAC = (users) => ({type: SET_FR, users});
+export const followFriendsAC = (userId) => ({type: FOLLOW_FRIEND, userId});
+export const unfollowFriendsAC = (userId) => ({type: UNFOLLOW_FRIEND, userId});
+export const setFriendsAC = (users) => ({type: SET_FRIEND, users});
 
 export default friendsPageReducer;
