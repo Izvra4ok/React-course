@@ -29,6 +29,7 @@ const profilePageReducer = (state = initialstate, action) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = state.newPostText;
+            if (newPost === "") return state;
             return {
                 ...state,
                 newPostText: '',
@@ -47,7 +48,7 @@ const profilePageReducer = (state = initialstate, action) => {
     }
 };
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const addPost = () => ({type: ADD_POST});
+export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
 
 export default profilePageReducer;

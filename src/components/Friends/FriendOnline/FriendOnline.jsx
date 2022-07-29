@@ -4,45 +4,43 @@ import {NavLink} from "react-router-dom";
 import FriendAva from "../FriendAva/FriendAva"
 
 
-
 const FriendOnline = (props) => {
-    debugger
 
     let SelectedLink = () => {
-        return SelectedLink => SelectedLink.isActive ? mod.active_link : mod.friend_name};
+        return SelectedLink => SelectedLink.isActive ? mod.active_link : mod.friend_name
+    };
 
-
-    return ( <div>
-        {
-            props.online.map( fr => <div className={mod.about_friend} key={fr.id}>
-            <FriendAva avatar={fr.avatarUrl}
-                       first={fr.first}
-                       last={fr.last} />
-            <div>
-                <div className={mod.friend_name}>
-                    <NavLink to={"id" + fr.first +fr.last} className={SelectedLink()}>
-                        {fr.first} {fr.last}
-                    </NavLink>
-                </div>
-                <div className={mod.friend_info}>
-                    {fr.age} years old, from {fr.location.country} {fr.location.city}
-                </div>
-                <div className={mod.friend_links}>
-                    {props.ava}
-                    <span>
+    return (<div>
+            {
+                props.online.map(fr => <div className={mod.about_friend} key={fr.id}>
+                        <FriendAva avatar={fr.avatarUrl}
+                                   first={fr.first}
+                                   last={fr.last}/>
+                        <div>
+                            <div className={mod.friend_name}>
+                                <NavLink to={"id" + fr.first + fr.last} className={SelectedLink()}>
+                                    {fr.first} {fr.last}
+                                </NavLink>
+                            </div>
+                            <div className={mod.friend_info}>
+                                {fr.age} years old, from {fr.location.country} {fr.location.city}
+                            </div>
+                            <div className={mod.friend_links}>
+                                {props.ava}
+                                <span>
                         <NavLink to={"write" + fr.first + fr.last} className={mod.friend_link}>Write message
                         </NavLink>
                     </span>
-                    <span>
+                                <span>
                         <NavLink to={"call" + fr.first + fr.last} className={mod.friend_link}>
                             Call
                         </NavLink>
                     </span>
-                </div>
-            </div>
-        </div>
-            )
-        }
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         </div>
     )
 };

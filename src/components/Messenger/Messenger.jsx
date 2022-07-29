@@ -8,8 +8,8 @@ const Messenger = (props) => {
 
     return (
         <section className={mod.messenger}>
-            <Dialogs mapStateDialog={props.mapStateDialog} />
-            <Messages mapStateMessage={props.mapStateMessage} />
+            <Dialogs  />
+            <Messages />
         </section>
     )
 };

@@ -1,34 +1,21 @@
 import React from "react";
 import {connect} from "react-redux";
 import FriendOnline from "./FriendOnline";
-import {followFriendsAC, setFriendsAC, unfollowFriendsAC} from "../../../Redux/friendsPageReducer";
 
 
+class FriendOnlineContainer extends React.Component {
+    render() {
+        return <FriendOnline online={this.props.online}/>
+    }
+}
 
 let mapStateToProps = (state) => {
 
     return {
-
         online: state.friendsPage.online
-
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
 
-    return {
-        followUser: (userId) => {
-            dispatch(followFriendsAC(userId));
-        },
-        unfollowUser: (userId) => {
-            dispatch(unfollowFriendsAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setFriendsAC(users))
-        },
-    }
-};
+export default connect(mapStateToProps)(FriendOnlineContainer)
 
-const FriendOnlineContainer = connect(mapStateToProps,mapDispatchToProps)(FriendOnline)
-
-export default FriendOnlineContainer;

@@ -1,34 +1,39 @@
 import React from 'react';
 import mod from "./Post.module.css";
-import {Link} from "react-router-dom";
 import {NavLink} from "react-router-dom";
+import userDefaultFoto from "../../../../../assets/images/userDefaultAvatar.webp";
 
 
 const Post = (props) => {
 
-    let url = "/friends/all/id" + props.first + props.last;
-
-    return (
+    return (<>
+            {
+                props.posts.map(p => <span key={p.id}>
         <div className={mod.post}>
-            <NavLink className={mod.postUser} to={url}>
-                {props.first} {props.last}
+            <NavLink className={mod.postUser} to={"/friends/all/id" + p.first + p.last}>
+                {p.first} {p.last}
             </NavLink>
             <div className={mod.post_item}>
-                <Link to={url} className={mod.link_avatar}>
+                <NavLink to={"/friends/all/id" + p.first + p.last} className={mod.link_avatar}>
                     <img className={mod.image}
-                         src="https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg"
+                         src={p.profileAva != null
+                    ? p.profileAva
+                    : userDefaultFoto}
                          alt="avatar"/>
-                </Link>
+                </NavLink>
                 <div className={mod.message}>
-                    {props.message}
+                    {p.message}
                 </div>
             </div>
             <div className={mod.like}>
-                <Link to={"/profile"}>
-                    {props.likes} likes
-                </Link>
+                <NavLink to={"/profile"}>
+                    {p.likes} likes
+                </NavLink>
             </div>
         </div>
+        </span>
+            )}
+        </>
     )
 };
 

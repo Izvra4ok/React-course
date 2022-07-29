@@ -1,9 +1,17 @@
 import React from "react";
 import {connect} from "react-redux";
-import {followFriendsAC, setFriendsAC, unfollowFriendsAC} from "../../../Redux/friendsPageReducer";
 import Friend from "./Friend";
+import {followFriends, unfollowFriends} from "../../../Redux/friendsPageReducer";
 
 
+class FriendAllContainer extends React.Component {
+    render() {
+        return <Friend allfriends={this.props.allfriends}
+                       followFriends={this.props.followFriends}
+                       unfollowFriends={this.props.unfollowFriends}/>
+    }
+
+}
 
 let mapStateToProps = (state) => {
 
@@ -14,21 +22,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-
-    return {
-        followUser: (userId) => {
-            dispatch(followFriendsAC(userId));
-        },
-        unfollowUser: (userId) => {
-            dispatch(unfollowFriendsAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setFriendsAC(users))
-        },
-    }
-};
-
-const FriendAllContainer = connect(mapStateToProps,mapDispatchToProps)(Friend)
-
-export default FriendAllContainer;
+export default connect(mapStateToProps,{followFriends,unfollowFriends})(FriendAllContainer)

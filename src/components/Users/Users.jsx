@@ -23,10 +23,12 @@ const Users = (props) => {
     return (
             <div className={mod.users}>All users
                 <div>
-                    {slicedPages.map(p => {
+                    {
+                        slicedPages.map(p => {
                         return <button className={props.currentPage === p && mod.selectedPage}
                                        onClick={(event) => {
-                                           props.onPageChanged(p)}}>{p}</button>})}
+                                           props.onPageChanged(p)}}>{p}</button>} )
+                    }
                 </div>
                 {
                     props.users.map(user => <div className={mod.all_users} key={user.id}>

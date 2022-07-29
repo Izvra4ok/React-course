@@ -4,39 +4,44 @@ import AvaProfile from "../AvaProfile/AvaProfile";
 
 const About = (props) => {
 
-        return (
+    return <>
+        {
+            props.aboutme.map(ab => <span key={ab.id}>
             <div className={mod.about}>
-                <AvaProfile avatar={props.avatar} />
+                <AvaProfile avatar={ab.avatar}/>
                 <div className={mod.about_me}>
                     <p className={mod.about_info}>Name:
                         <span className={`${mod.about_span} ${mod.name}`}>
-                            {props.name}
+                            {ab.name}
                         </span>
                     </p>
                     <p className={mod.about_info}>Birthday:
                         <span className={mod.about_span}>
-                            {props.birthday}
+                            {ab.birthday}
                         </span>
                     </p>
                     <p className={mod.about_info}>Location:
                         <span className={mod.about_span}>
-                            {props.country}
+                            {ab.country}
                         </span>
                     </p>
                     <p className={mod.about_info}>Education:
                         <span className={mod.about_span}>
-                            {props.degree}
+                            {ab.university}
                         </span>
                     </p>
                     <p className={mod.about_info}>Website:
                         <span className={mod.about_span}>
                     <a href="https://github.com/Izvra4ok">
-                        {props.web}
+                        {ab.website}
                     </a>
                         </span>
                     </p>
                 </div>
-            </div>);
-    };
+            </div>
+                </span>
+            )}
+    </>
+};
 
 export default About;

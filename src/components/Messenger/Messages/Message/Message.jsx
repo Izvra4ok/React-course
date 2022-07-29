@@ -5,8 +5,12 @@ import mod from "./Message.module.css";
 const Message = (props) => {
 
     return (
-        <div className={mod.message}>
-            {props.message}
+        <div>
+            {
+                props.messages.map(m => <div className={mod.message} key={m.id}>
+                    <div>{m.message}</div>
+                </div>)
+            }
         </div>
     );
 };

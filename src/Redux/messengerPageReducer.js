@@ -3,7 +3,7 @@ const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
 let initialstate = {
 
-        dialogues: [
+        dialogs: [
             {id: 1, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                 first: "Yura", last: "Grigas",},
             {id: 2, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -41,6 +41,7 @@ const messengerPageReducer = (state = initialstate, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage = state.newMessageText;
+            if (newMessage === "") return state;
             return {
                 ...state,
                 newMessageText: "",
@@ -56,7 +57,7 @@ const messengerPageReducer = (state = initialstate, action) => {
     }
 };
 
-export const addMessageActionCreator= () => ({type: ADD_MESSAGE});
-export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessage: text});
+export const addMessage= () => ({type: ADD_MESSAGE});
+export const updateNewMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessage: text});
 
 export default messengerPageReducer;

@@ -11,7 +11,6 @@ const Friends = (props) => {
         return SelectLink => SelectLink.isActive ? mod.active_link : mod.friends_available};
 
     return (
-
         <section className={mod.all_friends}>
         <div className={mod.friends}>
             <NavLink to={"online"} className={SelectedLink()}>

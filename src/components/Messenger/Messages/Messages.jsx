@@ -1,6 +1,7 @@
 import React from "react";
 import mod from "./Messages.module.css";
 import TextareaMessagesContainer from "./TextareaMessage/TextareaMessagesContainer";
+import MessageContainer from "./Message/MessageContainer";
 
 
 const Messages = (props) => {
@@ -9,7 +10,7 @@ const Messages = (props) => {
         <div>
             <div className={mod.messages}>
                 <div className={mod.messages_items}>
-                    {props.mapStateMessage}
+                    <MessageContainer/>
                 </div>
             </div>
             <TextareaMessagesContainer />

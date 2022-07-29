@@ -155,18 +155,18 @@ const friendsPageReducer = (state = initialState, action) => {
                     return fr;
                 })
             };
-        case SET_FRIEND:
-            return {
-                ...state,
-                allfriends: [...state.allfriends, ...action.users]
-            }
+        // case SET_FRIEND:
+        //     return {
+        //         ...state,
+        //         allfriends: [...state.allfriends, ...action.allfriends]
+        //     }
         default:
             return state;
     }
 }
 
-export const followFriendsAC = (userId) => ({type: FOLLOW_FRIEND, userId});
-export const unfollowFriendsAC = (userId) => ({type: UNFOLLOW_FRIEND, userId});
-export const setFriendsAC = (users) => ({type: SET_FRIEND, users});
+export const followFriends = (userId) => ({type: FOLLOW_FRIEND, userId});
+export const unfollowFriends = (userId) => ({type: UNFOLLOW_FRIEND, userId});
+// export const setFriends = (allfriends) => ({type: SET_FRIEND, allfriends});
 
 export default friendsPageReducer;

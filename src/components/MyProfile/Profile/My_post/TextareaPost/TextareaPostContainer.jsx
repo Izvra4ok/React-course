@@ -1,8 +1,26 @@
 import React from "react";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../../Redux/profilePageReducer";
 import TextareaPost from "./TextareaPost";
 import {connect} from "react-redux";
+import {addPost, updateNewPostText} from "../../../../../Redux/profilePageReducer";
 
+
+class TextareaPostContainer extends React.Component {
+
+    onAddPostClick = () => {
+        this.props.addPost();
+    };
+
+    onPostChange = (event) => {
+        let text = event.target.value;
+        this.props.updateNewPostText(text)
+    };
+
+    render() {
+        return <TextareaPost newPostText={this.props.newPostText}
+                             onAddPostClick={this.onAddPostClick}
+                             onPostChange={this.onPostChange}/>
+    }
+}
 
 let mapStateToProps = (state) => {
 
@@ -11,19 +29,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-
-    return {
-        addPost: () => {
-            dispatch(addPostActionCreator());
-        },
-
-        updateNewPostText: (text) => {
-            dispatch(updateNewPostTextActionCreator(text));
-        }
-    }
-};
-
-const TextareaPostContainer = connect(mapStateToProps,mapDispatchToProps)(TextareaPost);
-
-export default TextareaPostContainer;
+export default connect(mapStateToProps,{addPost,updateNewPostText})(TextareaPostContainer);

@@ -1,6 +1,6 @@
 .onlineFriendAva {
     font-size: 11px;
-    display: grid;
+    display: inline-grid;
     grid-template-columns: 60px;
     grid-template-rows: 50px;
     margin-bottom: 5px;
@@ -8,13 +8,13 @@
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    color:black;
+    color: black;
     /*overflow: hidden;*/
 }
 
 
 .onlineFriendAva img {
-    margin:0 5px 0 0;
+    margin: 0 5px 0 0;
     border-radius: 100%;
     width: 50px;
     height: 50px;

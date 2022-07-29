@@ -1,6 +1,7 @@
 import React from "react";
 import mod from "./Navbar.module.css"
 import {NavLink} from "react-router-dom";
+import OnlineFriendsContainer from "./OnlineNavbarFriends/OnlineFriendsContainer";
 
 
 const Navbar = (props) => {
@@ -72,8 +73,7 @@ const Navbar = (props) => {
 
             </ul>
             <ul className={mod.onlineFriend}>
-                {/*{onlineFriendsStateMap}*/}
-                {props.friendsPage}
+                <OnlineFriendsContainer/>
             </ul>
         </nav>
     );
