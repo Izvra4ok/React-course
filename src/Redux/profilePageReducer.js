@@ -1,7 +1,10 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 let initialstate = {
+
+    profile: null,
 
     aboutme: [{
         id: 0, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -36,11 +39,15 @@ const profilePageReducer = (state = initialstate, action) => {
                 posts: [...state.posts, {id: 6, avatarUrl:"https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
                     message: newPost, likes:0, first: "Alina", last: "Grigas",}]
             }
-
         case UPDATE_NEW_POST_TEXT:
             return {
                 ...state,
                 newPostText: action.newText,
+            }
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile,
             }
         default:
             return state;
@@ -50,5 +57,6 @@ const profilePageReducer = (state = initialstate, action) => {
 
 export const addPost = () => ({type: ADD_POST});
 export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 export default profilePageReducer;

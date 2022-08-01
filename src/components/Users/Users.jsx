@@ -33,7 +33,7 @@ const Users = (props) => {
                 {
                     props.users.map(user => <div className={mod.all_users} key={user.id}>
                             <div className={mod.users_avaButton}>
-                                <NavLink to={"id" + user.name} className={SelectedLink()}>
+                                <NavLink to={"/profile/" + user.id} className={SelectedLink()}>
                                     <img className={mod.users_ava} src={user.photos.small != null
                                         ? user.photos.small
                                         : userDefaultFoto} alt="avatar"/>

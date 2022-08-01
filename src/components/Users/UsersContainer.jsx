@@ -1,7 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import {followUser, setCurrentPage, setTotalUsersCount,
-    setUsers, toggleIsFetching, unfollowUser} from "../../Redux/usersPageReducer";
+import {
+    followUser, setCurrentPage, setTotalUsersCount,
+    setUsers, toggleIsFetching, unfollowUser
+} from "../../Redux/usersPageReducer";
 import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
