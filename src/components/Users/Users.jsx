@@ -26,7 +26,7 @@ const Users = (props) => {
                     {
                         slicedPages.map(p => {
                         return <button className={props.currentPage === p && mod.selectedPage}
-                                       onClick={(event) => {
+                                       onClick={() => {
                                            props.onPageChanged(p)}}>{p}</button>} )
                     }
                 </div>

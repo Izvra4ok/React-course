@@ -1,13 +1,18 @@
 .header{
   grid-area: header;
-  /*background:#007146;*/
   background-color:#605e8ed4;
   width: 100%;
   margin-top:20px;
   height: 30px;
+  display: flex;
+  justify-content: space-between;
 }
 .header_logo{
   margin-top:-10px;
   width: 233px;
   height: 60px;
+}
+.auth {
+  width: 100px;
+  overflow: hidden;
 }

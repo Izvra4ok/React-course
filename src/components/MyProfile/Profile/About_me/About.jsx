@@ -41,14 +41,14 @@ let About = (props) => {
                 </div>
                 <div className={mod.about_info}>Contacts:
                     <span className={mod.about_span}>
-                        <p><a href={props.profile.contacts.facebook}>facebook</a></p>
-                        <p><a href={props.profile.contacts.github}>github</a></p>
-                        <p><a href={props.profile.contacts.website}>websit  </a></p>
-                        <p><a href={props.profile.contacts.vk}>vk</a></p>
-                        <p><a href={props.profile.contacts.twitter}>twitter</a></p>
-                        <p><a href={props.profile.contacts.instagram}>instagram</a></p>
-                        <p><a href={props.profile.contacts.youtube}>youtube</a></p>
-                        <p><a href={props.profile.contacts.mainLink}>mainLink</a></p>
+                        <p><a href={props.profile.contacts.facebook}>facebook: {props.profile.contacts.facebook}</a></p>
+                        <p><a href={props.profile.contacts.github}>github: {props.profile.contacts.github}</a></p>
+                        <p><a href={props.profile.contacts.website}>website: {props.profile.contacts.website}</a></p>
+                        <p><a href={props.profile.contacts.vk}>vk: {props.profile.contacts.vk}</a></p>
+                        <p><a href={props.profile.contacts.twitter}>twitter: {props.profile.contacts.twitter}</a></p>
+                        <p><a href={props.profile.contacts.instagram}>instagram: {props.profile.contacts.instagram}</a></p>
+                        <p><a href={props.profile.contacts.youtube}>youtube: {props.profile.contacts.youtube}</a></p>
+                        <p><a href={props.profile.contacts.mainLink}>mainLink: {props.profile.contacts.mainLink}</a></p>
                     </span>
                 </div>
             </div>

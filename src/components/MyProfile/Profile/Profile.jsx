@@ -2,7 +2,6 @@ import React from 'react';
 import mod from "./Profile.module.css";
 import SubNavbar from "./SubNavbar/SubNavbar";
 import MyPost from "./My_post/MyPost";
-// import AboutContainer from "./About_me/AboutInform/AboutContainer";
 import About from "./About_me/About";
 
 

@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom";
 import * as axios from "axios";
 import {setUserProfile} from "../../../Redux/profilePageReducer";
 
+
 let withRouter = (Children) => {
 
     return (props) => {

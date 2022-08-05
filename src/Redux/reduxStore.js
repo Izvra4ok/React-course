@@ -4,8 +4,10 @@ import messengerPageReducer from "./messengerPageReducer";
 import navbarPageReducer from "./navbarPageReducer";
 import usersPageReducer from "./usersPageReducer";
 import friendsPageReducer from "./friendsPageReducer";
+import authReducer from "./authReducer";
 
 let reducers = combineReducers({
+    auth: authReducer,
     profilePage: profilePageReducer,
     friendsPage: friendsPageReducer,
     messengerPage: messengerPageReducer,

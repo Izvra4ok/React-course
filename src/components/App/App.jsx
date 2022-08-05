@@ -1,19 +1,19 @@
 import React from "react";
 import "../nullstyle.css";
 import "./App.css";
-import Header from "../Header/Header";
 import {Route, Routes} from "react-router-dom"
 import UsersContainer from "../Users/UsersContainer";
 import ProfileContainer from "../MyProfile/Profile/ProfileContainer";
 import MessengerContainer from "../Messenger/MessengerContainer";
 import FriendsContainer from "../Friends/FriendsContainer";
 import NavbarContainer from "../Navbar/NavbarContainer";
+import HeaderContainer from "../Header/HeaderContainer";
 
 const App = () => {
 
     return (
         <div className="app_wrapper">
-            <Header/>
+            <HeaderContainer/>
             <NavbarContainer />
             <div className="app_wrapper_content">
                 <Routes>
