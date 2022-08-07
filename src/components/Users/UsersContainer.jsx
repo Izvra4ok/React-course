@@ -1,44 +1,54 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    followUser, setCurrentPage, setTotalUsersCount,
-    setUsers, toggleIsFetching, unfollowUser
+    followUser,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unfollowUser
 } from "../../Redux/usersPageReducer";
-import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
+import {usersAPI} from "../../API/api";
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
-            withCredentials: true,
-        })
-            .then(response => {
+        usersAPI.getUsersServer(this.props.currentPage, this.props.pageSize)
+            .then(data => {
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.setUsers(data.items)
+                this.props.setTotalUsersCount(data.totalCount);
             });
     };
 
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{
-            withCredentials:true,
-        })
-            .then(response => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
+        this.props.toggleIsFetching(true);
+        usersAPI.getUsersServer(pageNumber, this.props.pageSize)
+            .then(data => {
+                this.props.toggleIsFetching(false);
+                this.props.setUsers(data.items);
             });
     }
+    // unfollowUsersCall = (userId) => {
+    //     usersAPI.unfollowUsersServer(this.props.user.id)
+    //         .then(data => {
+    //             debugger
+    //             if (data.resultCode === 0) {
+    //                 this.props.unfollowUser(this.props.user.id);
+    //             }
+    //         });
+    // };
 
     render() {
         return <>
             {this.props.isFetching
-                ? <Preloader styled={{ width: "50px", height: "50px"}}/>
-                : <Users users={this.props.users}
+                ? <Preloader styled={{width: "50px", height: "50px"}}/>
+                : <Users unfollowUsersCall={this.unfollowUsersCall}
+                         users={this.props.users}
                          totalUsersCount={this.props.totalUsersCount}
                          pageSize={this.props.pageSize}
                          currentPage={this.props.currentPage}
@@ -61,7 +71,9 @@ let mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, {followUser, unfollowUser, setUsers,
-    setCurrentPage, setTotalUsersCount, toggleIsFetching,})(UsersContainer);
+export default connect(mapStateToProps, {
+    followUser, unfollowUser, setUsers,
+    setCurrentPage, setTotalUsersCount, toggleIsFetching,
+})(UsersContainer);
 
 
