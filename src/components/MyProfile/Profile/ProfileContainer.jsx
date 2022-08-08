@@ -23,7 +23,6 @@ class ProfileContainer extends React.Component {
         let userId = this.props.match.params.userId || 2
         profileAPI.getUserProfile(userId)
             .then(data => {
-                debugger
                 this.props.setUserProfile(data)
             })
     }

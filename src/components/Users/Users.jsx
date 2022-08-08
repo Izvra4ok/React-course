@@ -7,15 +7,17 @@ import {usersAPI} from "../../API/api";
 
 const Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
+    let slicedPages = () => {
+        let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+        let pages = [];
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+        let carousel = props.currentPage;
+        let carouselLeft = ((carousel - 5) < 0) ? 0 : carousel - 4;
+        let carouselRight = carousel + 4;
+        return pages.slice(carouselLeft, carouselRight);
     }
-    let carousel = props.currentPage;
-    let carouselLeft = ((carousel - 5) < 0) ? 0 : carousel - 4;
-    let carouselRight = carousel + 4;
-    let slicedPages = pages.slice(carouselLeft, carouselRight);
 
     let SelectedLink = () => {
         return SelectedLink => SelectedLink.isActive ? mod.active_link : mod.user_about
@@ -25,7 +27,7 @@ const Users = (props) => {
         <div className={mod.users}>All users
             <div>
                 {
-                    slicedPages.map(p => {
+                    slicedPages().map(p => {
                         return <button className={props.currentPage === p && mod.selectedPage}
                                        onClick={() => {
                                            props.onPageChanged(p)
@@ -45,21 +47,27 @@ const Users = (props) => {
                                 <div>
                                     {user.followed
                                         ? <button className={mod.button}
+                                                  disabled={props.folllowingInProgress.includes(user.id)}
                                                   onClick={() => {
-                                                          usersAPI.unfollowUsersServer(user.id)
+                                                      props.toggleFollowingIsProgress(true, user.id);
+                                                      usersAPI.unfollowUsersServer(user.id)
                                                           .then(data => {
                                                               if (data.resultCode === 0) {
                                                                   props.unfollowUser(user.id);
                                                               }
+                                                              props.toggleFollowingIsProgress(false, user.id);
                                                           });
                                                   }}>UNFOLLOW</button>
                                         : <button className={mod.button}
+                                                  disabled={props.folllowingInProgress.includes(user.id)}
                                                   onClick={() => {
+                                                      props.toggleFollowingIsProgress(true, user.id);
                                                       usersAPI.followUsersServer(user.id)
                                                           .then(data => {
-                                                              if (data.resultCode ===0) {
+                                                              if (data.resultCode === 0) {
                                                                   props.followUser(user.id);
                                                               }
+                                                              props.toggleFollowingIsProgress(false, user.id);
                                                           });
                                                   }}>FOLLOW</button>}
                                 </div>
@@ -83,6 +91,16 @@ const Users = (props) => {
                     </div>
                 )
             }
+            <div>
+                {
+                    slicedPages().map(p => {
+                        return <button className={props.currentPage === p && mod.selectedPage}
+                                       onClick={() => {
+                                           props.onPageChanged(p)
+                                       }}>{p}</button>
+                    })
+                }
+            </div>
         </div>
     )
 }

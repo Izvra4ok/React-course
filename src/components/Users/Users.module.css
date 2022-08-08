@@ -43,6 +43,9 @@
     box-shadow: 1px 1px 5px black;
 }
 
+.button:disabled{
+    background-color: rgba(0, 113, 70, 0.74);
+}
 .users_ava {
     width: 120px;
     height: 120px;

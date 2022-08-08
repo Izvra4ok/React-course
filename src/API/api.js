@@ -44,7 +44,6 @@ export const autProfileUserAPI = {
     getAuthProfileUser() {
         return instance.get('auth/me',)
             .then(response => {
-                debugger
                 return response.data
             })
     }
