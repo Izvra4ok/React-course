@@ -30,8 +30,9 @@ export const usersAPI = {
     },
 };
 
+
 export const profileAPI = {
-    getUserProfile(userId) {
+    getProfileUserServer(userId) {
         return instance.get(`profile/${userId}`,)
             .then(response => {
                 return response.data
@@ -40,8 +41,9 @@ export const profileAPI = {
     },
 }
 
+
 export const autProfileUserAPI = {
-    getAuthProfileUser() {
+    getAuthProfileUserServer() {
         return instance.get('auth/me',)
             .then(response => {
                 return response.data

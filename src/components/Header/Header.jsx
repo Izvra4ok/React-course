@@ -6,9 +6,6 @@ import {Link, NavLink} from "react-router-dom";
 
 const Header = (props) => {
 
-    // if (!props.profile) {
-    //    return <></>
-    // }
     return (
         <header className={mod.header}>
             <div>
@@ -22,7 +19,7 @@ const Header = (props) => {
 
             <div className={mod.auth}>
                 {props.isAuth
-                    ? props.login
+                    ? <NavLink to={"/profile/" + props.id}>{props.login}</NavLink>
                     : <NavLink to={"/login"}>Login</NavLink>
             }</div>
         </header>

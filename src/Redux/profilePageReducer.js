@@ -1,3 +1,5 @@
+import {profileAPI} from "../API/api";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
@@ -7,9 +9,10 @@ let initialstate = {
     profile: null,
 
     aboutme: [{
-        id: 0, avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         name: "Sergey Barzakouski", birthday: "18.08.1990", country: "Republic of Belarus, Grodno",
-        university: "Yanka Kupala State University of Grodno, facult: Law'18", website: "github.com/Izvra4ok"
+        university: "Yanka Kupala State University of Grodno, facult: Law'18", github: "github.com/Izvra4ok",
+        job: "I'll be Frontend Developer",
     },],
 
     posts: [
@@ -58,5 +61,16 @@ const profilePageReducer = (state = initialstate, action) => {
 export const addPost = () => ({type: ADD_POST});
 export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+
+
+export const getProfileUser = (userId) => {
+    return dispatch => {
+        profileAPI.getProfileUserServer(userId)
+            .then(data => {
+                dispatch(setUserProfile(data)) //set User id with server API
+            })
+    }
+}
+
 
 export default profilePageReducer;

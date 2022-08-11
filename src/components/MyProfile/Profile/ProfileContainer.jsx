@@ -1,44 +1,47 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {useParams} from "react-router-dom";
-import {setUserProfile} from "../../../Redux/profilePageReducer";
-import {profileAPI} from "../../../API/api";
+import {getProfileUser} from "../../../Redux/profilePageReducer";
+import {withRouter} from "../../../hoc/WithRouter";
 
 
-let withRouter = (Children) => {
-
-    return (props) => {
-        const match = {params: useParams()};
-        return <Children {...props} match={match}/>
+const ProfileContainer = (props) => {
+    let userId = props.router.params.userId;
+    if (!userId) {
+        userId = props.id;
     }
+    useEffect(() => {
+        props.getProfileUser(userId);
+    }, [userId])
+
+        return <Profile {...props}/>
+
 }
 
-class ProfileContainer extends React.Component {
-    componentWillUnmount() {
-        this.props.setUserProfile(null)
-    }
-
-    componentDidMount() {
-        let userId = this.props.match.params.userId || 2
-        profileAPI.getUserProfile(userId)
-            .then(data => {
-                this.props.setUserProfile(data)
-            })
-    }
-
-    render() {
-        return <Profile {...this.props} />
-
-    }
-}
+// class ProfileContainer extends React.Component {
+//
+//     componentDidMount() {
+//         debugger
+//         let userId = this.props.router.params.userId || 2
+//         this.props.getProfileUser(userId)
+//     }
+//     componentWillUnmount() {
+//         this.props.setUserProfile(null)
+//     }
+//
+//     render() {
+//         return <Profile {...this.props} />
+//
+//     }
+// }
 
 
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
+        id: state.auth.id,
     }
 }
 
 
-export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {getProfileUser})(withRouter(ProfileContainer));

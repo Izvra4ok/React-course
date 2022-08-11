@@ -6,13 +6,12 @@ import About from "./About_me/About";
 
 
 const Profile = (props) => {
-
     return (
         <section className={mod.profile}>
             <About profile={props.profile}/>
             <div className={mod.navbarpost}>
-            <SubNavbar />
-            <MyPost/>
+                <SubNavbar/>
+                <MyPost/>
             </div>
         </section>
     )
