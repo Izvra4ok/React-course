@@ -19,7 +19,10 @@ const Header = (props) => {
 
             <div className={mod.auth}>
                 {props.isAuth
-                    ? <NavLink to={"/profile/" + props.id}>{props.login}</NavLink>
+                    ? <NavLink to={"/profile/" + props.id}>
+                        <div>Login:{props.login}</div>
+                        <div>id:{props.id}</div>
+                </NavLink>
                     : <NavLink to={"/login"}>Login</NavLink>
             }</div>
         </header>

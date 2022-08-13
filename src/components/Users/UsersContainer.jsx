@@ -3,7 +3,8 @@ import {connect} from "react-redux";
 import {getFollowUsers, getUnfollowUser, getUsers, setCurrentPage,} from "../../Redux/usersPageReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
-import {Navigate} from "react-router-dom";
+import {AuthRedirectComponent} from "../../HOC/Redirect";
+
 
 
 class UsersContainer extends React.Component {
@@ -16,20 +17,18 @@ class UsersContainer extends React.Component {
         this.props.setCurrentPage(pageNumber); //will choice pageNumber and make bold font page//
         this.props.getUsers(pageNumber, this.props.pageSize);
     }
+
     onClickUnfollowUsers = (userId) => {
         this.props.getUnfollowUser(userId);
         //=> dispatch toggleFollowingIsProgress(true/false),request .delete on server for userId and next dispatch unfollow
     }
+
     onClickFollowUsers = (userId) => {
         this.props.getFollowUsers(userId);
         //=> dispatch toggleFollowingIsProgress(true/false),request .post(add) on server for userId and next dispatch follow
     }
+
     render() {
-
-        if (!this.props.isAuth) {
-            return <Navigate to="/login"/>
-        }
-
         return <>
             {this.props.isFetching //pleloader active
                 ? <Preloader styled={{width: "50px", height: "50px"}}/>
@@ -60,6 +59,8 @@ let mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, {getUsers, getUnfollowUser, getFollowUsers, setCurrentPage})(UsersContainer);
+export default connect(mapStateToProps,
+    {getUsers, getUnfollowUser, getFollowUsers, setCurrentPage})
+(AuthRedirectComponent(UsersContainer));
 
 

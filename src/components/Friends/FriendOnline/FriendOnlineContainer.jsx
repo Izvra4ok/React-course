@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import FriendOnline from "./FriendOnline";
-
+import {Navigate} from "react-router-dom";
 
 class FriendOnlineContainer extends React.Component {
     render() {

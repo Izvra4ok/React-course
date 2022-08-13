@@ -1,7 +1,7 @@
 import React from "react";
 import Messenger from "./Messenger";
 import {connect} from "react-redux";
-import {Navigate} from "react-router-dom";
+import {AuthRedirectComponent} from "../../HOC/Redirect";
 
 class MessengerContainer extends React.Component {
 
@@ -13,17 +13,11 @@ class MessengerContainer extends React.Component {
     // },[props.isAuth])
 
     render() {
-        if (!this.props.isAuth){
-            return <Navigate to="/login"/>
-        }
-
-
         return <Messenger/>
     }
 }
 
-let mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth,
-})
+let mapStateToProps = (state) => ({})
 
-export default connect(mapStateToProps,{})(MessengerContainer);
+
+export default connect(mapStateToProps,{})(AuthRedirectComponent(MessengerContainer));
