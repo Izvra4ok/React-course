@@ -2,6 +2,7 @@ import React from "react";
 import {addMessage, updateNewMessageText,} from "../../../../Redux/messengerPageReducer";
 import TextareaMessages from "./TextareaMessages";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 
 class TextareaMessagesContainer extends React.Component {
@@ -31,7 +32,7 @@ let  mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps,{addMessage, updateNewMessageText})(TextareaMessagesContainer)
+export default compose(connect(mapStateToProps,{addMessage, updateNewMessageText}))(TextareaMessagesContainer)
 
 
 

@@ -77,7 +77,7 @@ const Navbar = (props) => {
 
                     </ul>
                     <ul className={mod.onlineFriend}>
-                        <OnlineFriendsContainer/>}
+                        <OnlineFriendsContainer/>
 
                     </ul>
                 </nav>

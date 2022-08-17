@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import Navbar from "./Navbar";
+import {compose} from "redux";
 
 class NavbarContainer extends React.Component {
 
@@ -14,4 +15,4 @@ let mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps)(NavbarContainer);
+export default compose(connect(mapStateToProps))(NavbarContainer);

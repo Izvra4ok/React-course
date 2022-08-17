@@ -2,6 +2,7 @@ import React from "react";
 import TextareaPost from "./TextareaPost";
 import {connect} from "react-redux";
 import {addPost, updateNewPostText} from "../../../../../Redux/profilePageReducer";
+import {compose} from "redux";
 
 
 class TextareaPostContainer extends React.Component {
@@ -29,4 +30,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps,{addPost,updateNewPostText})(TextareaPostContainer);
+export default compose(connect(mapStateToProps,{addPost,updateNewPostText}))(TextareaPostContainer);

@@ -1,7 +1,8 @@
 import React from "react";
 import Messenger from "./Messenger";
 import {connect} from "react-redux";
-import {AuthRedirectComponent} from "../../HOC/Redirect";
+import {WithAuthRedirectComponent} from "../../HOC/Redirect";
+import {compose} from "redux";
 
 class MessengerContainer extends React.Component {
 
@@ -20,4 +21,4 @@ class MessengerContainer extends React.Component {
 let mapStateToProps = (state) => ({})
 
 
-export default connect(mapStateToProps,{})(AuthRedirectComponent(MessengerContainer));
+export default compose(connect(mapStateToProps,{}))(WithAuthRedirectComponent(MessengerContainer));

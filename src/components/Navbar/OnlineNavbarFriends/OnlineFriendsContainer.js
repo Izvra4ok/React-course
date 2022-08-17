@@ -1,6 +1,7 @@
 import React from "react";
 import OnlineFriends from "./OnlineFriends";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 
 class OnlineFriendsContainer extends React.Component {
@@ -18,4 +19,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(OnlineFriendsContainer)
+export default compose(connect(mapStateToProps))(OnlineFriendsContainer)

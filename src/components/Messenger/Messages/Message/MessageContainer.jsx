@@ -1,6 +1,7 @@
 import React from "react";
 import Message from "./Message";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 class MessageContainer extends React.Component {
 
@@ -16,4 +17,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(MessageContainer)
+export default compose(connect(mapStateToProps))(MessageContainer)

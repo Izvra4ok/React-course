@@ -10,7 +10,7 @@ const FriendOnline = (props) => {
         return SelectedLink => SelectedLink.isActive ? mod.active_link : mod.friend_name
     };
 
-    return (<div>
+    return <div>
             {
                 props.online.map(fr => <div className={mod.about_friend} key={fr.id}>
                         <FriendAva avatar={fr.avatarUrl}
@@ -42,7 +42,6 @@ const FriendOnline = (props) => {
                 )
             }
         </div>
-    )
 };
 
 export default FriendOnline;

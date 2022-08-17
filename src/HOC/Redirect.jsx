@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 
 
-export const AuthRedirectComponent = (Component) => {
+export const WithAuthRedirectComponent = (Component) => {
     const Redirect = (props) => {
         if (!props.isAuth) return <Navigate to='/login' />
         return <Component {...props} />

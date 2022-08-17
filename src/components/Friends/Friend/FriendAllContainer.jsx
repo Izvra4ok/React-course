@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import Friend from "./Friend";
 import {followFriends, unfollowFriends} from "../../../Redux/friendsPageReducer";
+import {compose} from "redux";
 
 
 class FriendAllContainer extends React.Component {
@@ -22,4 +23,5 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps,{followFriends,unfollowFriends})(FriendAllContainer)
+
+export default compose(connect(mapStateToProps,{followFriends,unfollowFriends}))(FriendAllContainer)
