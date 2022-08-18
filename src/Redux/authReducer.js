@@ -7,7 +7,7 @@ let initialState = {
     email: null,
     login: null,
     isAuth: false,
-    Id: null,
+    id: null,
 };
 
 
@@ -30,12 +30,12 @@ export const setAuthProfileUserData = (id, email, login) => ({type: SET_USER_DAT
 
 export const getAuthProfileUser = () => {
 
-    return dispatch => {
+    return (dispatch) => {
         autProfileUserAPI.getAuthProfileUserServer()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, email, login} = data.data;
-                    dispatch(setAuthProfileUserData({id, email, login})); //auth
+                    dispatch(setAuthProfileUserData({id, email, login}));
                 }
             })
     }

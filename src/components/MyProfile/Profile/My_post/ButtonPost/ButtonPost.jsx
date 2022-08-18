@@ -7,7 +7,7 @@ const ButtonPost = (props) => {
     return (
 
         <span>
-            <NavLink to={"send"}>
+            <NavLink to={"/profile/send"}>
                 <button className={mod.button}
                         onClick={props.onAddPostClick}>
                     SEND

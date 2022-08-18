@@ -1,3 +1,6 @@
 .navbarpost{
     display: flex;
 }
+.form {
+    background-color: rgba(0, 0, 0, 0.2)
+}

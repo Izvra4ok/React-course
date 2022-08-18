@@ -9,6 +9,7 @@ import twitterImg from "../../../../assets/icons/Contacts/tw.png";
 import instargrammImg from "../../../../assets/icons/Contacts/inst.png";
 import youtubeImg from "../../../../assets/icons/Contacts/youtube.png";
 import mainLinkImg from "../../../../assets/icons/Contacts/site.png";
+import ProfileStatus from "../ProfileStatus";
 
 
 let About = (props) => {
@@ -29,14 +30,14 @@ let About = (props) => {
                         {props.profile.aboutMe}
                     </span>
                 </div>
+                <div className={mod.about_info}>Status:
+                    <span className={mod.about_span}>
+                        <ProfileStatus status={"Hey my friends"}/>
+                    </span>
+                </div>
                 <div className={mod.about_info}>Location:
                     <span className={mod.about_span}>
                                   Location
-                    </span>
-                </div>
-                <div className={mod.about_info}>Birthday:
-                    <span className={mod.about_span}>
-                        Birthday
                     </span>
                 </div>
                 <div className={mod.about_info}>Job:

@@ -6,13 +6,11 @@ import {compose} from "redux";
 class NavbarContainer extends React.Component {
 
     render() {
-        return <Navbar isAuth={this.props.isAuth}/>
+        return <Navbar/>
     }
 }
 
-let mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth,
-})
+let mapStateToProps = (state) => ({})
 
 
 export default compose(connect(mapStateToProps))(NavbarContainer);

@@ -16,16 +16,46 @@ let initialstate = {
     },],
 
     posts: [
-        {id: 1, avatarUrl:"https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
-            message: "Hello! What's new?", likes: 10, first: "Anna", last: "Barzakouskaya",},
-        {id: 2, avatarUrl:"https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
-            message: "Hi, how are you my friend?", likes: 15, first: "Alina", last: "Grigas",},
-        {id: 3, avatarUrl:"https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
-            message: "Good bye bro", likes: 25, first: "Denis", last: "Barzakouski",},
-        {id: 4, avatarUrl:"https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
-            message: "Good bye bro", likes: 25, first: "Denis", last: "Barzakouski",},
-        {id: 5, avatarUrl:"https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
-            message: "Good bye bro", likes: 25, first: "Denis", last: "Barzakouski",},
+        {
+            id: 1,
+            avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
+            message: "Hello! What's new?",
+            likes: 10,
+            first: "Anna",
+            last: "Barzakouskaya",
+        },
+        {
+            id: 2,
+            avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
+            message: "Hi, how are you my friend?",
+            likes: 15,
+            first: "Alina",
+            last: "Grigas",
+        },
+        {
+            id: 3,
+            avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
+            message: "Good bye bro",
+            likes: 25,
+            first: "Denis",
+            last: "Barzakouski",
+        },
+        {
+            id: 4,
+            avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
+            message: "Good bye bro",
+            likes: 25,
+            first: "Denis",
+            last: "Barzakouski",
+        },
+        {
+            id: 5,
+            avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
+            message: "Good bye bro",
+            likes: 25,
+            first: "Denis",
+            last: "Barzakouski",
+        },
     ],
 
     newPostText: "",
@@ -39,8 +69,14 @@ const profilePageReducer = (state = initialstate, action) => {
             return {
                 ...state,
                 newPostText: '',
-                posts: [...state.posts, {id: 6, avatarUrl:"https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
-                    message: newPost, likes:0, first: "Alina", last: "Grigas",}]
+                posts: [...state.posts, {
+                    id: 6,
+                    avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
+                    message: newPost,
+                    likes: 0,
+                    first: "Alina",
+                    last: "Grigas",
+                }]
             }
         case UPDATE_NEW_POST_TEXT:
             return {
@@ -60,17 +96,17 @@ const profilePageReducer = (state = initialstate, action) => {
 
 export const addPost = () => ({type: ADD_POST});
 export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
 
 export const getProfileUser = (userId) => {
-    return dispatch => {
+    return (dispatch) => {
         profileAPI.getProfileUserServer(userId)
             .then(data => {
-                dispatch(setUserProfile(data)) //set User id with server API
-            })
-    }
-}
+                    dispatch(setUserProfile(data));
+                })
+    };
+};
 
 
 export default profilePageReducer;

@@ -10,11 +10,7 @@ const Navbar = (props) => {
         return SelectedLink => SelectedLink.isActive ? mod.active_link : mod.navbar_link
     };
 
-    return <>
-        {
-            !props.isAuth
-                ? <nav className={mod.navbar}></nav>
-                : <nav className={mod.navbar}>
+    return <nav className={mod.navbar}>
                     <ul className={mod.navbar_list}>
                         <li className={mod.navbar_li}>
                             <NavLink to="/profile/" className={SelectedLink()}>
@@ -81,9 +77,6 @@ const Navbar = (props) => {
 
                     </ul>
                 </nav>
-        }
-    </>
-        ;
 };
 
 export default Navbar;
