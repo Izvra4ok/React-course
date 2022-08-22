@@ -24,7 +24,7 @@ const App = () => {
                     <Route path="/profile/:userId"
                            element={<ProfileContainer />}>
                     </Route>
-                    <Route path="/profile/"
+                    <Route path="/profile/*"
                            element={<ProfileContainer />}>
                     </Route>
                     <Route path="/messenger/*"

@@ -3,10 +3,12 @@ import {profileAPI} from "../API/api";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_PROFILE_STATUS = "SET_PROFILE_STATUS";
 
 let initialstate = {
 
     profile: null,
+    status: "",
 
     aboutme: [{
         avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -88,6 +90,11 @@ const profilePageReducer = (state = initialstate, action) => {
                 ...state,
                 profile: action.profile,
             }
+        case SET_PROFILE_STATUS:
+            return {
+                ...state,
+                status: action.status,
+            }
         default:
             return state;
 
@@ -97,6 +104,7 @@ const profilePageReducer = (state = initialstate, action) => {
 export const addPost = () => ({type: ADD_POST});
 export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
 
 
 export const getProfileUser = (userId) => {
@@ -107,6 +115,26 @@ export const getProfileUser = (userId) => {
                 })
     };
 };
+
+export const getProfileStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfileStatusServer(userId)
+            .then(data => {
+                dispatch(setProfileStatus(data))
+            })
+    };
+}
+
+export const updateProfileStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.getUpdateProfileStatus(status)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setProfileStatus(status))
+                }
+            })
+    }
+}
 
 
 export default profilePageReducer;

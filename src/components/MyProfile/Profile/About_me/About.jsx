@@ -32,7 +32,8 @@ let About = (props) => {
                 </div>
                 <div className={mod.about_info}>Status:
                     <span className={mod.about_span}>
-                        <ProfileStatus status={"Hey my friends"}/>
+                        <ProfileStatus status={props.status}
+                                       updateStatus={props.updateStatus}/>
                     </span>
                 </div>
                 <div className={mod.about_info}>Location:
@@ -48,28 +49,28 @@ let About = (props) => {
                 </div>
                 <div className={mod.about_info}>Contacts:
                     <span className={mod.about_span}>
-                        <a href={props.profile.contacts.facebook}>{props.profile.contacts.facebook
+                        <a href={`https://` + props.profile.contacts.facebook}>{props.profile.contacts.facebook
                             ? <img src={facebookImg} alt="facebook"/>
                             : null}</a>
-                        <a href={props.profile.contacts.github}>{props.profile.contacts.github
+                        <a href={`https://` + props.profile.contacts.github}>{props.profile.contacts.github
                             ? <img src={githubImg} alt="github"/>
                             : null}</a>
-                        <a href={props.profile.contacts.website}>{props.profile.contacts.website
+                        <a href={`https://` + props.profile.contacts.website}>{props.profile.contacts.website
                             ? <img src={websiteImg} alt="website"/>
                             : null}</a>
-                        <a href={props.profile.contacts.vk}>{props.profile.contacts.vk
+                        <a href={`https://` + props.profile.contacts.vk}>{props.profile.contacts.vk
                             ? <img src={vkImg} alt="vk"/>
                             : null}</a>
-                        <a href={props.profile.contacts.twitter}>{props.profile.contacts.twitter
+                        <a href={`https://` + props.profile.contacts.twitter}>{props.profile.contacts.twitter
                             ? <img src={twitterImg} alt="twitter"/>
                             : null}</a>
-                        <a href={props.profile.contacts.instagram}>{props.profile.contacts.instagramm
+                        <a href={`https://` + props.profile.contacts.instagram}>{props.profile.contacts.instagramm
                             ? <img src={instargrammImg} alt="instargamm"/>
                             : null}</a>
-                        <a href={props.profile.contacts.youtube}>{props.profile.contacts.youtube
+                        <a href={`https://` + props.profile.contacts.youtube}>{props.profile.contacts.youtube
                             ? <img src={youtubeImg} alt="youtube"/>
                             : null}</a>
-                        <a href={props.profile.contacts.mainLink}>{props.profile.contacts.mainLink
+                        <a href={`https://` + props.profile.contacts.mainLink}>{props.profile.contacts.mainLink
                             ? <img src={mainLinkImg} alt="mainLink"/>
                             : null}</a>
                     </span>

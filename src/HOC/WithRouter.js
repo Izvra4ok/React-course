@@ -1,12 +1,12 @@
 import {useLocation, useParams, useNavigate} from "react-router-dom";
 
 
-export const withRouter = (Children) => {
+export const withRouter = (Component) => {
     function ComponentWithRouterProp(props) {
         let location = useLocation();
         let navigate = useNavigate();
         let params = useParams();
-        return <Children {...props} router={{location, navigate, params}}/>
+        return <Component {...props} router={{location, navigate, params}}/>
 
     }
 
@@ -14,10 +14,10 @@ export const withRouter = (Children) => {
 }
 
 
-// let withRouter = (Children) => {
+// export let withRouter = (Component) => {
 //
 //     return (props) => {
 //         const match = {params: useParams()};
-//         return <Children {...props} match={match}/>
+//         return <Component {...props} match={match}/>
 //     }
 // }
