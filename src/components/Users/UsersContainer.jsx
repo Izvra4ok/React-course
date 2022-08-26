@@ -7,7 +7,6 @@ import {WithAuthRedirectComponent} from "../../HOC/Redirect";
 import {compose} from "redux";
 
 
-
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
@@ -61,6 +60,6 @@ let mapStateToProps = (state) => {
 
 
 export default compose(connect(mapStateToProps,
-    {getUsers, getUnfollowUser, getFollowUsers, setCurrentPage}),WithAuthRedirectComponent)(UsersContainer)
+    {getUsers, getUnfollowUser, getFollowUsers, setCurrentPage}), WithAuthRedirectComponent)(UsersContainer)
 
 

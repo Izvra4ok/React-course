@@ -1,7 +1,7 @@
 .messages {
     display: grid;
     padding: 5px;
-    height: 420px;
+    height: 410px;
     overflow-y:  auto;
     margin-bottom: 10px;
 }

@@ -10,6 +10,7 @@ const instance = axios.create({
 
 
 export const usersAPI = {
+
     getUsersServer(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`,)
             .then(response => {
@@ -34,18 +35,21 @@ export const usersAPI = {
 
 
 export const profileAPI = {
+
     getProfileUserServer(userId) {
         return instance.get(`profile/${userId}`)
             .then(response => {
                 return response.data
             })
     },
+
     getProfileStatusServer(userId) {
         return instance.get(`profile/status/${userId}`)
             .then(response => {
                 return response.data
             })
     },
+
     getUpdateProfileStatus(status) {
         return instance.put(`profile/status`, {status:status})
             .then(response => {
@@ -55,11 +59,26 @@ export const profileAPI = {
 };
 
 
-export const autProfileUserAPI = {
+export const authProfileUserAPI = {
+
     getAuthProfileUserServer() {
         return instance.get(`auth/me`)
             .then(response => {
                 return response.data
             })
-    }
+    },
+
+    getLoginUserServer(email,password, rememberMe, captcha= null) {
+        return instance.post(`auth/login`,{email,password, rememberMe, captcha})
+            .then(response => {
+                return response.data
+            })
+    },
+
+    getLogoutUserServer(){
+        return instance.delete(`auth/login`)
+            .then(response => {
+                return response.data
+            })
+    },
 };

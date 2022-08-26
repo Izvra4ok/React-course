@@ -1,0 +1,52 @@
+h2{
+    text-align: center;
+    font-size: 50px;
+}
+.formName{
+    font-size: 16px;
+    font-weight: 500;
+}
+.form {
+    display: block;
+    width: 250px;
+    height: 30px;
+    border: 1px solid black;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.formComments{
+    display: block;
+    width: 250px;
+    height: 100px;
+    border: 1px solid black;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.formErrors{
+    margin-bottom: 20px;
+    color:red;
+}
+.formCheckbox {
+    margin-left: 5px;
+}
+
+.button {
+    margin-top: 50px;
+    display: block;
+    background: #007146;
+    text-align: center;
+    line-height: 50px;;
+    font-size: 16px;
+    width: 160px;
+    height: 56px;
+    border: none;
+    margin-left: 10px;
+    color: white;
+}
+
+.button:active {
+    transform: scale(1.02, 1.02);
+    box-shadow: 1px 1px 5px black;
+}

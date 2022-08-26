@@ -1,4 +1,4 @@
-import {usersAPI} from "../API/api";
+import {usersAPI} from "../DAL/api";
 
 const FOLLOW_SUCCESS = "FOLLOW_SUCCESS";
 const UNFOLLOW_SUCCESS = "UNFOLLOW_SUCCESS";
@@ -10,12 +10,12 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 
 let initialState = {
-    users: [],                               // request on server API for Users
-    totalUsersCount: 0,                     // request on server API for count Users
+    users: [],                               // request on server DAL for Users
+    totalUsersCount: 0,                     // request on server DAL for count Users
     pageSize: 10,                           //default settings results page number users
     currentPage: 1,                         //default settings starting page number
     isFetching: true,                       // preloader active/disabled
-    folllowingInProgress: [],            //only  one request on server API instead of many or disabled <button>
+    folllowingInProgress: [],            //only  one request on server DAL instead of many or disabled <button>
 };
 
 
@@ -85,8 +85,8 @@ export const getUsers = (currentPage, pageSize) => {
         usersAPI.getUsersServer(currentPage, pageSize)
             .then(data => {
                 dispatch(toggleIsFetching(false)); // preloader
-                dispatch(setUsers(data.items)); // request on server API for Users
-                dispatch(setTotalUsersCount(data.totalCount)); //request on server API for count Users
+                dispatch(setUsers(data.items)); // request on server DAL for Users
+                dispatch(setTotalUsersCount(data.totalCount)); //request on server DAL for count Users
             });
     }
 }

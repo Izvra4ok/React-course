@@ -1,7 +1,7 @@
 import React from "react";
 import mod from "./Messages.module.css";
-import TextareaMessagesContainer from "./TextareaMessage/TextareaMessagesContainer";
 import MessageContainer from "./Message/MessageContainer";
+import TextareaMessagesFormContainer from "./TextareaFormMessage/TextareaMessagesFormContainer";
 
 
 const Messages = (props) => {
@@ -13,7 +13,7 @@ const Messages = (props) => {
                     <MessageContainer/>
                 </div>
             </div>
-            <TextareaMessagesContainer />
+            <TextareaMessagesFormContainer />
         </div>
     )
 };

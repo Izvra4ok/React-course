@@ -8,7 +8,7 @@ import MessengerContainer from "../Messenger/MessengerContainer";
 import FriendsContainer from "../Friends/FriendsContainer";
 import NavbarContainer from "../Navbar/NavbarContainer";
 import HeaderContainer from "../Header/HeaderContainer";
-import Login from "../Login/Login";
+import LoginContainer from "../Login/LoginContainer";
 
 const App = () => {
 
@@ -19,7 +19,7 @@ const App = () => {
             <div className="app_wrapper_content">
                 <Routes>
                     <Route path="/login/*"
-                           element={<Login />}>
+                           element={<LoginContainer />}>
                     </Route>
                     <Route path="/profile/:userId"
                            element={<ProfileContainer />}>

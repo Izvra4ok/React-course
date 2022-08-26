@@ -1,5 +1,5 @@
 const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+
 
 let initialstate = {
 
@@ -34,30 +34,24 @@ let initialstate = {
             {id: 5, message: "Hello! I'm fine and you?"},
         ],
 
-        newMessageText: "",
 };
 
 const messengerPageReducer = (state = initialstate, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
-            let newMessage = state.newMessageText;
+            let newMessage = action.newMessageText;
             if (newMessage === "") return state;
             return {
                 ...state,
-                newMessageText: "",
-                messages: [...state.messages, {id:6, message: newMessage,}]
+                messages: [...state.messages, {
+                    id:6, message: newMessage,}]
         };
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newMessage,
-            };
         default:
             return state;
     }
 };
 
-export const addMessage= () => ({type: ADD_MESSAGE});
-export const updateNewMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessage: text});
+export const addMessage= (newMessageText) => ({type: ADD_MESSAGE,newMessageText});
+
 
 export default messengerPageReducer;

@@ -1,7 +1,6 @@
-import {profileAPI} from "../API/api";
+import { profileAPI } from "../DAL/api";
 
 const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_PROFILE_STATUS = "SET_PROFILE_STATUS";
 
@@ -60,17 +59,15 @@ let initialstate = {
         },
     ],
 
-    newPostText: "",
 };
 
 const profilePageReducer = (state = initialstate, action) => {
     switch (action.type) {
         case ADD_POST:
-            let newPost = state.newPostText;
-            if (newPost === "") return state;
+            let newPost = action.textarea;
+            if (newPost === "") {return state}
             return {
                 ...state,
-                newPostText: '',
                 posts: [...state.posts, {
                     id: 6,
                     avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
@@ -79,11 +76,6 @@ const profilePageReducer = (state = initialstate, action) => {
                     first: "Alina",
                     last: "Grigas",
                 }]
-            }
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText,
             }
         case SET_USER_PROFILE:
             return {
@@ -101,8 +93,7 @@ const profilePageReducer = (state = initialstate, action) => {
     }
 };
 
-export const addPost = () => ({type: ADD_POST});
-export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const addPost = (textarea) => ({type: ADD_POST,textarea});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
 
@@ -135,6 +126,7 @@ export const updateProfileStatus = (status) => {
             })
     }
 }
+
 
 
 export default profilePageReducer;

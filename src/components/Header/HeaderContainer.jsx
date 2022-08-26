@@ -1,20 +1,36 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import Header from "./Header";
-import {getAuthProfileUser} from "../../Redux/authReducer";
+import {getAuthProfileUser, getLogoutUser} from "../../Redux/authReducer";
 import {compose} from "redux";
 
+const HeaderContainer = (props) => {
 
-class HeaderContainer extends React.Component {
+    useEffect(()=>{
+        props.getAuthProfileUser()
+    })
 
-    componentDidMount() {
-        this.props.getAuthProfileUser() //auth Profile User
+    let logout = () => {
+        props.getLogoutUser();
     }
+    return <Header {...props} logout={logout}/>
+};
 
-    render() {
-        return <Header {...this.props}/>
-    }
-}
+
+// class HeaderContainer extends React.Component {
+//
+//     componentDidMount() {
+//         this.props.getAuthProfileUser() //auth Profile User
+//     }
+//
+//     logout = () => {
+//         this.props.getLogoutUser();
+//     }
+//
+//     render() {
+//         return <Header {...this.props} logout={this.logout}/>
+//     }
+// }
 
 
 let mapStateToProps = (state) => {
@@ -26,4 +42,4 @@ let mapStateToProps = (state) => {
 }
 
 
-export default compose(connect(mapStateToProps, {getAuthProfileUser}))(HeaderContainer)
+export default compose(connect(mapStateToProps, {getAuthProfileUser,getLogoutUser}))(HeaderContainer)

@@ -22,8 +22,8 @@ const Users = (props) => {
         <div className={mod.users}>All users
             <div>
                 {
-                    slicedPages().map(p => {
-                        return <button className={props.currentPage === p && mod.selectedPage}
+                    slicedPages().map( (p, index) => {
+                        return <button key={index} className={props.currentPage === p && mod.selectedPage}
                                        onClick={() => {
                                            props.onPageChanged(p)
                                        }}>{p}</button>
@@ -73,8 +73,8 @@ const Users = (props) => {
             }
             <div>
                 {
-                    slicedPages().map(p => {
-                        return <button className={props.currentPage === p && mod.selectedPage}
+                    slicedPages().map( (p, index) => {
+                        return <button key={index} className={props.currentPage === p && mod.selectedPage}
                                        onClick={() => {
                                            props.onPageChanged(p)
                                        }}>{p}</button>

@@ -6,13 +6,6 @@ import {compose} from "redux";
 
 class MessengerContainer extends React.Component {
 
-    // let navigate = useNavigate();
-    // useEffect(()=>{
-    //     if (!props.isAuth) {
-    //         return navigate("/login")
-    //     }
-    // },[props.isAuth])
-
     render() {
         return <Messenger/>
     }

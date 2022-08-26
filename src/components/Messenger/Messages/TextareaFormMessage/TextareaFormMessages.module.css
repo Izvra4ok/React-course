@@ -1,14 +1,30 @@
+.form {
+    display: flex;
+    width: 100%;
+}
+
+.areatext {
+    height: 56px;
+    flex: 0 1 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.formErrors {
+    color: red;
+}
+
 .button {
     display: inline-block;
     background: #007146;
     text-align: center;
     line-height: 50px;;
     font-size: 16px;
-    width: 160px;
+    width: 120px;
     height: 56px;
     border: none;
-    margin-left: 10px;
+    margin-left: 5px;
     color: white;
+
 }
 
 .button:active {
