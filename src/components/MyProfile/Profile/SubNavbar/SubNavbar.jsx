@@ -3,6 +3,7 @@ import mod from "./SubNavbar.module.css"
 import {NavLink} from "react-router-dom";
 
 
+
 const SubNavbar = () => {
 
     let SelectedLink = () => {
@@ -38,4 +39,5 @@ const SubNavbar = () => {
     );
 };
 
-export default SubNavbar;
+export default SubNavbar
+

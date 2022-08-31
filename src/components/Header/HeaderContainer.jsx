@@ -10,6 +10,7 @@ const HeaderContainer = (props) => {
         props.getAuthProfileUser()
     })
 
+
     let logout = () => {
         props.getLogoutUser();
     }

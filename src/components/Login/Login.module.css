@@ -48,5 +48,10 @@ h2{
 
 .button:active {
     transform: scale(1.02, 1.02);
-    box-shadow: 1px 1px 5px black;
+
+}
+.button:disabled{
+    background-color: rgba(0, 113, 70, 0.74);
+    transform: none;
+    box-shadow: none;
 }

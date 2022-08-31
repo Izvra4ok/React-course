@@ -7,7 +7,6 @@ let initialState = {
     login: null,
     isAuth: false,
     id: null,
-    captchaURL: null,
 };
 
 
@@ -16,12 +15,10 @@ let authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true,
-                // login: action.data.login,
-                // id: action.data.id,
-                // email: action.data.email,
-                // isAuth: true,
+                login: action.data.login,
+                id: action.data.id,
+                email: action.data.email,
+                isAuth: action.data.isAuth,
             };
         default:
             return state;
@@ -29,9 +26,10 @@ let authReducer = (state = initialState, action) => {
 }
 
 
-export const setAuthProfileUserData = (id, email, login,) => ({
+export const setAuthProfileUserData = (id, email, login, isAuth) => ({
     type: SET_USER_DATA,
-    data: id, email, login});
+    data: {id, email, login, isAuth}
+});
 
 
 export const getAuthProfileUser = () => {
@@ -40,20 +38,19 @@ export const getAuthProfileUser = () => {
         authProfileUserAPI.getAuthProfileUserServer()
             .then(data => {
                 if (data.resultCode === 0) {
-                    let {id, email, login} = data.data;
-                    dispatch(setAuthProfileUserData({id, email, login}));
+                    // let {id, email, login} = data.data;
+                    dispatch(setAuthProfileUserData(data.data.id, data.data.email, data.data.login, true));
                 }
             })
     }
 };
 
-export const getLoginUser = (email,password,rememberMe,captcha) => {
+export const getLoginUser = (email, password, rememberMe, isAuth) => {
     return (dispatch) => {
-        authProfileUserAPI.getLoginUserServer(email,password,rememberMe,captcha)
+        authProfileUserAPI.getLoginUserServer(email, password, rememberMe, isAuth)
             .then(data => {
                 if (data.resultCode === 0) {
-                    let {email,password,rememberMe,captcha} = data.data
-                    dispatch(setAuthProfileUserData({email,password,rememberMe,captcha}))
+                    dispatch(getAuthProfileUser())
                 }
             })
     }
@@ -64,7 +61,7 @@ export const getLogoutUser = () => {
         authProfileUserAPI.getLogoutUserServer()
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch(setAuthProfileUserData(null,null,null))
+                    dispatch(setAuthProfileUserData(null, null, null, null))
                 }
             })
     }

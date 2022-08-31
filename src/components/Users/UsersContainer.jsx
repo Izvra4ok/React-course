@@ -13,7 +13,7 @@ class UsersContainer extends React.Component {
         //getUsers: getUsersThunkCreator => dispatch preloader(true/false), request on server for Users and count//
     };
 
-    onPageChanged = (pageNumber) => {
+    onPageChanged = (pageNumber=1) => {
         this.props.setCurrentPage(pageNumber); //will choice pageNumber and make bold font page//
         this.props.getUsers(pageNumber, this.props.pageSize);
     }

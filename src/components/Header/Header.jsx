@@ -1,11 +1,11 @@
 import React from "react";
 import mod from "./Header.module.css";
 import logo from "../../assets/images/obrez.png";
-import {Link, NavLink} from "react-router-dom";
+import {Link, Navigate,NavLink} from "react-router-dom";
 
 
 const Header = (props) => {
-
+// if (!props.isAuth){ return <Navigate to={"/login"}/>}
     return (
         <header className={mod.header}>
             <div>

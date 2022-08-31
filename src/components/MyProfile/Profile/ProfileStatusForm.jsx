@@ -1,40 +1,41 @@
-import React, {useState} from "react";
+import React from "react";
 import mod from "./Profile.module.css";
+import {Formik, Form, Field, ErrorMessage} from "formik";
+import Preloader from "../../common/Preloader";
 
-const ProfileStatus = (props) => {
+const ProfilestatusForm = (props) => {
+    if (!props.status) {
+        return <Preloader/>
+    }
 
-    const [status,setStatus] = useState(props.status)
-    const [editMode,setEditMode] = useState(false)
+    let initialValues = {
+        status: props.status || ""
+    }
+    const updateStatus = (values) => {
+        props.updateStatus(values.status)
+    }
 
-    let activateEditMode = () => {
-        setEditMode(true);
-    }
-    let deActivateEditMode = () => {
-        setEditMode(false);
-        props.updateStatus(status)
-    }
-    let onStatusChange = (e) => {
-        setStatus(e.currentTarget.value);
-    }
     return (
-    !editMode
-        ? <div>
-                        <span onClick={activateEditMode}>
-                            {props.status || "Enter your status"}
-                        </span>
-        </div>
-        : <div>
-                         <span>
-                             <input autoFocus={true}
-                                    onChange={onStatusChange}
-                                    onBlur={deActivateEditMode} className={mod.form}
-                                    type="text" value={status}/>
-                         </span>
-        </div>
+        <Formik
+            initialValues={initialValues}
+            onSubmit={updateStatus}>
+            <Form>
+                <div>
+                    <label className={mod.formName}
+                           htmlFor="status"/>
+                    <Field className={mod.form} type="text"
+                           placeholder="Enter your status"
+                           id="status"
+                           name="status"/>
+                    <ErrorMessage name="status">
+                        {errorMsg => <div className={mod.formErrors}>{errorMsg}</div>}
+                    </ErrorMessage>
+                </div>
+            </Form>
 
+        </Formik>
     )
 }
-
 
 // class ProfileStatus extends React.Component {
 //
@@ -91,4 +92,4 @@ const ProfileStatus = (props) => {
 //     }
 // }
 
-export default ProfileStatus;
+export default ProfilestatusForm;

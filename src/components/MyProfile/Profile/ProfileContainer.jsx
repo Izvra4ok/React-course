@@ -59,16 +59,19 @@ import {compose} from "redux";
 
 const ProfileContainer = (props) => {
 
-
-
     let userId = props.router.params.userId;
     if (!userId) {
-        userId = 25505 //props.id
+        userId =  props.id
     }
 
     useEffect(() => {
         props.getProfileUser(userId);
     }, [userId])
+
+    useEffect(()=> {
+        props.getProfileStatus(userId)
+    },[userId])
+
 
     return <Profile {...props}
                     updateStatus={props.updateProfileStatus}
@@ -81,6 +84,7 @@ let mapStateToProps = (state) => {
         profile: state.profilePage.profile,
         id: state.auth.id,
         status: state.profilePage.status,
+        isAuth:state.auth.isAuth,
     }
 }
 

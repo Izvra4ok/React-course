@@ -45,6 +45,8 @@
 
 .button:disabled{
     background-color: rgba(0, 113, 70, 0.74);
+    transform: none;
+    box-shadow: none;
 }
 .users_ava {
     width: 120px;

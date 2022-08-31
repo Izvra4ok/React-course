@@ -4,16 +4,7 @@ import mod from "./Login.module.css";
 import * as Yup from "yup";
 
 
-const validationSchema = Yup.object().shape({
-    email: Yup.string()
-        .min(2, "Must be longer than 2 characters")
-        .required("Required email"),
-    password: Yup.string()
-        .min(8, "Must be longer than 8 characters")
-        .required("Required password"),
-    comments: Yup.string()
-        .max(500, "So easy"),
-});
+
 
 
 const Login = (props) => {
@@ -22,11 +13,26 @@ const Login = (props) => {
         email: "",
         password: "",
         rememberMe: false,
-        captcha: true,
     };
 
-    const loginUser = (values) => {
-        props.loginUser(values.email, values.password, values.rememberMe,values.captcha)
+    const validationSchema = Yup.object().shape({
+        email: Yup.string().email()
+            .min(2, "Must be longer than 2 characters")
+            // .isValid("Hello").then((result) => console.log(result))
+            .required("Required email"),
+        password: Yup.string()
+            .min(8, "Must be longer than 8 characters")
+            .required("Required password"),
+        comments: Yup.string()
+            .max(500, "So easy"),
+    });
+
+    const loginUser = (values, onSubmitProps) => {
+        props.loginUser(values.email, values.password, values.rememberMe);
+        // console.log("Form data", values);
+        // console.log("submit props", onSubmitProps)
+        onSubmitProps.setSubmitting(false);
+        onSubmitProps.resetForm();
     };
 
 
@@ -37,8 +43,13 @@ const Login = (props) => {
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={loginUser}>
+            onSubmit={loginUser}
+            validateOnMount
+        >
 
+            {Formik => {
+                console.log("Formik props", Formik)
+            return (
             <Form>
                 <div>
                     <label className={mod.formName}
@@ -73,9 +84,12 @@ const Login = (props) => {
                        name="rememberMe"/>
 
                 <button className={mod.button}
+                        disabled={!Formik.isValid || Formik.isSubmitting}
                         type="submit">Submit
                 </button>
+
             </Form>
+                )}}
         </Formik>
     </div>
 }
