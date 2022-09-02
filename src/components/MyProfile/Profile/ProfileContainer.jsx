@@ -1,81 +1,70 @@
-// import React from 'react';
-// import {connect} from "react-redux";
-// import {getProfileStatus, getProfileUser, updateProfileStatus} from "../../../Redux/profilePageReducer";
-// import Profile from "./Profile";
-// import {withRouter} from "../../../HOC/WithRouter";
-// import {compose} from "redux";
-//
-//
-//
-// class ProfileContainer extends React.Component {
-//  I
-//     componentDidMount() {
-//         let userId = this.props.router.params.userId
-//         if (!userId) {userId = 25505}
-//
-//         this.props.getProfileUser(userId);
-//         this.props.getProfileStatus(userId);
-//     }
-//
-//     // componentDidUpdate(prevProps, prevState, snapshot) {
-//     //  debugger
-//     //  if (this.props.id !== prevProps.id) {
-//     //      this.props.getProfileUser(this.props.id)
-//     //  }
-//     // }
-//
-//
-//     render() {
-//
-//         return <Profile {...this.props}
-//                         updateStatus={this.props.updateProfileStatus}
-//                         status={this.props.status}
-//         />
-//
-//     }
-// }
-//
-//
-// let mapStateToProps = (state) => {
-//     return {
-//         profile: state.profilePage.profile,
-//         id: state.auth.id,
-//         status: state.profilePage.status,
-//     }
-// }
-//
-//
-// export default compose(connect(mapStateToProps, {getProfileUser,getProfileStatus,updateProfileStatus}),withRouter)(ProfileContainer);
-
-
-import React, {useEffect} from 'react';
+import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfileStatus, getProfileUser, updateProfileStatus} from "../../../Redux/profilePageReducer";
+import {
+    getProfileStatusThunkCreator,
+    getProfileUserThunkCreator,
+    updateProfileStatusThunkCreator
+} from "../../../Redux/profilePageReducer";
 import {withRouter} from "../../../HOC/WithRouter";
 // import {WithAuthRedirectComponent} from "../../../HOC/Redirect";
 import {compose} from "redux";
+import {Navigate} from "react-router-dom";
 
 
-const ProfileContainer = (props) => {
+class ProfileContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isShowMyProfile: true
+        };
+    };
 
-    let userId = props.router.params.userId;
-    if (!userId) {
-        userId =  props.id
+    componentDidMount() {
+        let userIdFromPath = +this.props.router.params.userId;
+        let authorisedUserId = this.props.id;
+        if (userIdFromPath) {
+            this.props.getProfileUserThunkCreator(userIdFromPath);
+            this.props.getProfileStatusThunkCreator(userIdFromPath);
+        } else {
+            if (this.props.isAuth) {
+                this.props.getProfileUserThunkCreator(authorisedUserId);
+                this.props.getProfileStatusThunkCreator(authorisedUserId);
+            }
+        }
+    };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+        let userIdFromPath = +this.props.router.params.userId;
+        let authorisedUserId = this.props.id;
+        let isShowMyProfile = this.state.isShowMyProfile;
+
+        if (isShowMyProfile) {
+
+            if (userIdFromPath === authorisedUserId) {
+                this.setState( {isShowMyProfile: false} )
+            }
+
+            if (!userIdFromPath && this.props.isAuth) {
+                this.props.getProfileUserThunkCreator( authorisedUserId );
+                this.props.getProfileStatusThunkCreator( authorisedUserId );
+                this.setState( {isShowMyProfile: false} )
+            }
+        }
     }
 
-    useEffect(() => {
-        props.getProfileUser(userId);
-    }, [userId])
 
-    useEffect(()=> {
-        props.getProfileStatus(userId)
-    },[userId])
+    render() {
 
+        if (!this.props.isAuth && !this.props.router.params.userId) {
+            return <Navigate to={"/login"}/>
+        }
 
-    return <Profile {...props}
-                    updateStatus={props.updateProfileStatus}
-                    status={props.status}/>
+        return <Profile {...this.props}
+                        updateStatus={this.props.updateProfileStatusThunkCreator}
+                        status={this.props.status}/>
+    }
 }
 
 
@@ -84,12 +73,16 @@ let mapStateToProps = (state) => {
         profile: state.profilePage.profile,
         id: state.auth.id,
         status: state.profilePage.status,
-        isAuth:state.auth.isAuth,
+        isAuth: state.auth.isAuth,
     }
 }
 
 
-export default compose(connect(mapStateToProps, {getProfileUser, getProfileStatus, updateProfileStatus}),
+export default compose(connect(mapStateToProps, {
+        getProfileUserThunkCreator,
+        getProfileStatusThunkCreator,
+        updateProfileStatusThunkCreator
+    }),
     withRouter
 // WithAuthRedirectComponent
 )(ProfileContainer);

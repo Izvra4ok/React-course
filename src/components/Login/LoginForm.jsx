@@ -7,7 +7,7 @@ import * as Yup from "yup";
 
 
 
-const Login = (props) => {
+const LoginForm = (props) => {
 
     const initialValues = {
         email: "",
@@ -18,7 +18,6 @@ const Login = (props) => {
     const validationSchema = Yup.object().shape({
         email: Yup.string().email()
             .min(2, "Must be longer than 2 characters")
-            // .isValid("Hello").then((result) => console.log(result))
             .required("Required email"),
         password: Yup.string()
             .min(8, "Must be longer than 8 characters")
@@ -28,9 +27,7 @@ const Login = (props) => {
     });
 
     const loginUser = (values, onSubmitProps) => {
-        props.loginUser(values.email, values.password, values.rememberMe);
-        // console.log("Form data", values);
-        // console.log("submit props", onSubmitProps)
+        props.loginUser(values.email, values.password, values.rememberMe,onSubmitProps.setStatus);
         onSubmitProps.setSubmitting(false);
         onSubmitProps.resetForm();
     };
@@ -51,6 +48,7 @@ const Login = (props) => {
                 console.log("Formik props", Formik)
             return (
             <Form>
+                <div className={mod.formErrors}>{Formik.status}</div>
                 <div>
                     <label className={mod.formName}
                            htmlFor="email">Email</label>
@@ -62,6 +60,7 @@ const Login = (props) => {
                         {errorMsg => <div className={mod.formErrors}>{errorMsg}</div>}
                     </ErrorMessage>
                 </div>
+
 
                 <div>
                     <label className={mod.formName}
@@ -94,4 +93,4 @@ const Login = (props) => {
     </div>
 }
 
-export default Login;
+export default LoginForm;

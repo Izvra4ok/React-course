@@ -35,7 +35,7 @@ export const setAuthProfileUserData = (id, email, login, isAuth) => ({
 export const getAuthProfileUser = () => {
 
     return (dispatch) => {
-        authProfileUserAPI.getAuthProfileUserServer()
+       return authProfileUserAPI.me()
             .then(data => {
                 if (data.resultCode === 0) {
                     // let {id, email, login} = data.data;
@@ -45,20 +45,20 @@ export const getAuthProfileUser = () => {
     }
 };
 
-export const getLoginUser = (email, password, rememberMe, isAuth) => {
+export const getLoginUser = (email, password, rememberMe, setStatus) => {
     return (dispatch) => {
-        authProfileUserAPI.getLoginUserServer(email, password, rememberMe, isAuth)
+        authProfileUserAPI.login(email, password, rememberMe)
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(getAuthProfileUser())
-                }
+                } else {setStatus(data.messages)}
             })
     }
 };
 
 export const getLogoutUser = () => {
     return (dispatch) => {
-        authProfileUserAPI.getLogoutUserServer()
+        authProfileUserAPI.logout()
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(setAuthProfileUserData(null, null, null, null))

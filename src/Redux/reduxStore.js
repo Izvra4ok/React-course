@@ -6,6 +6,7 @@ import usersPageReducer from "./usersPageReducer";
 import friendsPageReducer from "./friendsPageReducer";
 import authReducer from "./authReducer";
 import thunkMiddleware from "redux-thunk";
+import appReducer from "./appReducer";
 
 
 let reducers = combineReducers({
@@ -15,6 +16,7 @@ let reducers = combineReducers({
     messengerPage: messengerPageReducer,
     navbarPage: navbarPageReducer,
     usersPage: usersPageReducer,
+    app: appReducer,
 });
 
 let store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware));

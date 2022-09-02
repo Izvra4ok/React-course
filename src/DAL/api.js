@@ -61,21 +61,21 @@ export const profileAPI = {
 
 export const authProfileUserAPI = {
 
-    getAuthProfileUserServer() {
+    me() {
         return instance.get(`auth/me`)
             .then(response => {
                 return response.data
             })
     },
 
-    getLoginUserServer(email,password, rememberMe) {
+    login(email,password, rememberMe) {
         return instance.post(`auth/login`,{email,password, rememberMe})
             .then(response => {
                 return response.data
             })
     },
 
-    getLogoutUserServer(){
+    logout(){
         return instance.delete(`auth/login`)
             .then(response => {
                 return response.data

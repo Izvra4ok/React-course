@@ -1,30 +1,34 @@
 import React from "react";
 import {connect} from "react-redux";
-import {getFollowUsers, getUnfollowUser, getUsers, setCurrentPage,} from "../../Redux/usersPageReducer";
+import {
+    getFollowUsersThunkCreator,
+    getUnfollowUserThunkCreator,
+    getUsersThunkCreator,
+    setCurrentPage,
+} from "../../Redux/usersPageReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
-import {WithAuthRedirectComponent} from "../../HOC/Redirect";
 import {compose} from "redux";
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
         //getUsers: getUsersThunkCreator => dispatch preloader(true/false), request on server for Users and count//
     };
 
     onPageChanged = (pageNumber=1) => {
         this.props.setCurrentPage(pageNumber); //will choice pageNumber and make bold font page//
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
     }
 
     onClickUnfollowUsers = (userId) => {
-        this.props.getUnfollowUser(userId);
+        this.props.getUnfollowUserThunkCreator(userId);
         //=> dispatch toggleFollowingIsProgress(true/false),request .delete on server for userId and next dispatch unfollow
     }
 
     onClickFollowUsers = (userId) => {
-        this.props.getFollowUsers(userId);
+        this.props.getFollowUsersThunkCreator(userId);
         //=> dispatch toggleFollowingIsProgress(true/false),request .post(add) on server for userId and next dispatch follow
     }
 
@@ -60,6 +64,6 @@ let mapStateToProps = (state) => {
 
 
 export default compose(connect(mapStateToProps,
-    {getUsers, getUnfollowUser, getFollowUsers, setCurrentPage}), WithAuthRedirectComponent)(UsersContainer)
+    {getUsersThunkCreator, getUnfollowUserThunkCreator, getFollowUsersThunkCreator, setCurrentPage}),)(UsersContainer)
 
 

@@ -1,17 +1,17 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {compose} from "redux";
-import Login from "./Login";
+import LoginForm from "./LoginForm";
 import {getLoginUser} from "../../Redux/authReducer";
 import {Navigate} from "react-router-dom";
 
 const LoginContainer = (props) => {
     if (props.isAuth) {return <Navigate to={"/profile/"}/>}
 
-    const login = (email,password, rememberMe) => {
-        props.getLoginUser(email,password, rememberMe)
+    const login = (email,password, rememberMe,setStatus,setSubmitting,resetForm) => {
+        props.getLoginUser(email,password, rememberMe,setStatus,setSubmitting,resetForm)
     }
-    return <Login {...props} loginUser={login}/>
+    return <LoginForm {...props} loginUser={login}/>
 
 };
 

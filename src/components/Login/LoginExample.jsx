@@ -1,6 +1,6 @@
 // import React from "react";
 // import {ErrorMessage, Field, Form, Formik} from "formik";
-// import mod from "./Login.module.css";
+// import mod from "./LoginForm.module.css";
 // import * as Yup from "yup";
 //
 //
@@ -33,7 +33,7 @@
 //
 //     return <div>
 //
-//         <h2>Login</h2>
+//         <h2>LoginForm</h2>
 //
 //         <Formik
 //             initialValues={initialValues}

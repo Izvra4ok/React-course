@@ -79,7 +79,7 @@ export const toggleFollowingIsProgress = (isFetching, userId) => ({type: TOGGLE_
     isFetching, userId})
 
 
-export const getUsers = (currentPage, pageSize) => {
+export const getUsersThunkCreator = (currentPage, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true)); // preloader
         usersAPI.getUsersServer(currentPage, pageSize)
@@ -92,7 +92,7 @@ export const getUsers = (currentPage, pageSize) => {
 }
 
 
-export const getUnfollowUser = (userId) => {
+export const getUnfollowUserThunkCreator = (userId) => {
 
     return (dispatch) => {
 
@@ -106,7 +106,7 @@ export const getUnfollowUser = (userId) => {
 }}
 
 
-export const getFollowUsers = (userId) => {
+export const getFollowUsersThunkCreator = (userId) => {
 
     return (dispatch) => {
 
