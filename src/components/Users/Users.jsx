@@ -30,6 +30,7 @@ const Users = (props) => {
                     })
                 }
             </div>
+
             {
                 props.users.map(user => <div className={mod.all_users} key={user.id}>
                         <div className={mod.users_avaButton}>

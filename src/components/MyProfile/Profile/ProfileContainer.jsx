@@ -10,6 +10,8 @@ import {withRouter} from "../../../HOC/WithRouter";
 // import {WithAuthRedirectComponent} from "../../../HOC/Redirect";
 import {compose} from "redux";
 import {Navigate} from "react-router-dom";
+import {getIdSelector, getIsAuthSelector} from "../../../Redux/selectors/authSelectors";
+import {getProfileSelector, getProfileStatusSelector} from "../../../Redux/selectors/profilePageSelectors";
 
 
 class ProfileContainer extends React.Component {
@@ -70,10 +72,10 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        profile: state.profilePage.profile,
-        id: state.auth.id,
-        status: state.profilePage.status,
-        isAuth: state.auth.isAuth,
+        profile: getProfileSelector(state),
+        id: getIdSelector(state),
+        status: getProfileStatusSelector(state),
+        isAuth: getIsAuthSelector(state),
     }
 }
 

@@ -3,11 +3,6 @@ import mod from "./TextareaFormPost.module.css";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 
-const validationSchema = Yup.object().shape({
-    textarea: Yup.string()
-        .min(1, "Must be longer than 1 characters")
-        .required("Required addPost"),
-});
 
 
 const TextareaPostForm = (props) => {
@@ -15,6 +10,12 @@ const TextareaPostForm = (props) => {
     const initialValues = {
         textarea: "",
     };
+
+    const validationSchema = Yup.object().shape({
+        textarea: Yup.string()
+            .min(1, "Must be longer than 1 characters")
+            .required("Required addPost"),
+    });
 
     const addPost = (textarea) => {
         props.onAddPostClick(textarea);

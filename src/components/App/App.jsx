@@ -15,6 +15,8 @@ import {connect} from "react-redux";
 import Preloader from "../common/Preloader";
 import {getAuthProfileUser} from "../../Redux/authReducer";
 import {getInitializedThunkCreator} from "../../Redux/appReducer";
+import {getInitializedSelector} from "../../Redux/selectors/appSelectors";
+
 
 const App = (props) => {
 
@@ -56,49 +58,10 @@ const App = (props) => {
     );
 }
 
-// class App extends React.Component {
-//
-//     componentDidMount() {
-//         this.props.getInitializedThunkCreator();
-//     }
-//
-//     render() {
-//         if (!this.props.initialized) {
-//             return <Preloader/>
-//         }
-//
-//         return (
-//             <div className="app_wrapper">
-//                 <HeaderContainer/>
-//                 <NavbarContainer/>
-//                 <div className="app_wrapper_content">
-//                     <Routes>
-//                         <Route path="/login/*"
-//                                element={<LoginContainer/>}>
-//                         </Route>
-//                         <Route path="/profile/:userId"
-//                                element={<ProfileContainer/>}>
-//                         </Route>
-//                         <Route path="/profile/*"
-//                                element={<ProfileContainer/>}>
-//                         </Route>
-//                         <Route path="/messenger/*"
-//                                element={<MessengerContainer/>}>
-//                         </Route>
-//                         <Route path="/friends/*"
-//                                element={<FriendsContainer/>}>
-//                         </Route>
-//                         <Route path="/users/*"
-//                                element={<UsersContainer/>}>
-//                         </Route>
-//                     </Routes>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
 
 let mapStateToProps = (state) => ({
-    initialized: state.app.initialized
+    initialized: getInitializedSelector(state),
 })
+
+
 export default compose(withRouter, connect(mapStateToProps, {getAuthProfileUser, getInitializedThunkCreator}))(App)

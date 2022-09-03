@@ -4,6 +4,12 @@ import {compose} from "redux";
 import LoginForm from "./LoginForm";
 import {getLoginUser} from "../../Redux/authReducer";
 import {Navigate} from "react-router-dom";
+import {
+    getEmailSelector,
+    getIdSelector,
+    getIsAuthSelector,
+    getLoginSelector
+} from "../../Redux/selectors/authSelectors";
 
 const LoginContainer = (props) => {
     if (props.isAuth) {return <Navigate to={"/profile/"}/>}
@@ -17,11 +23,10 @@ const LoginContainer = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        login: state.auth.login,
-        id: state.auth.id,
-        isAuth: state.auth.isAuth,
-        email: state.auth.email,
-        password: state.auth.password,
+        login: getLoginSelector(state),
+        id: getIdSelector(state),
+        isAuth: getIsAuthSelector(state),
+        email: getEmailSelector(state),
     }
 }
 

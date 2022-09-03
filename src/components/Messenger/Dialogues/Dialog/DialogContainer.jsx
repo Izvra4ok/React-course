@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import Dialog from "./Dialog";
+import {getDialogsSelector} from "../../../../Redux/selectors/messengerPageSelectors";
 
 class DialogContainer extends React.Component {
 
@@ -11,7 +12,7 @@ class DialogContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        dialogs: state.messengerPage.dialogs
+        dialogs: getDialogsSelector(state),
     }
 }
 

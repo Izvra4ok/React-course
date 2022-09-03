@@ -2,6 +2,7 @@ import React from "react";
 import Message from "./Message";
 import {connect} from "react-redux";
 import {compose} from "redux";
+import {getMessagesSelector} from "../../../../Redux/selectors/messengerPageSelectors";
 
 class MessageContainer extends React.Component {
 
@@ -13,7 +14,7 @@ class MessageContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        messages: state.messengerPage.messages
+        messages: getMessagesSelector(state),
     }
 }
 

@@ -9,6 +9,15 @@ import {
 import Users from "./Users";
 import Preloader from "../common/Preloader";
 import {compose} from "redux";
+import {
+    getCurrentPageSelector,
+    getFollowingInProgressSelector,
+    getIsFetchingSelector,
+    getPageSizeSelector,
+    getTotalUsersCountSelector,
+    getUsersSelector
+} from "../../Redux/selectors/usersPageSelectors";
+import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
 
 
 class UsersContainer extends React.Component {
@@ -17,7 +26,7 @@ class UsersContainer extends React.Component {
         //getUsers: getUsersThunkCreator => dispatch preloader(true/false), request on server for Users and count//
     };
 
-    onPageChanged = (pageNumber=1) => {
+    onPageChanged = (pageNumber = 1) => {
         this.props.setCurrentPage(pageNumber); //will choice pageNumber and make bold font page//
         this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
     }
@@ -49,19 +58,18 @@ class UsersContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
 
+let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        pageSize: state.usersPage.pageSize,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        folllowingInProgress: state.usersPage.folllowingInProgress,
-        isAuth: state.auth.isAuth,
+        users: getUsersSelector(state),
+        totalUsersCount: getTotalUsersCountSelector(state),
+        pageSize: getPageSizeSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        isFetching: getIsFetchingSelector(state),
+        folllowingInProgress: getFollowingInProgressSelector(state),
+        isAuth: getIsAuthSelector(state),
     }
 };
-
 
 export default compose(connect(mapStateToProps,
     {getUsersThunkCreator, getUnfollowUserThunkCreator, getFollowUsersThunkCreator, setCurrentPage}),)(UsersContainer)
