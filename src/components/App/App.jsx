@@ -16,18 +16,19 @@ import Preloader from "../common/Preloader";
 import {getAuthProfileUser} from "../../Redux/authReducer";
 import {getInitializedThunkCreator} from "../../Redux/appReducer";
 import {getInitializedSelector} from "../../Redux/selectors/appSelectors";
+import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
 
 
 const App = (props) => {
 
     useEffect(() => {
         props.getInitializedThunkCreator()
-    })
+    },[props.getInitializedThunkCreator])
 
-    if (!props.initialized) {
+
+    if (!props.initialized ) {
         return <Preloader/>
     }
-
     return (
         <div className="app_wrapper">
             <HeaderContainer/>
@@ -61,6 +62,7 @@ const App = (props) => {
 
 let mapStateToProps = (state) => ({
     initialized: getInitializedSelector(state),
+    isAuth: getIsAuthSelector(state),
 })
 
 

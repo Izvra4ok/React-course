@@ -3,6 +3,7 @@ import {profileAPI} from "../DAL/api";
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_PROFILE_STATUS = "SET_PROFILE_STATUS";
+const DELETE_POST = "DELETE_POST";
 
 let initialstate = {
 
@@ -79,6 +80,11 @@ const profilePageReducer = (state = initialstate, action) => {
                     last: "Grigas",
                 }]
             }
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter( p => p.id !== action.postId)
+            }
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -98,6 +104,7 @@ const profilePageReducer = (state = initialstate, action) => {
 export const addPost = (textarea) => ({type: ADD_POST, textarea});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
+export const deletePost = (postId) => ({type: DELETE_POST,postId})
 
 
 export const getProfileUserThunkCreator = (userId) => {

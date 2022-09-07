@@ -5,7 +5,6 @@ import {compose} from "redux";
 import TextareaPostForm from "./TextareaFormPost";
 
 
-
 class TextareaFormPostContainer extends React.Component {
 
     onAddPostClick = (textarea) => {
@@ -20,4 +19,4 @@ class TextareaFormPostContainer extends React.Component {
 let mapStateToProps = (state) => ({})
 
 
-export default compose(connect(mapStateToProps,{addPost}))(TextareaFormPostContainer);
+export default compose(connect(mapStateToProps, {addPost}))(TextareaFormPostContainer);

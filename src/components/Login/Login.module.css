@@ -2,13 +2,14 @@ h2{
     text-align: center;
     font-size: 50px;
 }
+
 .formName{
     font-size: 16px;
     font-weight: 500;
 }
 .form {
     display: block;
-    width: 250px;
+    width: 350px;
     height: 30px;
     border: 1px solid black;
     font-size: 14px;

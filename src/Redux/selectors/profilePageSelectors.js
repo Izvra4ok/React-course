@@ -24,7 +24,7 @@ const getProfilePostsBasicSelector = (state) => {
     return state.profilePage.posts
 };
 
-export const getProfilePostsSelector = createSelector(getProfileStatusBasicSelector,
+export const getProfilePostsSelector = createSelector(getProfilePostsBasicSelector,
     (posts) => {
         return posts;
     });

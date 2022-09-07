@@ -33,6 +33,8 @@ let About = (props) => {
                 <div className={mod.about_info}>Status:
                     <span className={mod.about_span}>
                         <ProfileStatus status={props.status}
+                                       id={props.id}
+                                       profileId={props.profile.userId}
                                            updateStatus={props.updateStatus}/>
                     </span>
                 </div>

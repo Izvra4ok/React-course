@@ -4,17 +4,24 @@ import TextareaFormMessages from "./TextareaFormMessages";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
+const TextareaMessagesFormContainer = (props) => {
 
-class TextareaMessagesFormContainer extends React.Component {
-
-    onAddMessageClick = (newMessageText) => {
-        this.props.addMessage(newMessageText);
+    let onAddMessageClick = (newMessageText) => {
+        props.addMessage(newMessageText);
     };
 
-    render() {
-        return <TextareaFormMessages onAddMessageClick={this.onAddMessageClick}/>
-    }
+    return <TextareaFormMessages onAddMessageClick={onAddMessageClick}/>
 }
+// class TextareaMessagesFormContainer extends React.Component {
+//
+//     onAddMessageClick = (newMessageText) => {
+//         this.props.addMessage(newMessageText);
+//     };
+//
+//     render() {
+//         return <TextareaFormMessages onAddMessageClick={this.onAddMessageClick}/>
+//     }
+// }
 
 let mapStateToProps = (state) => ({})
 

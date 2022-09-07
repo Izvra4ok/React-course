@@ -41,11 +41,24 @@ class UsersContainer extends React.Component {
         //=> dispatch toggleFollowingIsProgress(true/false),request .post(add) on server for userId and next dispatch follow
     }
 
+        slicedPages = () => {
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+        let pages = [];
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+        let carousel = this.props.currentPage;
+        let carouselLeft = ((carousel - 5) < 0) ? 0 : carousel - 4;
+        let carouselRight = carousel + 4;
+        return pages.slice(carouselLeft, carouselRight);
+    }
+
     render() {
         return <>
             {this.props.isFetching //pleloader active
                 ? <Preloader styled={{width: "50px", height: "50px"}}/>
                 : <Users users={this.props.users}
+                         slicedPages={this.slicedPages}
                          totalUsersCount={this.props.totalUsersCount}
                          pageSize={this.props.pageSize}
                          currentPage={this.props.currentPage}

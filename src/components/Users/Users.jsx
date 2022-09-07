@@ -6,23 +6,12 @@ import userDefaultFoto from "../../assets/images/userDefaultAvatar.webp";
 
 const Users = (props) => {
 
-    let slicedPages = () => {
-        let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-        let carousel = props.currentPage;
-        let carouselLeft = ((carousel - 5) < 0) ? 0 : carousel - 4;
-        let carouselRight = carousel + 4;
-        return pages.slice(carouselLeft, carouselRight);
-    }
 
     return (
         <div className={mod.users}>All users
             <div>
                 {
-                    slicedPages().map( (p, index) => {
+                    props.slicedPages().map( (p, index) => {
                         return <button key={index} className={props.currentPage === p && mod.selectedPage}
                                        onClick={() => {
                                            props.onPageChanged(p)
@@ -74,7 +63,7 @@ const Users = (props) => {
             }
             <div>
                 {
-                    slicedPages().map( (p, index) => {
+                    props.slicedPages().map( (p, index) => {
                         return <button key={index} className={props.currentPage === p && mod.selectedPage}
                                        onClick={() => {
                                            props.onPageChanged(p)

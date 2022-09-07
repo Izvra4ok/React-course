@@ -7,15 +7,15 @@ import About from "./About_me/About";
 
 const Profile = (props) => {
     return <section className={mod.profile}>
-            <About profile={props.profile}
-                   status={props.status}
-                   id={props.id}
-                   updateStatus={props.updateStatus} />
-            <div className={mod.navbarpost}>
-                <SubNavbar/>
-                <MyPost/>
-            </div>
-        </section>
+        <About profile={props.profile}
+               status={props.status}
+               id={props.id}
+               updateStatus={props.updateStatus}/>
+        <div className={mod.navbarpost}>
+            <SubNavbar/>
+            <MyPost/>
+        </div>
+    </section>
 };
 
 export default Profile;

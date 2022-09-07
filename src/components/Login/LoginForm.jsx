@@ -4,9 +4,6 @@ import mod from "./Login.module.css";
 import * as Yup from "yup";
 
 
-
-
-
 const LoginForm = (props) => {
 
     const initialValues = {

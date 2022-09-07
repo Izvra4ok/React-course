@@ -14,8 +14,8 @@ import {
 const LoginContainer = (props) => {
     if (props.isAuth) {return <Navigate to={"/profile/"}/>}
 
-    const login = (email,password, rememberMe,setStatus,setSubmitting,resetForm) => {
-        props.getLoginUser(email,password, rememberMe,setStatus,setSubmitting,resetForm)
+    const login = (email,password, rememberMe,setStatus) => {
+        props.getLoginUser(email,password, rememberMe,setStatus)
     }
     return <LoginForm {...props} loginUser={login}/>
 
