@@ -1,12 +1,13 @@
 import {usersAPI} from "../DAL/api";
+import {updateObjectInArray} from "../utils/objectHelpers";
 
-const FOLLOW_SUCCESS = "FOLLOW_SUCCESS";
-const UNFOLLOW_SUCCESS = "UNFOLLOW_SUCCESS";
-const SET_USERS = "SET_USERS";
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
+const FOLLOW_SUCCESS = "socialNetwork/usersPageReducer/FOLLOW_SUCCESS";
+const UNFOLLOW_SUCCESS = "socialNetwork/usersPageReducer/UNFOLLOW_SUCCESS";
+const SET_USERS = "socialNetwork/usersPageReducer/SET_USERS";
+const SET_CURRENT_PAGE = "socialNetwork/usersPageReducer/SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "socialNetwork/usersPageReducer/SET_TOTAL_USERS_COUNT";
+const TOGGLE_IS_FETCHING = "socialNetwork/usersPageReducer/TOGGLE_IS_FETCHING";
+const TOGGLE_IS_FOLLOWING_PROGRESS = "socialNetwork/usersPageReducer/TOGGLE_IS_FOLLOWING_PROGRESS";
 
 
 let initialState = {
@@ -24,23 +25,13 @@ const usersPageReducer = (state = initialState, action) => {
         case FOLLOW_SUCCESS:
             return {
                 ...state,
-                users: state.users.map(user => {
-                    if (user.id === action.userId) {
-                        return {...user, followed: true}
-                    }
-                    return user;
-                })
-            };
+                users: updateObjectInArray(state.users, "id", action.userId, {followed:true})
+            }
         case UNFOLLOW_SUCCESS:
-            return {
-                ...state,
-                users: state.users.map(user => {
-                    if (user.id === action.userId) {
-                        return {...user, followed: false}
-                    }
-                    return user;
-                })
-            };
+                return {
+                    ...state,
+                    users: updateObjectInArray(state.users, "id", action.userId, {followed:false})
+                }
         case SET_USERS:
             return {
                 ...state, users: action.users
@@ -69,57 +60,67 @@ const usersPageReducer = (state = initialState, action) => {
     }
 }
 
-export const followUserSuccess = (userId) => ({type: FOLLOW_SUCCESS, userId});
-export const unfollowUserSuccess = (userId) => ({type: UNFOLLOW_SUCCESS, userId});
-export const setUsers = (users) => ({type: SET_USERS, users});
-export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalCount: totalUsersCount})
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
-export const toggleFollowingIsProgress = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS,
-    isFetching, userId})
+export const followUserSuccess = (userId) => ({
+    type: FOLLOW_SUCCESS, userId
+});
+
+export const unfollowUserSuccess = (userId) => ({
+    type: UNFOLLOW_SUCCESS, userId
+});
+
+export const setUsers = (users) => ({
+    type: SET_USERS, users
+});
+
+export const setCurrentPage = (currentPage) => ({
+    type: SET_CURRENT_PAGE, currentPage
+});
+
+export const setTotalUsersCount = (totalUsersCount) => ({
+    type: SET_TOTAL_USERS_COUNT, totalCount: totalUsersCount
+})
+
+export const toggleIsFetching = (isFetching) => ({
+    type: TOGGLE_IS_FETCHING, isFetching
+});
+
+export const toggleFollowingIsProgress = (isFetching, userId) => ({
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    isFetching, userId
+});
 
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
-        dispatch(toggleIsFetching(true)); // preloader
-        dispatch(setCurrentPage(currentPage))
-        usersAPI.getUsersServer(currentPage, pageSize)
-            .then(data => {
-                dispatch(toggleIsFetching(false)); // preloader
-                dispatch(setUsers(data.items)); // request on server DAL for Users
-                dispatch(setTotalUsersCount(data.totalCount)); //request on server DAL for count Users
-            });
-    }
+export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(toggleIsFetching(true)); // preloader
+    dispatch(setCurrentPage(currentPage))
+    let data = await usersAPI.getUsersServer(currentPage, pageSize)
+    dispatch(toggleIsFetching(false)); // preloader
+    dispatch(setUsers(data.items)); // request on server DAL for Users
+    dispatch(setTotalUsersCount(data.totalCount)); //request on server DAL for count Users
 }
 
 
+export const getFollowUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+    dispatch(toggleFollowingIsProgress(true, userId));
+    let data = await apiMethod(userId);
+
+    if (data.resultCode === 0) {
+        dispatch(actionCreator(userId));
+    }
+    dispatch(toggleFollowingIsProgress(false, userId));
+
+}
 export const getUnfollowUserThunkCreator = (userId) => {
-
-    return (dispatch) => {
-
-        dispatch(toggleFollowingIsProgress(true, userId));
-        usersAPI.unfollowUsersServer(userId).then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(unfollowUserSuccess(userId));
-                }
-                dispatch(toggleFollowingIsProgress(false, userId));
-    });
-}}
+    return async (dispatch) => {
+        getFollowUnfollowFlow(dispatch, userId, usersAPI.unfollowUsersServer.bind(usersAPI), unfollowUserSuccess);
+    }
+}
 
 
 export const getFollowUsersThunkCreator = (userId) => {
-
-    return (dispatch) => {
-
-        dispatch(toggleFollowingIsProgress(true, userId));
-        usersAPI.followUsersServer(userId).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(followUserSuccess(userId));
-            }
-            dispatch(toggleFollowingIsProgress(false, userId))
-        })
+    return async (dispatch) => {
+        getFollowUnfollowFlow(dispatch, userId, usersAPI.followUsersServer.bind(usersAPI), followUserSuccess);
     }
 }
-
 
 export default usersPageReducer;

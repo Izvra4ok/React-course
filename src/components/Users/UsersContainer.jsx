@@ -22,35 +22,22 @@ import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
-        //getUsers: getUsersThunkCreator => dispatch preloader(true/false), request on server for Users and count//
+        const {currentPage, pageSize} = this.props;
+        this.props.getUsersThunkCreator(currentPage, pageSize);
     };
 
     onPageChanged = (pageNumber = 1) => {
-        this.props.setCurrentPage(pageNumber); //will choice pageNumber and make bold font page//
-        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
+        const pageSize = this.props;
+        this.props.setCurrentPage(pageNumber);
+        this.props.getUsersThunkCreator(pageNumber,pageSize);
     }
 
     onClickUnfollowUsers = (userId) => {
         this.props.getUnfollowUserThunkCreator(userId);
-        //=> dispatch toggleFollowingIsProgress(true/false),request .delete on server for userId and next dispatch unfollow
     }
 
     onClickFollowUsers = (userId) => {
         this.props.getFollowUsersThunkCreator(userId);
-        //=> dispatch toggleFollowingIsProgress(true/false),request .post(add) on server for userId and next dispatch follow
-    }
-
-        slicedPages = () => {
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-        let carousel = this.props.currentPage;
-        let carouselLeft = ((carousel - 5) < 0) ? 0 : carousel - 4;
-        let carouselRight = carousel + 4;
-        return pages.slice(carouselLeft, carouselRight);
     }
 
     render() {
@@ -83,6 +70,7 @@ let mapStateToProps = (state) => {
         isAuth: getIsAuthSelector(state),
     }
 };
+
 
 export default compose(connect(mapStateToProps,
     {getUsersThunkCreator, getUnfollowUserThunkCreator, getFollowUsersThunkCreator, setCurrentPage}),)(UsersContainer)

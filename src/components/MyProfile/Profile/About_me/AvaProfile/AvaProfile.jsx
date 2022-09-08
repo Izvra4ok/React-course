@@ -10,6 +10,8 @@ const AvaProfile = (props) => {
                  ? props.avatar
                  : userDefaultPhoto}
              alt="avatar"/>
-    );
+    )
 };
+
+
 export default AvaProfile;

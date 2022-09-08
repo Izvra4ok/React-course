@@ -1,6 +1,6 @@
 import {authProfileUserAPI} from "../DAL/api";
 
-const SET_USER_DATA = "SET_USER_DATA";
+const SET_USER_DATA = "social-network/auth/SET_USER_DATA";
 
 let initialState = {
     email: null,
@@ -32,39 +32,31 @@ export const setAuthProfileUserData = (id, email, login, isAuth) => ({
 });
 
 
-export const getAuthProfileUser = () => {
-
-    return (dispatch) => {
-       return authProfileUserAPI.me()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    // let {id, email, login} = data.data;
-                    dispatch(setAuthProfileUserData(data.data.id, data.data.email, data.data.login, true));
-                }
-            })
+export const getAuthProfileUser = () => async (dispatch) => {
+    let data = await authProfileUserAPI.me();
+    if (data.resultCode === 0) {
+        // let {id, email, login} = data.data;
+        dispatch(setAuthProfileUserData(data.data.id, data.data.email, data.data.login, true));
     }
 };
 
-export const getLoginUser = (email, password, rememberMe, setStatus) => {
-    return (dispatch) => {
-        authProfileUserAPI.login(email, password, rememberMe)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(getAuthProfileUser())
-                } else {setStatus(data.messages)}
-            })
+
+export const getLoginUser = (email, password, rememberMe, setStatus) => async (dispatch) => {
+    let data = await authProfileUserAPI.login(email, password, rememberMe);
+    if (data.resultCode === 0) {
+        dispatch(getAuthProfileUser())
+    } else {
+        setStatus(data.messages)
     }
 };
 
-export const getLogoutUser = () => {
-    return (dispatch) => {
-        authProfileUserAPI.logout()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setAuthProfileUserData(null, null, null, null))
-                }
-            })
-    }
-}
+
+export const getLogoutUser = () => async (dispatch) => {
+    let data = await authProfileUserAPI.logout();
+            if (data.resultCode === 0) {
+                dispatch(setAuthProfileUserData(null, null, null, null))
+            }
+};
+
 
 export default authReducer;

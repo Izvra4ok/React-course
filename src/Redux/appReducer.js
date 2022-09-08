@@ -1,6 +1,6 @@
 import {getAuthProfileUser} from "./authReducer";
 
-const INITIALIZATION_SUCCESS = "INITIALIZATION_SUCCESS";
+const INITIALIZATION_SUCCESS = "socialNetwork/appReducer/INITIALIZATION_SUCCESS";
 
 let initialState = {
     initialized: false,
@@ -18,6 +18,7 @@ let appReducer = (state = initialState, action) => {
     }
 }
 
+
 const initializationSuccess = () => ({
     type: INITIALIZATION_SUCCESS,
 })
@@ -27,15 +28,12 @@ const initializationSuccess = () => ({
 //     dispatch(setInitializedSuccess());
 // }; //если несколько await то будут выполняться по очереди а Promise.all([...promise])- все сразу пока все не выполняться
 
-export const getInitializedThunkCreator = () => {
-    return (dispatch) => {
-        let promise = dispatch(getAuthProfileUser())
-        Promise.all([promise])
-            .then(() => {
-                dispatch(initializationSuccess())
-            })
 
-    }
+export const getInitializedThunkCreator = () => async (dispatch) => {
+        let promise = await dispatch(getAuthProfileUser());
+        Promise.all([promise])
+                dispatch(initializationSuccess())
 }
+
 
 export default appReducer;

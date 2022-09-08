@@ -13,9 +13,11 @@ import ProfileStatus from "../ProfileStatus";
 
 
 let About = (props) => {
+
     if (!props.profile) {
         return <Preloader/>
     }
+
     return (
         <div className={mod.about}>
             <AvaProfile avatar={props.profile.photos.large}/>
@@ -82,5 +84,6 @@ let About = (props) => {
 
     )
 }
+
 
 export default About;

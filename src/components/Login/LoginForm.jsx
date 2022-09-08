@@ -17,7 +17,7 @@ const LoginForm = (props) => {
             .min(2, "Must be longer than 2 characters")
             .required("Required email"),
         password: Yup.string()
-            .min(8, "Must be longer than 8 characters")
+            .min(1, "Must be longer than 1 characters")
             .required("Required password"),
         comments: Yup.string()
             .max(500, "So easy"),

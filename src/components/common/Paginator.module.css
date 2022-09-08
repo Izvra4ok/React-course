@@ -1,0 +1,9 @@
+.selectedPage {
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #007146;
+    margin: 10px;
+    padding: 10px;
+}
+.paginator {
+}

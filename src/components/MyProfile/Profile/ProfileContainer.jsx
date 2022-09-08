@@ -54,7 +54,7 @@ class ProfileContainer extends React.Component {
                 this.setState( {isShowMyProfile: false} )
             }
         }
-    }
+    };
 
 
     render() {

@@ -1,9 +1,9 @@
 import {profileAPI} from "../DAL/api";
 
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_PROFILE_STATUS = "SET_PROFILE_STATUS";
-const DELETE_POST = "DELETE_POST";
+const ADD_POST = "socialNetwork/profilePageReducer/ADD-POST";
+const SET_USER_PROFILE = "socialNetwork/profilePageReducer/SET_USER_PROFILE";
+const SET_PROFILE_STATUS = "socialNetwork/profilePageReducer/SET_PROFILE_STATUS";
+const DELETE_POST = "socialNetwork/profilePageReducer/DELETE_POST";
 
 let initialstate = {
 
@@ -83,7 +83,7 @@ const profilePageReducer = (state = initialstate, action) => {
         case DELETE_POST:
             return {
                 ...state,
-                posts: state.posts.filter( p => p.id !== action.postId)
+                posts: state.posts.filter(p => p.id !== action.postId)
             }
         case SET_USER_PROFILE:
             return {
@@ -104,35 +104,25 @@ const profilePageReducer = (state = initialstate, action) => {
 export const addPost = (textarea) => ({type: ADD_POST, textarea});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
-export const deletePost = (postId) => ({type: DELETE_POST,postId})
+export const deletePost = (postId) => ({type: DELETE_POST, postId})
 
 
-export const getProfileUserThunkCreator = (userId) => {
-    return (dispatch) => {
-        return profileAPI.getProfileUserServer(userId)
-            .then(data => {
-                dispatch(setUserProfile(data));
-            })
-    };
+export const getProfileUserThunkCreator = (userId) => async (dispatch) => {
+    let data = await profileAPI.getProfileUserServer(userId);
+    dispatch(setUserProfile(data));
 };
 
-export const getProfileStatusThunkCreator = (userId) => {
-    return (dispatch) => {
-        return profileAPI.getProfileStatusServer(userId)
-            .then(data => {
-                dispatch(setProfileStatus(data))
-            })
-    };
+
+export const getProfileStatusThunkCreator = (userId) => async (dispatch) => {
+    let data = await profileAPI.getProfileStatusServer(userId);
+    dispatch(setProfileStatus(data))
 }
 
-export const updateProfileStatusThunkCreator = (status) => {
-    return (dispatch) => {
-        profileAPI.getUpdateProfileStatus(status)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setProfileStatus(status))
-                }
-            })
+
+export const updateProfileStatusThunkCreator = (status) => async (dispatch) => {
+    let data = await profileAPI.getUpdateProfileStatus(status)
+    if (data.resultCode === 0) {
+        dispatch(setProfileStatus(status))
     }
 }
 
