@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import "../nullstyle.css";
 import "./App.css";
-import {BrowserRouter, Route, Routes} from "react-router-dom"
+import {HashRouter, Route, Routes} from "react-router-dom"
 import UsersContainer from "../Users/UsersContainer";
 import ProfileContainer from "../MyProfile/Profile/ProfileContainer";
 // import MessengerContainer from "../Messenger/MessengerContainer";
@@ -39,7 +39,7 @@ const App = (props) => {
             <HeaderContainer/>
             <NavbarContainer/>
             <div className="app_wrapper_content">
-                <Routes>
+                    <Routes>
                     <Route path="/login/*"
                            element={<LoginContainer/>}>
                     </Route>
@@ -57,14 +57,15 @@ const App = (props) => {
                     </Route>
 
                     <Route path="/friends/*"
-                               element={<React.Suspense fallback={<Preloader/>}>
+                           element={<React.Suspense fallback={<Preloader/>}>
                                <FriendsContainer/>
-                               </React.Suspense>}>
+                           </React.Suspense>}>
                     </Route>
                     <Route path="/users/*"
                            element={<UsersContainer/>}>
                     </Route>
                 </Routes>
+
             </div>
         </div>
     );
@@ -80,13 +81,12 @@ let mapStateToProps = (state) => ({
 let AppContainer = compose(withRouter, connect(mapStateToProps, {getAuthProfileUser, getInitializedThunkCreator}))(App);
 
 let SocialNetworkApp = (props) => {
-    return <React.StrictMode>
-        <BrowserRouter>
+    return <HashRouter>
             <Provider store={store}>
                 <AppContainer/>
             </Provider>
-        </BrowserRouter>
-    </React.StrictMode>
+        </HashRouter>
+
 }
 
 export default SocialNetworkApp;
