@@ -90,13 +90,15 @@ export const toggleFollowingIsProgress = (isFetching, userId) => ({
 });
 
 
-export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
-    dispatch(toggleIsFetching(true)); // preloader
-    dispatch(setCurrentPage(currentPage))
-    let data = await usersAPI.getUsersServer(currentPage, pageSize)
-    dispatch(toggleIsFetching(false)); // preloader
-    dispatch(setUsers(data.items)); // request on server DAL for Users
-    dispatch(setTotalUsersCount(data.totalCount)); //request on server DAL for count Users
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return async (dispatch) => {
+        dispatch(toggleIsFetching(true)); // preloader
+        dispatch(setCurrentPage(currentPage))
+        let data = await usersAPI.getUsersServer(currentPage, pageSize)
+        dispatch(toggleIsFetching(false)); // preloader
+        dispatch(setUsers(data.items)); // request on server DAL for Users
+        dispatch(setTotalUsersCount(data.totalCount)); //request on server DAL for count Users
+    }
 }
 
 

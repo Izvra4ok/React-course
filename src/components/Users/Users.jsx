@@ -10,6 +10,7 @@ const Users = (props) => {
                    totalUsersCount={props.totalUsersCount}
                    pageSize={props.pageSize}
                    currentPage={props.currentPage}/>
+
         <User users={props.users}
               unfollowUser={props.unfollowUser}
               followUser={props.followUser}

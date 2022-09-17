@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import "../nullstyle.css";
 import "./App.css";
-import {Route, Routes} from "react-router-dom"
+import {BrowserRouter, Route, Routes} from "react-router-dom"
 import UsersContainer from "../Users/UsersContainer";
 import ProfileContainer from "../MyProfile/Profile/ProfileContainer";
 import MessengerContainer from "../Messenger/MessengerContainer";
@@ -11,19 +11,22 @@ import HeaderContainer from "../Header/HeaderContainer";
 import LoginContainer from "../Login/LoginContainer";
 import {compose} from "redux";
 import {withRouter} from "../../HOC/WithRouter";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import Preloader from "../common/Preloader";
 import {getAuthProfileUser} from "../../Redux/authReducer";
 import {getInitializedThunkCreator} from "../../Redux/appReducer";
 import {getInitializedSelector} from "../../Redux/selectors/appSelectors";
 import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
+import store from "../../Redux/reduxStore";
 
 
 const App = (props) => {
 
+let getInitializedThunkCreator = props.getInitializedThunkCreator;
+
     useEffect(() => {
-        props.getInitializedThunkCreator()
-    },[props.getInitializedThunkCreator])
+        getInitializedThunkCreator()
+    },[getInitializedThunkCreator]);
 
 
     if (!props.initialized ) {
@@ -66,4 +69,16 @@ let mapStateToProps = (state) => ({
 })
 
 
-export default compose(withRouter, connect(mapStateToProps, {getAuthProfileUser, getInitializedThunkCreator}))(App)
+let AppContainer = compose(withRouter, connect(mapStateToProps, {getAuthProfileUser, getInitializedThunkCreator}))(App);
+
+let SocialNetworkApp =  (props) => {
+    return <React.StrictMode>
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        </BrowserRouter>
+    </React.StrictMode>
+}
+
+export default SocialNetworkApp;

@@ -29,10 +29,12 @@ const initializationSuccess = () => ({
 // }; //если несколько await то будут выполняться по очереди а Promise.all([...promise])- все сразу пока все не выполняться
 
 
-export const getInitializedThunkCreator = () => async (dispatch) => {
+export const getInitializedThunkCreator = () => {
+    return async (dispatch) => {
         let promise = await dispatch(getAuthProfileUser());
         Promise.all([promise])
-                dispatch(initializationSuccess())
+        dispatch(initializationSuccess())
+    }
 }
 
 

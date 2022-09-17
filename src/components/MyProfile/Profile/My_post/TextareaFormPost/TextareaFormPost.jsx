@@ -1,6 +1,6 @@
 import React from "react";
 import mod from "./TextareaFormPost.module.css";
-import {ErrorMessage, Field, Form, Formik} from "formik";
+import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 
 

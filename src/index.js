@@ -2,22 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './components/index.css';
 import reportWebVitals from './reportWebVitals';
-import App from './components/App/App';
-import {BrowserRouter} from "react-router-dom";
-import store from "./Redux/reduxStore"
-import {Provider} from "react-redux";
+import SocialNetworkApp from './components/App/App';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-    root.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <Provider store={store}>
-                <App />
-                </Provider>
-            </BrowserRouter>
-        </React.StrictMode>
-    );
+root.render(
+    <SocialNetworkApp/>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

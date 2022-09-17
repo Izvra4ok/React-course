@@ -2,8 +2,17 @@
     font-weight: 500;
     cursor: pointer;
     background-color: #007146;
-    margin: 10px;
+    margin: 2px;
     padding: 10px;
 }
+
 .paginator {
+    padding: 10px;
+    margin: 2px;
 }
+
+.buttonPG{
+    font-weight: 700;
+    padding: 10px;
+}
+

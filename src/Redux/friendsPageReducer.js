@@ -1,6 +1,6 @@
 const FOLLOW_FRIEND= "FOLLOW_FRIEND";
 const UNFOLLOW_FRIEND = "UNFOLLOW_FRIEND";
-const SET_FRIEND = "SET_FRIEND";
+// const SET_FRIEND = "SET_FRIEND";
 
 let initialState = {
 
