@@ -1,5 +1,6 @@
 import React from "react";
 import mod from "./Paginator.module.css"
+import {NavLink} from "react-router-dom";
 
 
 const Paginator = (props) => {

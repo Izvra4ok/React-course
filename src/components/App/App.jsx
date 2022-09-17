@@ -4,8 +4,8 @@ import "./App.css";
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import UsersContainer from "../Users/UsersContainer";
 import ProfileContainer from "../MyProfile/Profile/ProfileContainer";
-import MessengerContainer from "../Messenger/MessengerContainer";
-import FriendsContainer from "../Friends/FriendsContainer";
+// import MessengerContainer from "../Messenger/MessengerContainer";
+// import FriendsContainer from "../Friends/FriendsContainer";
 import NavbarContainer from "../Navbar/NavbarContainer";
 import HeaderContainer from "../Header/HeaderContainer";
 import LoginContainer from "../Login/LoginContainer";
@@ -19,17 +19,19 @@ import {getInitializedSelector} from "../../Redux/selectors/appSelectors";
 import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
 import store from "../../Redux/reduxStore";
 
+const MessengerContainer = React.lazy(() => import("../Messenger/MessengerContainer"));
+const FriendsContainer = React.lazy(() => import("../Friends/FriendsContainer"));
 
 const App = (props) => {
 
-let getInitializedThunkCreator = props.getInitializedThunkCreator;
+    let getInitializedThunkCreator = props.getInitializedThunkCreator;
 
     useEffect(() => {
         getInitializedThunkCreator()
-    },[getInitializedThunkCreator]);
+    }, [getInitializedThunkCreator]);
 
 
-    if (!props.initialized ) {
+    if (!props.initialized) {
         return <Preloader/>
     }
     return (
@@ -47,11 +49,17 @@ let getInitializedThunkCreator = props.getInitializedThunkCreator;
                     <Route path="/profile/*"
                            element={<ProfileContainer/>}>
                     </Route>
+
                     <Route path="/messenger/*"
-                           element={<MessengerContainer/>}>
+                           element={<React.Suspense fallback={<Preloader/>}>
+                               <MessengerContainer/>
+                           </React.Suspense>}>
                     </Route>
+
                     <Route path="/friends/*"
-                           element={<FriendsContainer/>}>
+                               element={<React.Suspense fallback={<Preloader/>}>
+                               <FriendsContainer/>
+                               </React.Suspense>}>
                     </Route>
                     <Route path="/users/*"
                            element={<UsersContainer/>}>
@@ -71,11 +79,11 @@ let mapStateToProps = (state) => ({
 
 let AppContainer = compose(withRouter, connect(mapStateToProps, {getAuthProfileUser, getInitializedThunkCreator}))(App);
 
-let SocialNetworkApp =  (props) => {
+let SocialNetworkApp = (props) => {
     return <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <AppContainer />
+                <AppContainer/>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>
