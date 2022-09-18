@@ -37,7 +37,7 @@ let About = (props) => {
                         <ProfileStatus status={props.status}
                                        id={props.id}
                                        profileId={props.profile.userId}
-                                           updateStatus={props.updateStatus}/>
+                                       updateStatus={props.updateStatus}/>
                     </span>
                 </div>
                 <div className={mod.about_info}>Location:

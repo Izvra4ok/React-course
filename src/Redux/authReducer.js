@@ -34,10 +34,10 @@ export const setAuthProfileUserData = (id, email, login, isAuth) => ({
 
 export const getAuthProfileUser = () => {
     return async (dispatch) => {
-        let data = await authProfileUserAPI.me();
-        if (data.resultCode === 0) {
+        let response = await authProfileUserAPI.me();
+        if (response.data.resultCode === 0) {
             // let {id, email, login} = data.data;
-            dispatch(setAuthProfileUserData(data.data.id, data.data.email, data.data.login, true));
+            dispatch(setAuthProfileUserData(response.data.data.id, response.data.data.email, response.data.data.login, true));
         }
     };
 }
@@ -45,24 +45,24 @@ export const getAuthProfileUser = () => {
 
 export const getLoginUser = (email, password, rememberMe, setStatus) => {
     return async (dispatch) => {
-        let data = await authProfileUserAPI.login(email, password, rememberMe);
-        if (data.resultCode === 0) {
+        let response = await authProfileUserAPI.login(email, password, rememberMe);
+        if (response.data.resultCode === 0) {
             dispatch(getAuthProfileUser())
         } else {
-            setStatus(data.messages)
+            setStatus(response.data.messages)
         }
     };
-}
+};
 
 
 export const getLogoutUser = () => {
     return async (dispatch) => {
-        let data = await authProfileUserAPI.logout();
-        if (data.resultCode === 0) {
+        let response = await authProfileUserAPI.logout();
+        if (response.data.resultCode === 0) {
             dispatch(setAuthProfileUserData(null, null, null, null))
         }
     };
-}
+};
 
 
 export default authReducer;

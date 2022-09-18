@@ -43,7 +43,7 @@ const ProfileStatus = (props) => {
                          </span>
                 </div>
             : <div>
-                        <span onClick>
+                        <span>
                             {props.status}
                         </span>
             </div>

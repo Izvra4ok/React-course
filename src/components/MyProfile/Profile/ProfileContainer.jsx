@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
     getProfileStatusThunkCreator,
-    getProfileUserThunkCreator,
+    getProfileUserThunkCreator, saveAvatarProfileThunkCreator,
     updateProfileStatusThunkCreator
 } from "../../../Redux/profilePageReducer";
 import {withRouter} from "../../../HOC/WithRouter";
@@ -45,13 +45,13 @@ class ProfileContainer extends React.Component {
         if (isShowMyProfile) {
 
             if (userIdFromPath === authorisedUserId) {
-                this.setState( {isShowMyProfile: false} )
+                this.setState({isShowMyProfile: false})
             }
 
             if (!userIdFromPath && this.props.isAuth) {
-                this.props.getProfileUserThunkCreator( authorisedUserId );
-                this.props.getProfileStatusThunkCreator( authorisedUserId );
-                this.setState( {isShowMyProfile: false} )
+                this.props.getProfileUserThunkCreator(authorisedUserId);
+                this.props.getProfileStatusThunkCreator(authorisedUserId);
+                this.setState({isShowMyProfile: false})
             }
         }
     };
@@ -64,8 +64,11 @@ class ProfileContainer extends React.Component {
         }
 
         return <Profile {...this.props}
+                        profile={this.props.profile}
+                        id={this.props.id}
                         updateStatus={this.props.updateProfileStatusThunkCreator}
-                        status={this.props.status}/>
+                        status={this.props.status}
+                        savePhoto={this.props.saveAvatarProfileThunkCreator}/>
     }
 }
 
@@ -83,7 +86,8 @@ let mapStateToProps = (state) => {
 export default compose(connect(mapStateToProps, {
         getProfileUserThunkCreator,
         getProfileStatusThunkCreator,
-        updateProfileStatusThunkCreator
+        updateProfileStatusThunkCreator,
+        saveAvatarProfileThunkCreator,
     }),
     withRouter
 // WithAuthRedirectComponent

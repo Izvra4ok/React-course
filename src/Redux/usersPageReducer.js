@@ -94,35 +94,36 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true)); // preloader
         dispatch(setCurrentPage(currentPage))
-        let data = await usersAPI.getUsersServer(currentPage, pageSize)
+        let response = await usersAPI.getUsersServer(currentPage, pageSize)
         dispatch(toggleIsFetching(false)); // preloader
-        dispatch(setUsers(data.items)); // request on server DAL for Users
-        dispatch(setTotalUsersCount(data.totalCount)); //request on server DAL for count Users
+        dispatch(setUsers(response.data.items)); // request on server DAL for Users
+        dispatch(setTotalUsersCount(response.data.totalCount)); //request on server DAL for count Users
     }
-}
+};
 
 
 export const getFollowUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
     dispatch(toggleFollowingIsProgress(true, userId));
-    let data = await apiMethod(userId);
+    let response = await apiMethod(userId);
 
-    if (data.resultCode === 0) {
+    if (response.data.resultCode === 0) {
         dispatch(actionCreator(userId));
     }
     dispatch(toggleFollowingIsProgress(false, userId));
+};
 
-}
+
 export const getUnfollowUserThunkCreator = (userId) => {
     return async (dispatch) => {
         getFollowUnfollowFlow(dispatch, userId, usersAPI.unfollowUsersServer.bind(usersAPI), unfollowUserSuccess);
     }
-}
+};
 
 
 export const getFollowUsersThunkCreator = (userId) => {
     return async (dispatch) => {
         getFollowUnfollowFlow(dispatch, userId, usersAPI.followUsersServer.bind(usersAPI), followUserSuccess);
     }
-}
+};
 
 export default usersPageReducer;

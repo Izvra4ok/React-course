@@ -4,6 +4,8 @@ const ADD_POST = "socialNetwork/profilePageReducer/ADD-POST";
 const SET_USER_PROFILE = "socialNetwork/profilePageReducer/SET_USER_PROFILE";
 const SET_PROFILE_STATUS = "socialNetwork/profilePageReducer/SET_PROFILE_STATUS";
 const DELETE_POST = "socialNetwork/profilePageReducer/DELETE_POST";
+const UPLOAD_PHOTO_SUCCESS = "socialNetwork/profilePageReducer/UPLOAD_PHOTO_SUCCESS";
+
 
 let initialstate = {
 
@@ -95,42 +97,72 @@ const profilePageReducer = (state = initialstate, action) => {
                 ...state,
                 status: action.status,
             }
+        case UPLOAD_PHOTO_SUCCESS:
+            return {
+                ...state,
+                profile: {...state.profile,
+                    photos: action.photos}
+            }
         default:
             return state;
 
     }
 };
 
-export const addPost = (textarea) => ({type: ADD_POST, textarea});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
-export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
-export const deletePost = (postId) => ({type: DELETE_POST, postId})
+
+export const addPost = (textarea) => ({
+    type: ADD_POST, textarea
+});
+
+export const setUserProfile = (profile) => ({
+    type: SET_USER_PROFILE, profile
+});
+
+export const setProfileStatus = (status) => ({
+    type: SET_PROFILE_STATUS, status
+});
+
+export const deletePost = (postId) => ({
+    type: DELETE_POST, postId
+});
+
+export const savePhotoSuccess = (photos) => ({
+    type: UPLOAD_PHOTO_SUCCESS, photos
+})
 
 
 export const getProfileUserThunkCreator = (userId) => {
     return async (dispatch) => {
-        let data = await profileAPI.getProfileUserServer(userId);
-        dispatch(setUserProfile(data));
+        let response = await profileAPI.getProfileUserServer(userId);
+        dispatch(setUserProfile(response.data));
     };
 }
 
 
 export const getProfileStatusThunkCreator = (userId) => {
     return async (dispatch) => {
-        let data = await profileAPI.getProfileStatusServer(userId);
-        dispatch(setProfileStatus(data))
+        let response = await profileAPI.getProfileStatusServer(userId);
+        dispatch(setProfileStatus(response.data))
     }
 }
 
 
 export const updateProfileStatusThunkCreator = (status) => {
     return async (dispatch) => {
-        let data = await profileAPI.getUpdateProfileStatus(status)
-        if (data.resultCode === 0) {
+        let response = await profileAPI.getUpdateProfileStatus(status)
+        if (response.data.resultCode === 0) {
             dispatch(setProfileStatus(status))
         }
     }
 }
 
+export const saveAvatarProfileThunkCreator = (photos) => {
+    return async (dispatch) => {
+        let response = await profileAPI.uploadPhotoServer(photos)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccess(response.data.data.photos))
+        }
+    }
+}
 
 export default profilePageReducer;

@@ -5,11 +5,13 @@ import userDefaultPhoto from "./../../../../../assets/images/userDefaultAvatar.w
 const AvaProfile = (props) => {
 
     return (
-        <img className={mod.ava_profile}
-             src={props.avatar
-                 ? props.avatar
-                 : userDefaultPhoto}
-             alt="avatar"/>
+        <div>
+            <img className={mod.ava_profile}
+                 src={props.avatar
+                     ? props.avatar
+                     : userDefaultPhoto}
+                 alt="avatar"/>
+        </div>
     )
 };
 

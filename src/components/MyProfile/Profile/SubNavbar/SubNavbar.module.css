@@ -39,3 +39,17 @@
     font-weight: 500;
 
 }
+
+.inputfile {
+    display: none;
+}
+
+.inputfile + label {
+    color: white;
+    padding: 10px 9px 10px 25px;
+    cursor: pointer;
+}
+.inputfile + label:hover {
+    font-weight: 500;
+    color:black
+}

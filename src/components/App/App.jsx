@@ -22,6 +22,7 @@ import store from "../../Redux/reduxStore";
 const MessengerContainer = React.lazy(() => import("../Messenger/MessengerContainer"));
 const FriendsContainer = React.lazy(() => import("../Friends/FriendsContainer"));
 
+
 const App = (props) => {
 
     let getInitializedThunkCreator = props.getInitializedThunkCreator;
@@ -43,7 +44,7 @@ const App = (props) => {
                     <Route path="/login/*"
                            element={<LoginContainer/>}>
                     </Route>
-                    <Route path="/profile/:userId"
+                    <Route path="/profile/:userId/*"
                            element={<ProfileContainer/>}>
                     </Route>
                     <Route path="/profile/*"
