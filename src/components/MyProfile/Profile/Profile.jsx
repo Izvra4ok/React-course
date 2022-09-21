@@ -17,7 +17,8 @@ const Profile = (props) => {
                status={props.status}
                id={props.id}
                updateStatus={props.updateStatus}
-               savePhoto={props.savePhoto}/>
+               savePhoto={props.savePhoto}
+               updateProfile={props.updateProfile}/>
         <div className={mod.navbarpost}>
             <SubNavbar  profileId={props.profile.userId}
                        id={props.id}

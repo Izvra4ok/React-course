@@ -19,8 +19,6 @@ const LoginForm = (props) => {
         password: Yup.string()
             .min(1, "Must be longer than 1 characters")
             .required("Required password"),
-        comments: Yup.string()
-            .max(500, "So easy"),
     });
 
     const loginUser = (values, onSubmitProps) => {

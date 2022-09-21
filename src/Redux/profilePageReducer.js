@@ -6,18 +6,11 @@ const SET_PROFILE_STATUS = "socialNetwork/profilePageReducer/SET_PROFILE_STATUS"
 const DELETE_POST = "socialNetwork/profilePageReducer/DELETE_POST";
 const UPLOAD_PHOTO_SUCCESS = "socialNetwork/profilePageReducer/UPLOAD_PHOTO_SUCCESS";
 
-
 let initialstate = {
 
     profile: null,
-    status: "",
 
-    aboutme: [{
-        avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        name: "Sergey Barzakouski", birthday: "18.08.1990", country: "Republic of Belarus, Grodno",
-        university: "Yanka Kupala State University of Grodno, facult: Law'18", github: "github.com/Izvra4ok",
-        job: "I'll be Frontend Developer",
-    },],
+    status: "",
 
     posts: [
         {
@@ -63,6 +56,7 @@ let initialstate = {
     ],
 
 };
+
 
 const profilePageReducer = (state = initialstate, action) => {
     switch (action.type) {
@@ -128,7 +122,7 @@ export const deletePost = (postId) => ({
 
 export const savePhotoSuccess = (photos) => ({
     type: UPLOAD_PHOTO_SUCCESS, photos
-})
+});
 
 
 export const getProfileUserThunkCreator = (userId) => {
@@ -136,7 +130,7 @@ export const getProfileUserThunkCreator = (userId) => {
         let response = await profileAPI.getProfileUserServer(userId);
         dispatch(setUserProfile(response.data));
     };
-}
+};
 
 
 export const getProfileStatusThunkCreator = (userId) => {
@@ -144,7 +138,7 @@ export const getProfileStatusThunkCreator = (userId) => {
         let response = await profileAPI.getProfileStatusServer(userId);
         dispatch(setProfileStatus(response.data))
     }
-}
+};
 
 
 export const updateProfileStatusThunkCreator = (status) => {
@@ -154,7 +148,7 @@ export const updateProfileStatusThunkCreator = (status) => {
             dispatch(setProfileStatus(status))
         }
     }
-}
+};
 
 export const saveAvatarProfileThunkCreator = (photos) => {
     return async (dispatch) => {
@@ -163,6 +157,23 @@ export const saveAvatarProfileThunkCreator = (photos) => {
             dispatch(savePhotoSuccess(response.data.data.photos))
         }
     }
-}
+};
+
+export const updateProfileInfoThunkCreator = (formData, setStatus, setSubmitting, goToViewMode) => {
+    return async (dispatch, getState) => {
+        let response = await profileAPI.getUpdateProfileInfo(formData)
+        if (response.data.resultCode === 0) {
+            const userId = getState().auth.id
+            goToViewMode()
+            if (userId) {
+                await dispatch(getProfileUserThunkCreator(userId))
+            } else {
+                throw new Error("userId can't be null")
+            }
+        } else {
+            setStatus(response.data.messages)
+        }
+    }
+};
 
 export default profilePageReducer;

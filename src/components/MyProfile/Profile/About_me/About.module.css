@@ -21,7 +21,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     font-size: 16px;
-    margin: 10px 0 10px 0;
+    margin: 8px 0 8px 0;
 }
 
 .about_span {
@@ -33,11 +33,30 @@
 .about_span a {
     margin-right: 5px;
 }
-.about_span a img{
-    width:50px;
-    height: 50px;
+
+.about_span a img {
+    width: 30px;
+    height: 30px;
 }
+
 .name {
     font-size: 18px;
 
+}
+
+.button {
+    display: inline-block;
+    background: #007146;
+    text-align: center;
+    font-size: 10px;
+    width: 60px;
+    height: 20px;
+    border: none;
+    margin-top: 5px;
+    color: white;
+}
+
+.button:active {
+    transform: scale(1.02, 1.02);
+    box-shadow: 1px 1px 5px black;
 }

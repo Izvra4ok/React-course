@@ -1,0 +1,79 @@
+.about {
+    display: flex;
+}
+
+
+.about_info {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-size: 16px;
+    margin: 5px 0 5px 0;
+    line-height: 20px;
+}
+
+.about_span {
+    width: 80%;
+    margin: 0 0 0 auto;
+    font-size: 16px;
+}
+
+.about_span a {
+    margin-right: 5px;
+}
+
+.about_span a img {
+    width: 50px;
+    height: 50px;
+}
+
+.name {
+    font-size: 16px;
+
+}
+
+.formErrors {
+    width: 100%;
+    color: red;
+}
+
+.checkbox{
+    width: 11%;
+    margin: 0 0 0 0;
+}
+
+.buttonCancel {
+    margin-left: 13px;
+}
+
+.button {
+    display: inline-block;
+    background: #007146;
+    text-align: center;
+    font-size: 11px;
+    width: 60px;
+    height: 30px;
+    border: none;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: white;
+}
+
+.button:active {
+    transform: scale(1.02, 1.02);
+
+}
+.button:disabled{
+    background-color: rgba(0, 113, 70, 0.74);
+    transform: none;
+    box-shadow: none;
+}
+.formik {
+    max-height: 420px;
+}
+.statusErrors{
+    width: 100%;
+    color: red;
+    margin-top: 5px;
+}
