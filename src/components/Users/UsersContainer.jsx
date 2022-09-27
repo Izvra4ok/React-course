@@ -18,6 +18,7 @@ import {
     getUsersSelector
 } from "../../Redux/selectors/usersPageSelectors";
 import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
+import ErrorBoundary from "../common/Error Boundary";
 
 const UsersContainer = (props) => {
 
@@ -27,7 +28,7 @@ const UsersContainer = (props) => {
 
     useEffect(() => {
         getUsersThunkCreator(currentPage, pageSize)
-    },[currentPage,pageSize,getUsersThunkCreator])
+    }, [currentPage, pageSize, getUsersThunkCreator])
 
     let onPageChanged = (pageNumber = 1) => {
         // const pageSize = props
@@ -43,18 +44,30 @@ const UsersContainer = (props) => {
         props.getFollowUsersThunkCreator(userId);
     }
 
+    const ErrorMsg = (error) => {
+        return (
+            <div>
+                <Preloader/>
+                <div> Something went wrong!</div>
+                <div> {error.error.message}</div>
+            </div>
+        );
+    };
+
     return <>
         {props.isFetching
             ? <Preloader styled={{width: "50px", height: "50px"}}/>
-            : <Users users={props.users}
-                     totalUsersCount={props.totalUsersCount}
-                     pageSize={props.pageSize}
-                     currentPage={props.currentPage}
-                     followUser={onClickFollowUsers}
-                     unfollowUser={onClickUnfollowUsers}
-                     onPageChanged={onPageChanged}
-                     folllowingInProgress={props.folllowingInProgress}
-            />}
+            : <ErrorBoundary ErrorComponent={ErrorMsg}>
+                <Users users={props.users}
+                       totalUsersCount={props.totalUsersCount}
+                       pageSize={props.pageSize}
+                       currentPage={props.currentPage}
+                       followUser={onClickFollowUsers}
+                       unfollowUser={onClickUnfollowUsers}
+                       onPageChanged={onPageChanged}
+                       folllowingInProgress={props.folllowingInProgress}
+                />
+            </ErrorBoundary>}
     </>
 }
 

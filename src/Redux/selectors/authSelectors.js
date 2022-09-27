@@ -16,7 +16,7 @@ const getLoginBasicSelector = (state) => {
 
 export const getLoginSelector = createSelector(getLoginBasicSelector,
     (login) => {
-    return login;
+        return login;
     });
 
 
@@ -38,3 +38,13 @@ export const getIsAuthSelector = createSelector(getIsAuthBasicSelector,
     (isAuth) => {
         return isAuth;
     });
+
+
+const getCaptchaUrlBasicSelector = (state) => {
+    return state.auth.captchaUrl;
+};
+
+export const getCaptchaUrlSelector = createSelector(getCaptchaUrlBasicSelector,
+    (captchaUrl) => {
+        return captchaUrl;
+    })

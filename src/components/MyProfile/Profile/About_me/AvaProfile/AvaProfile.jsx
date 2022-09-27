@@ -1,3 +1,4 @@
+import React from "react";
 import mod from "./AvaProfile.module.css";
 import userDefaultPhoto from "./../../../../../assets/images/userDefaultAvatar.webp"
 

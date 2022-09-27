@@ -1,11 +1,10 @@
 import React, {useEffect} from "react";
-import "../nullstyle.css";
+import "../../nullstyle.css";
 import "./App.css";
-import {HashRouter, Route, Routes} from "react-router-dom"
+import {HashRouter, Navigate, Route, Routes} from "react-router-dom"
 import UsersContainer from "../Users/UsersContainer";
 import ProfileContainer from "../MyProfile/Profile/ProfileContainer";
 // import MessengerContainer from "../Messenger/MessengerContainer";
-// import FriendsContainer from "../Friends/FriendsContainer";
 import NavbarContainer from "../Navbar/NavbarContainer";
 import HeaderContainer from "../Header/HeaderContainer";
 import LoginContainer from "../Login/LoginContainer";
@@ -18,10 +17,10 @@ import {getInitializedThunkCreator} from "../../Redux/appReducer";
 import {getInitializedSelector} from "../../Redux/selectors/appSelectors";
 import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
 import store from "../../Redux/reduxStore";
+import ErrorBoundary from "../common/Error Boundary";
+
 
 const MessengerContainer = React.lazy(() => import("../Messenger/MessengerContainer"));
-const FriendsContainer = React.lazy(() => import("../Friends/FriendsContainer"));
-
 
 const App = (props) => {
 
@@ -35,20 +34,26 @@ const App = (props) => {
     if (!props.initialized) {
         return <Preloader/>
     }
+
     return (
+
         <div className="app_wrapper">
-            <HeaderContainer/>
-            <NavbarContainer/>
+            <ErrorBoundary ErrorComponent={ErrorMsg}>
+                <HeaderContainer/>
+                <NavbarContainer/>
             <div className="app_wrapper_content">
-                    <Routes>
+                <Routes>
+                    <Route path="/" element={<Navigate to="/profile"/>}/>
                     <Route path="/login/*"
                            element={<LoginContainer/>}>
                     </Route>
                     <Route path="/profile/:userId/*"
                            element={<ProfileContainer/>}>
                     </Route>
+
                     <Route path="/profile/*"
-                           element={<ProfileContainer/>}>
+                           element={
+                               <ProfileContainer/>}>
                     </Route>
 
                     <Route path="/messenger/*"
@@ -57,19 +62,20 @@ const App = (props) => {
                            </React.Suspense>}>
                     </Route>
 
-                    <Route path="/friends/*"
-                           element={<React.Suspense fallback={<Preloader/>}>
-                               <FriendsContainer/>
-                           </React.Suspense>}>
-                    </Route>
                     <Route path="/users/*"
                            element={<UsersContainer/>}>
                     </Route>
+                    <Route path="*"
+                           element={"404 NOT FOUND"}>
+                    </Route>
+
                 </Routes>
 
             </div>
+            </ErrorBoundary>
         </div>
-    );
+
+    )
 }
 
 
@@ -81,13 +87,24 @@ let mapStateToProps = (state) => ({
 
 let AppContainer = compose(withRouter, connect(mapStateToProps, {getAuthProfileUser, getInitializedThunkCreator}))(App);
 
-let SocialNetworkApp = (props) => {
+let SocialNetworkApp = () => {
     return <HashRouter>
-            <Provider store={store}>
-                <AppContainer/>
-            </Provider>
-        </HashRouter>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </HashRouter>
 
 }
 
 export default SocialNetworkApp;
+
+
+const ErrorMsg = (error) => {
+    return (
+        <div>
+            <Preloader/>
+            <div> Something went wrong!</div>
+            <div> {error.error.message}</div>
+        </div>
+    );
+};

@@ -4,10 +4,12 @@ import {NavLink} from "react-router-dom";
 import UserAva from "./UserAva/UserAva";
 
 
+
 const User = (props) => {
 
     return (
         <div className={mod.users}>All users
+
         {
             props.users.map(user => <div className={mod.all_users} key={user.id}>
 
@@ -54,8 +56,8 @@ const User = (props) => {
                 </div>
             )
         }
-
     </div>
+
     )
 };
 

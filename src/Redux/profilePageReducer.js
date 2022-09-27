@@ -9,49 +9,47 @@ const UPLOAD_PHOTO_SUCCESS = "socialNetwork/profilePageReducer/UPLOAD_PHOTO_SUCC
 let initialstate = {
 
     profile: null,
-
     status: "",
-
     posts: [
         {
             id: 1,
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Hello! What's new?",
             likes: 10,
-            first: "Anna",
-            last: "Barzakouskaya",
+            first: "UserName",
+            last: "UserLastName",
         },
         {
             id: 2,
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Hi, how are you my friend?",
             likes: 15,
-            first: "Alina",
-            last: "Grigas",
+            first: "UserName",
+            last: "UserLastName",
         },
         {
             id: 3,
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Good bye bro",
             likes: 25,
-            first: "Denis",
-            last: "Barzakouski",
+            first: "UserName",
+            last: "UserLastName",
         },
         {
             id: 4,
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Good bye bro",
             likes: 25,
-            first: "Denis",
-            last: "Barzakouski",
+            first: "UserName",
+            last: "UserLastName",
         },
         {
             id: 5,
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Good bye bro",
             likes: 25,
-            first: "Denis",
-            last: "Barzakouski",
+            first: "UserName",
+            last: "UserLastName",
         },
     ],
 
@@ -61,7 +59,7 @@ let initialstate = {
 const profilePageReducer = (state = initialstate, action) => {
     switch (action.type) {
         case ADD_POST:
-            let newPost = action.textarea;
+            let newPost = action.payload;
             if (newPost === "") {
                 return state
             }
@@ -72,30 +70,32 @@ const profilePageReducer = (state = initialstate, action) => {
                     avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
                     message: newPost,
                     likes: 0,
-                    first: "Alina",
-                    last: "Grigas",
+                    first: "UserName",
+                    last: "UserLastName",
                 }]
             }
         case DELETE_POST:
             return {
                 ...state,
-                posts: state.posts.filter(p => p.id !== action.postId)
+                posts: state.posts.filter(p => p.id !== action.payload)
             }
         case SET_USER_PROFILE:
             return {
                 ...state,
-                profile: action.profile,
+                profile: action.payload,
             }
         case SET_PROFILE_STATUS:
             return {
                 ...state,
-                status: action.status,
+                status: action.payload,
             }
         case UPLOAD_PHOTO_SUCCESS:
             return {
                 ...state,
-                profile: {...state.profile,
-                    photos: action.photos}
+                profile: {
+                    ...state.profile,
+                    photos: action.payload
+                }
             }
         default:
             return state;
@@ -105,75 +105,99 @@ const profilePageReducer = (state = initialstate, action) => {
 
 
 export const addPost = (textarea) => ({
-    type: ADD_POST, textarea
+    type: ADD_POST,
+    payload: textarea,
 });
 
 export const setUserProfile = (profile) => ({
-    type: SET_USER_PROFILE, profile
+    type: SET_USER_PROFILE,
+    payload: profile,
 });
 
 export const setProfileStatus = (status) => ({
-    type: SET_PROFILE_STATUS, status
+    type: SET_PROFILE_STATUS,
+    payload: status,
 });
 
 export const deletePost = (postId) => ({
-    type: DELETE_POST, postId
+    type: DELETE_POST,
+    payload: postId,
 });
 
 export const savePhotoSuccess = (photos) => ({
-    type: UPLOAD_PHOTO_SUCCESS, photos
+    type: UPLOAD_PHOTO_SUCCESS,
+    payload: photos,
 });
 
 
 export const getProfileUserThunkCreator = (userId) => {
     return async (dispatch) => {
-        let response = await profileAPI.getProfileUserServer(userId);
-        dispatch(setUserProfile(response.data));
-    };
+        try {
+            let data = await profileAPI.getProfileUserServer(userId);
+            dispatch(setUserProfile(data));
+        } catch (error) {
+            console.error(error)
+        }
+    }
 };
 
 
 export const getProfileStatusThunkCreator = (userId) => {
     return async (dispatch) => {
-        let response = await profileAPI.getProfileStatusServer(userId);
-        dispatch(setProfileStatus(response.data))
+        try {
+            let data = await profileAPI.getProfileStatusServer(userId);
+            dispatch(setProfileStatus(data))
+        } catch (error) {
+            console.error(error)
+        }
     }
 };
 
 
 export const updateProfileStatusThunkCreator = (status) => {
     return async (dispatch) => {
-        let response = await profileAPI.getUpdateProfileStatus(status)
-        if (response.data.resultCode === 0) {
-            dispatch(setProfileStatus(status))
+        try {
+            let data = await profileAPI.getUpdateProfileStatus(status)
+            if (data.resultCode === 0) {
+                dispatch(setProfileStatus(status))
+            }
+        } catch (error) {
+            console.error("Something wrong", error)
         }
     }
 };
 
 export const saveAvatarProfileThunkCreator = (photos) => {
     return async (dispatch) => {
-        let response = await profileAPI.uploadPhotoServer(photos)
-        if (response.data.resultCode === 0) {
-            dispatch(savePhotoSuccess(response.data.data.photos))
+        try {
+            let data = await profileAPI.uploadPhotoServer(photos)
+            if (data.resultCode === 0) {
+                dispatch(savePhotoSuccess(data.data.photos))
+            }
+        } catch (error) {
+            console.error("Something wrong", error)
         }
     }
 };
 
 export const updateProfileInfoThunkCreator = (formData, setStatus, setSubmitting, goToViewMode) => {
     return async (dispatch, getState) => {
-        let response = await profileAPI.getUpdateProfileInfo(formData)
-        if (response.data.resultCode === 0) {
-            const userId = getState().auth.id
-            goToViewMode()
-            if (userId) {
-                await dispatch(getProfileUserThunkCreator(userId))
+        try {
+            let data = await profileAPI.getUpdateProfileInfo(formData)
+            if (data.resultCode === 0) {
+                const userId = getState().auth.id
+                goToViewMode()
+                if (userId) {
+                    await dispatch(getProfileUserThunkCreator(userId))
+                }
             } else {
-                throw new Error("userId can't be null")
+                setStatus(data.messages)
             }
-        } else {
-            setStatus(response.data.messages)
+        } catch (error) {
+            console.error(error)
         }
     }
 };
+
 
 export default profilePageReducer;

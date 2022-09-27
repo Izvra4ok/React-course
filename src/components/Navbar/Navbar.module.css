@@ -1,7 +1,7 @@
 .navbar {
     grid-area: nav;
     margin-left: 10px;
-    height: 510px;
+    height: 290px;
     min-width: 161px;
     /*background-color: #007146;*/
     background: #605e8ed4;
@@ -22,10 +22,6 @@
     margin: 5px auto 5px 0;
 }
 
-.navbar_li:last-child {
-    margin-top: 10px
-
-}
 
 .navbar_li:before {
     content: "";
@@ -47,15 +43,5 @@
     color: black;
     font-weight: 500;
     padding: 10px 9px 10px 25px;
-    font-size:16px;
-}
-
-
-.onlineFriend {
-    overflow: hidden;
-    display: flex;
-    height: 170px;
-    margin: 5px 5px 0 5px;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    font-size: 16px;
 }

@@ -13,6 +13,7 @@ const Profile = (props) => {
     }
 
     return <section className={mod.profile}>
+
         <About profile={props.profile}
                status={props.status}
                id={props.id}
@@ -20,10 +21,13 @@ const Profile = (props) => {
                savePhoto={props.savePhoto}
                updateProfile={props.updateProfile}/>
         <div className={mod.navbarpost}>
-            <SubNavbar  profileId={props.profile.userId}
-                       id={props.id}
-                       savePhoto={props.savePhoto}/>
-            <MyPost/>
+            {props.profile.userId === props.id
+                ? <SubNavbar profileId={props.profile.userId}
+                             id={props.id}
+                             savePhoto={props.savePhoto}/>
+                : null}
+            <MyPost posts={props.posts}
+                    onAddPostClick={props.onAddPostClick}/>
         </div>
     </section>
 };

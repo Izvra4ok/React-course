@@ -39,6 +39,7 @@ const ProfileStatus = (props) => {
                                     onChange={onStatusChange}
                                     onBlur={deActivateEditMode}
                                     className={mod.form}
+                                    maxLength="50"
                                     type="text" value={status}/>
                          </span>
                 </div>

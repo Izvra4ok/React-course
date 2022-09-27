@@ -1,5 +1,6 @@
 import React from "react";
 import mod from "./Paginator.module.css";
+import clsn from "classnames";
 
 
 const Paginator = (props) => {
@@ -21,7 +22,7 @@ const Paginator = (props) => {
             <div>
                 {
                     carousel > 1 &&
-                <button className={mod.paginator && mod.buttonPG}
+                <button className={clsn(mod.paginator,mod.buttonPG)}
                         onClick={() => {
                             props.onPageChanged(carousel -1)}}>PRE</button>
                 }
@@ -29,12 +30,10 @@ const Paginator = (props) => {
                 {
                     slicedPages().map( (p, index) => {
                         return <button key={index}
-                                    className={(props.currentPage === p && mod.selectedPage) || mod.paginator}
+                                    className={clsn((props.currentPage === p && mod.selectedPage) || mod.paginator)}
                                     onClick={() => {
                                         props.onPageChanged(p)
-                                    }}>{p}</button>
-
-                    })
+                                    }}>{p}</button>})
                 }
 
                 {

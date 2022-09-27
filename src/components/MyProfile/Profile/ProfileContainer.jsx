@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
+    addPost,
     getProfileStatusThunkCreator,
-    getProfileUserThunkCreator, saveAvatarProfileThunkCreator, updateProfileInfoThunkCreator,
+    getProfileUserThunkCreator,
+    saveAvatarProfileThunkCreator,
+    updateProfileInfoThunkCreator,
     updateProfileStatusThunkCreator
 } from "../../../Redux/profilePageReducer";
 import {withRouter} from "../../../HOC/WithRouter";
@@ -11,66 +14,53 @@ import {withRouter} from "../../../HOC/WithRouter";
 import {compose} from "redux";
 import {Navigate} from "react-router-dom";
 import {getIdSelector, getIsAuthSelector} from "../../../Redux/selectors/authSelectors";
-import {getProfileSelector, getProfileStatusSelector} from "../../../Redux/selectors/profilePageSelectors";
+import {
+    getProfilePostsSelector,
+    getProfileSelector,
+    getProfileStatusSelector
+} from "../../../Redux/selectors/profilePageSelectors";
+import Preloader from "../../common/Preloader";
+import ErrorBoundary from "../../common/Error Boundary";
 
 
-class ProfileContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isShowMyProfile: true
-        };
-    };
+const ProfileContainer = (props) => {
 
-    componentDidMount() {
-        let userIdFromPath = +this.props.router.params.userId;
-        let authorisedUserId = this.props.id;
+    const userIdFromPath = props.router.params.userId;
+    const authorisedUserId = props.id;
+    const getProfileUserThunkCreator = props.getProfileUserThunkCreator;
+    const getProfileStatusThunkCreator = props.getProfileStatusThunkCreator;
+
+    useEffect(() => {
         if (userIdFromPath) {
-            this.props.getProfileUserThunkCreator(userIdFromPath);
-            this.props.getProfileStatusThunkCreator(userIdFromPath);
-        } else {
-            if (this.props.isAuth) {
-                this.props.getProfileUserThunkCreator(authorisedUserId);
-                this.props.getProfileStatusThunkCreator(authorisedUserId);
-            }
+            getProfileUserThunkCreator(userIdFromPath);
+            getProfileStatusThunkCreator(userIdFromPath);
+        } else if (authorisedUserId) {
+            getProfileUserThunkCreator(authorisedUserId);
+            getProfileStatusThunkCreator(authorisedUserId);
         }
+    }, [getProfileStatusThunkCreator, getProfileUserThunkCreator, authorisedUserId, userIdFromPath]);
+
+    const onAddPostClick = (textarea) => {
+        props.addPost(textarea);
     };
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-
-        let userIdFromPath = +this.props.router.params.userId;
-        let authorisedUserId = this.props.id;
-        let isShowMyProfile = this.state.isShowMyProfile;
-
-        if (isShowMyProfile) {
-
-            if (userIdFromPath === authorisedUserId) {
-                this.setState({isShowMyProfile: false})
-            }
-
-            if (!userIdFromPath && this.props.isAuth) {
-                this.props.getProfileUserThunkCreator(authorisedUserId);
-                this.props.getProfileStatusThunkCreator(authorisedUserId);
-                this.setState({isShowMyProfile: false})
-            }
-        }
-    };
-
-
-    render() {
-
-        if (!this.props.isAuth && !this.props.router.params.userId) {
-            return <Navigate to={"/login"}/>
-        }
-
-        return <Profile {...this.props}
-                        profile={this.props.profile}
-                        id={this.props.id}
-                        updateStatus={this.props.updateProfileStatusThunkCreator}
-                        status={this.props.status}
-                        savePhoto={this.props.saveAvatarProfileThunkCreator}
-                        updateProfile={this.props.updateProfileInfoThunkCreator}/>
+    if (!props.isAuth && !userIdFromPath) {
+        return <Navigate to={"/login"}/>
     }
+
+    return (
+        <ErrorBoundary ErrorComponent={ErrorMsg}>
+            <Profile {...props}
+                     profile={props.profile}
+                     id={props.id}
+                     updateStatus={props.updateProfileStatusThunkCreator}
+                     status={props.status}
+                     savePhoto={props.saveAvatarProfileThunkCreator}
+                     updateProfile={props.updateProfileInfoThunkCreator}
+                     onAddPostClick={onAddPostClick}
+                     posts={props.posts}/>
+        </ErrorBoundary>
+    )
 }
 
 
@@ -80,6 +70,7 @@ let mapStateToProps = (state) => {
         id: getIdSelector(state),
         status: getProfileStatusSelector(state),
         isAuth: getIsAuthSelector(state),
+        posts: getProfilePostsSelector(state)
     }
 }
 
@@ -89,8 +80,19 @@ export default compose(connect(mapStateToProps, {
         getProfileStatusThunkCreator,
         updateProfileStatusThunkCreator,
         saveAvatarProfileThunkCreator,
-        updateProfileInfoThunkCreator
+        updateProfileInfoThunkCreator,
+        addPost
     }),
     withRouter
 // WithAuthRedirectComponent
 )(ProfileContainer);
+
+const ErrorMsg = (error) => {
+    return (
+        <div>
+            <Preloader/>
+            <div> Something went wrong!</div>
+            <div> {error.error.message}</div>
+        </div>
+    );
+};

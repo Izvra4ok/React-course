@@ -6,10 +6,12 @@ import * as Yup from "yup";
 
 const LoginForm = (props) => {
 
+    const captcha = props.captchaUrl
     const initialValues = {
         email: "",
         password: "",
         rememberMe: false,
+        captcha: "",
     };
 
     const validationSchema = Yup.object().shape({
@@ -22,11 +24,10 @@ const LoginForm = (props) => {
     });
 
     const loginUser = (values, onSubmitProps) => {
-        props.loginUser(values.email, values.password, values.rememberMe,onSubmitProps.setStatus);
+        props.loginUser(values.email, values.password, values.rememberMe,values.captcha,onSubmitProps.setStatus,);
         onSubmitProps.setSubmitting(false);
         onSubmitProps.resetForm();
     };
-
 
     return <div>
 
@@ -40,10 +41,28 @@ const LoginForm = (props) => {
         >
 
             {Formik => {
-                console.log("Formik props", Formik)
             return (
             <Form>
+
+                {captcha
+                    ? <div>
+                        <div>
+                            <img src={captcha} alt={"captchaUrl"} />
+                        </div>
+                        <div>
+                            <label className={mod.formName}
+                                   htmlFor="captcha">captchaUrl</label>
+                            <Field className={mod.form} type="text"
+                                   placeholder="Enter your captcha code"
+                                   id="captcha"
+                                   name="captcha"/>
+                        </div>
+                    </div>
+                    : null
+                }
+
                 <div className={mod.formErrors}>{Formik.status}</div>
+
                 <div>
                     <label className={mod.formName}
                            htmlFor="email">Email</label>
@@ -57,12 +76,13 @@ const LoginForm = (props) => {
                 </div>
 
 
+
                 <div>
                     <label className={mod.formName}
                            htmlFor="password">Password</label>
                     <Field className={mod.form}
                            placeholder="Enter your password"
-                           type="text"
+                           type="password"
                            id="password"
                            name="password"/>
                     <ErrorMessage name="password">

@@ -1,6 +1,7 @@
 import React from "react";
 import {ErrorMessage, Field, FieldArray, Form, Formik} from "formik";
 import mod from "./AboutFormik.module.css";
+import clsn from "classnames";
 import * as Yup from "yup";
 
 
@@ -41,13 +42,13 @@ const AboutDataFormik = (props) => {
     const arrayWithNames = Object.keys(profile.contacts);
     arrayWithNames.forEach((item) => {
         let value = objectFromApiCopy.contacts[item]
-        if (!!value === null) {
+        if (value === null) {
             objectFromApiCopy.contacts[item] = ""
         }
     });
 
     return <Formik
-        initialValues={props.initialValues}
+        initialValues={objectFromApiCopy}
 
         validationSchema={validationSchema}
 
@@ -66,7 +67,7 @@ const AboutDataFormik = (props) => {
                     <div className={mod.about_info}>
                         <label
                             htmlFor="fullName">Name:</label>
-                        <Field className={`${mod.about_span} ${mod.name}`} type="text"
+                        <Field className={clsn(mod.about_span, mod.name)} type="text"
                                placeholder="Enter your name"
                                id="fullName"
                                name="fullName"/>
@@ -102,7 +103,7 @@ const AboutDataFormik = (props) => {
                     <div className={mod.about_info}>
                         <label
                             htmlFor="lookingForAJob">Looking for a job</label>
-                        <Field className={`${mod.about_span} ${mod.checkbox}`} type="checkbox"
+                        <Field className={clsn(mod.about_span, mod.checkbox)} type="checkbox"
                                placeholder="Enter your job"
                                id="lookingForAJob"
                                name="lookingForAJob"/>
@@ -111,12 +112,12 @@ const AboutDataFormik = (props) => {
                         </ErrorMessage>
                     </div>
 
-                    <FieldArray name="contact" render={() => (
+                    <FieldArray name="contacts" render={() => (
                         <div>
                             {arrayWithNames.map(name => contactsJsx(name))}
                         </div>
                     )}/>
-                    <ErrorMessage name="contact">
+                    <ErrorMessage name="contacts">
                         {errorMsg => <div className={mod.formErrors}>{errorMsg}</div>}
                     </ErrorMessage>
 

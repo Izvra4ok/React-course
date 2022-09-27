@@ -1,15 +1,15 @@
 import React from 'react';
 import mod from "./MyPost.module.css"
-import TextareaPostContainer from "./TextareaFormPost/TextareaFormPostContainer";
-import PostContainer from "./Post/PostContainer";
+import Post from "./Post/Post";
+import TextareaPostForm from "./TextareaFormPost/TextareaFormPost";
 
 
 const MyPost = (props) => {
 
     return (
         <div className={mod.mypost}>
-            <TextareaPostContainer />
-            <PostContainer/>
+            <TextareaPostForm onAddPostClick={props.onAddPostClick}/>
+            <Post posts={props.posts}/>
         </div>
     );
 };

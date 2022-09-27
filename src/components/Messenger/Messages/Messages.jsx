@@ -1,7 +1,7 @@
 import React from "react";
 import mod from "./Messages.module.css";
-import MessageContainer from "./Message/MessageContainer";
-import TextareaMessagesFormContainer from "./TextareaFormMessage/TextareaMessagesFormContainer";
+import Message from "./Message/Message";
+import TextareaFormMessages from "./TextareaFormMessage/TextareaFormMessages";
 
 
 const Messages = (props) => {
@@ -10,10 +10,10 @@ const Messages = (props) => {
         <div>
             <div className={mod.messages}>
                 <div className={mod.messages_items}>
-                    <MessageContainer/>
+                    <Message messages={props.messages}/>
                 </div>
             </div>
-            <TextareaMessagesFormContainer />
+            <TextareaFormMessages onAddMessageClick={props.onAddMessageClick} />
         </div>
     )
 };

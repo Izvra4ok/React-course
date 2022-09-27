@@ -1,13 +1,14 @@
 import React from "react";
 import mod from "./Dialogs.module.css";
 import DialogContainer from "./Dialog/DialogContainer";
+import Dialog from "./Dialog/Dialog";
 
 
 const Dialogs = (props) => {
 
     return (
         <div className={mod.dialogs}>
-            <DialogContainer />
+            <Dialog dialogs={props.dialogs}/>
         </div>
     )
 };

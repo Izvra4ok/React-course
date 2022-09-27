@@ -10,11 +10,11 @@ const Post = (props) => {
             {
                 props.posts.map(p => <span key={p.id}>
         <div className={mod.post}>
-            <NavLink className={mod.postUser} to={"/friends/all/id" + p.first + p.last}>
+            <NavLink className={mod.postUser} to={p.first + p.last}>
                 {p.first} {p.last}
             </NavLink>
             <div className={mod.post_item}>
-                <NavLink to={"/friends/all/id" + p.first + p.last} className={mod.link_avatar}>
+                <NavLink to={p.first + p.last} className={mod.link_avatar}>
                     <img className={mod.image}
                          src={p.profileAva != null
                     ? p.profileAva

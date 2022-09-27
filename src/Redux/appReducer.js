@@ -31,11 +31,14 @@ const initializationSuccess = () => ({
 
 export const getInitializedThunkCreator = () => {
     return async (dispatch) => {
+        try {
         let promise = await dispatch(getAuthProfileUser());
         Promise.all([promise])
         dispatch(initializationSuccess())
+    } catch (error) {
+        console.error(error)}
     }
-}
+};
 
 
 export default appReducer;

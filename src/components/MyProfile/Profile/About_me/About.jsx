@@ -12,6 +12,7 @@ import twitter from "../../../../assets/icons/Contacts/tw.png";
 import website from "../../../../assets/icons/Contacts/web.png";
 import youtube from "../../../../assets/icons/Contacts/youtube.png";
 import mainLink from "../../../../assets/icons/Contacts/site.png";
+import clsn from "classnames";
 
 
 let About = (props) => {
@@ -39,7 +40,6 @@ let About = (props) => {
             <div className={mod.about_me}>
                 {editMode
                     ? <AboutDataFormik profile={profile}
-                                       initialValues={profile}
                                        goToViewMode={() => setEditMode(false)}
                                        handleSubmit={handleSubmit}/>
                     : <ProfileData goToEditMode={activateEditMode} profile={props.profile} id={props.id}/>
@@ -70,7 +70,7 @@ const ProfileData = ({profile, id, goToEditMode}) => {
         </div>}
 
         <div className={mod.about_info}>Name:
-            <span className={`${mod.about_span} ${mod.name}`}>
+            <span className={clsn(mod.about_span, mod.name)}>
                         {profile.fullName}
                         </span>
         </div>

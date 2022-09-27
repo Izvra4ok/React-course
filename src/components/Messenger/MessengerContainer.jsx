@@ -3,15 +3,25 @@ import Messenger from "./Messenger";
 import {connect} from "react-redux";
 import {WithAuthRedirectComponent} from "../../HOC/Redirect";
 import {compose} from "redux";
+import {getDialogsSelector, getMessagesSelector} from "../../Redux/selectors/messengerPageSelectors";
+import {addMessage} from "../../Redux/messengerPageReducer";
 
-class MessengerContainer extends React.Component {
+const MessengerContainer = (props) => {
 
-    render() {
-        return <Messenger/>
-    }
-}
+    let onAddMessageClick = (newMessageText) => {
+        props.addMessage(newMessageText);
+    };
 
-let mapStateToProps = (state) => ({})
+    return <Messenger messages={props.messages}
+                      dialogs={props.dialogs}
+                      onAddMessageClick={onAddMessageClick}/>
+};
 
 
-export default compose(connect(mapStateToProps,{}))(WithAuthRedirectComponent(MessengerContainer));
+let mapStateToProps = (state) => ({
+    messages: getMessagesSelector(state),
+    dialogs: getDialogsSelector(state),
+})
+
+
+export default compose(connect(mapStateToProps, {addMessage}))(WithAuthRedirectComponent(MessengerContainer));

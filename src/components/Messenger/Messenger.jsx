@@ -8,8 +8,9 @@ const Messenger = (props) => {
 
     return (
         <section className={mod.messenger}>
-            <Dialogs  />
-            <Messages />
+            <Dialogs dialogs={props.dialogs} />
+            <Messages messages={props.messages}
+                      onAddMessageClick={props.onAddMessageClick}/>
         </section>
     )
 };
