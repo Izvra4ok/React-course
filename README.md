@@ -1,3 +1,11 @@
+# React-course
+
+## Ablte to testing social network
+
+login: reacttesingapp@gmail.com
+
+password: free
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
