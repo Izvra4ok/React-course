@@ -1,7 +1,23 @@
+import {AnyAction} from "redux";
+
+
 const ADD_MESSAGE = "socialNetwork/profilePageReducer/ADD-MESSAGE";
 
+export type InitialStateType = typeof initialstate;
 
-let initialstate = {
+type InStateDialogsType = {
+    id: number,
+    avatarUrl: string,
+    first: string,
+    last: string,
+}
+
+type inStateMessagesType = {
+    id: number,
+    message: string,
+}
+
+const initialstate = {
 
     dialogs: [
         {
@@ -58,7 +74,7 @@ let initialstate = {
             first: "UserName9",
             last: "UserLastName9",
         },
-    ],
+    ] as Array<InStateDialogsType>,
 
     messages: [
         {id: 1, message: "Hi"},
@@ -69,11 +85,11 @@ let initialstate = {
         {id: 3, message: "Good bye"},
         {id: 4, message: "How are you?"},
         {id: 5, message: "Hello! I'm fine and you?"},
-    ],
+    ] as Array<inStateMessagesType>
 
 };
 
-const messengerPageReducer = (state = initialstate, action) => {
+const messengerPageReducer = (state: InitialStateType = initialstate, action: AnyAction): InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage = action.payload;
@@ -89,7 +105,12 @@ const messengerPageReducer = (state = initialstate, action) => {
     }
 };
 
-export const addMessage = (newMessageText) => ({
+type addMessageActionType = {
+    type: typeof ADD_MESSAGE,
+    payload: string,
+};
+
+export const addMessage = (newMessageText: string): addMessageActionType => ({
     type: ADD_MESSAGE,
     payload: newMessageText
 });

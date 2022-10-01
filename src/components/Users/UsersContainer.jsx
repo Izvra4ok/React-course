@@ -18,7 +18,7 @@ import {
     getUsersSelector
 } from "../../Redux/selectors/usersPageSelectors";
 import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
-import ErrorBoundary from "../common/Error Boundary";
+import ErrorBoundary from "../common/ErrorBoundary";
 
 const UsersContainer = (props) => {
 

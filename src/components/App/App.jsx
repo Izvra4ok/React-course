@@ -13,11 +13,11 @@ import {withRouter} from "../../HOC/WithRouter";
 import {connect, Provider} from "react-redux";
 import Preloader from "../common/Preloader";
 import {getAuthProfileUser} from "../../Redux/authReducer";
-import {getInitializedThunkCreator} from "../../Redux/appReducer";
+import {getInitializedThunkCreator} from "../../Redux/appReducer.ts";
 import {getInitializedSelector} from "../../Redux/selectors/appSelectors";
 import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
 import store from "../../Redux/reduxStore";
-import ErrorBoundary from "../common/Error Boundary";
+import ErrorBoundary from "../common/ErrorBoundary";
 
 
 const MessengerContainer = React.lazy(() => import("../Messenger/MessengerContainer"));

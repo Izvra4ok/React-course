@@ -5,7 +5,7 @@ import navbarPageReducer from "./navbarPageReducer";
 import usersPageReducer from "./usersPageReducer";
 import authReducer from "./authReducer";
 import thunkMiddleware from "redux-thunk";
-import appReducer from "./appReducer";
+import appReducer from "./appReducer.ts";
 
 
 let reducers = combineReducers({

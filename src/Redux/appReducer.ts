@@ -1,12 +1,16 @@
 import {getAuthProfileUser} from "./authReducer";
+import {AnyAction} from "redux";
+
 
 const INITIALIZATION_SUCCESS = "socialNetwork/appReducer/INITIALIZATION_SUCCESS";
 
-let initialState = {
-    initialized: false,
-}
+export type InitialStateType = typeof initialState;
 
-let appReducer = (state = initialState, action) => {
+const initialState = {
+    initialized: false,
+};
+
+let appReducer = (state: InitialStateType = initialState, action: AnyAction): InitialStateType => {
     switch (action.type) {
         case INITIALIZATION_SUCCESS:
             return {
@@ -16,12 +20,15 @@ let appReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 
+type initializationSuccessActionType = {
+    type: typeof INITIALIZATION_SUCCESS
+};
 
-const initializationSuccess = () => ({
+const initializationSuccess = (): initializationSuccessActionType =>  ({
     type: INITIALIZATION_SUCCESS,
-})
+});
 
 // export const getInitializedThunkCreator = () => async (dispatch) => {
 //     await dispatch(getAuthUserData());
@@ -30,7 +37,7 @@ const initializationSuccess = () => ({
 
 
 export const getInitializedThunkCreator = () => {
-    return async (dispatch) => {
+    return async (dispatch: any) => {
         try {
         let promise = await dispatch(getAuthProfileUser());
         Promise.all([promise])

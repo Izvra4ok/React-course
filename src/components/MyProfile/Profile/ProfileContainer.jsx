@@ -20,7 +20,7 @@ import {
     getProfileStatusSelector
 } from "../../../Redux/selectors/profilePageSelectors";
 import Preloader from "../../common/Preloader";
-import ErrorBoundary from "../../common/Error Boundary";
+import ErrorBoundary from "../../common/ErrorBoundary";
 
 
 const ProfileContainer = (props) => {

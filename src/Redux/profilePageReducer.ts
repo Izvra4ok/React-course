@@ -1,4 +1,6 @@
 import {profileAPI} from "../DAL/api";
+import {AnyAction} from "redux";
+import {InStatePostsType, InStateProfileType, PhotosType} from "../types/types";
 
 const ADD_POST = "socialNetwork/profilePageReducer/ADD-POST";
 const SET_USER_PROFILE = "socialNetwork/profilePageReducer/SET_USER_PROFILE";
@@ -6,10 +8,13 @@ const SET_PROFILE_STATUS = "socialNetwork/profilePageReducer/SET_PROFILE_STATUS"
 const DELETE_POST = "socialNetwork/profilePageReducer/DELETE_POST";
 const UPLOAD_PHOTO_SUCCESS = "socialNetwork/profilePageReducer/UPLOAD_PHOTO_SUCCESS";
 
-let initialstate = {
+export type InitialStateType = typeof initialstate;
 
-    profile: null,
+const initialstate= {
+
+    profile: null as  InStateProfileType | null,
     status: "",
+    newPost: "",
     posts: [
         {
             id: 1,
@@ -51,13 +56,13 @@ let initialstate = {
             first: "UserName",
             last: "UserLastName",
         },
-    ],
+    ] as Array<InStatePostsType>
 
 };
 
 
-const profilePageReducer = (state = initialstate, action) => {
-    switch (action.type) {
+const profilePageReducer = (state: InitialStateType = initialstate, action: AnyAction): InitialStateType => {
+        switch (action.type) {
         case ADD_POST:
             let newPost = action.payload;
             if (newPost === "") {
@@ -89,13 +94,10 @@ const profilePageReducer = (state = initialstate, action) => {
                 ...state,
                 status: action.payload,
             }
-        case UPLOAD_PHOTO_SUCCESS:
+            case UPLOAD_PHOTO_SUCCESS:
             return {
                 ...state,
-                profile: {
-                    ...state.profile,
-                    photos: action.payload
-                }
+                profile: {...state.profile, photos: action.payload} as InStateProfileType
             }
         default:
             return state;
@@ -103,35 +105,59 @@ const profilePageReducer = (state = initialstate, action) => {
     }
 };
 
+type addPostActionType = {
+    type: typeof ADD_POST,
+    payload: string,
+};
 
-export const addPost = (textarea) => ({
+export const addPost = (textarea: string): addPostActionType => ({
     type: ADD_POST,
     payload: textarea,
 });
 
-export const setUserProfile = (profile) => ({
+type SetUserProfileActionType = {
+    type: typeof SET_USER_PROFILE,
+    payload: InStateProfileType,
+};
+
+export const setUserProfile = (profile: InStateProfileType): SetUserProfileActionType => ({
     type: SET_USER_PROFILE,
     payload: profile,
 });
 
-export const setProfileStatus = (status) => ({
+type SetProfileStatusActionType = {
+    type: typeof SET_PROFILE_STATUS,
+    payload: string,
+}
+
+export const setProfileStatus = (status: string): SetProfileStatusActionType => ({
     type: SET_PROFILE_STATUS,
     payload: status,
 });
 
-export const deletePost = (postId) => ({
+type DeletePostActionType = {
+    type: typeof DELETE_POST,
+    payload: number,
+}
+
+export const deletePost = (postId: number): DeletePostActionType => ({
     type: DELETE_POST,
     payload: postId,
 });
 
-export const savePhotoSuccess = (photos) => ({
+type SavePhotoSuccessActionType = {
+    type: typeof UPLOAD_PHOTO_SUCCESS,
+    payload: PhotosType
+}
+
+export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessActionType => ({
     type: UPLOAD_PHOTO_SUCCESS,
     payload: photos,
 });
 
 
-export const getProfileUserThunkCreator = (userId) => {
-    return async (dispatch) => {
+export const getProfileUserThunkCreator = (userId: number) => {
+    return async (dispatch: any) => {
         try {
             let data = await profileAPI.getProfileUserServer(userId);
             dispatch(setUserProfile(data));
@@ -142,8 +168,8 @@ export const getProfileUserThunkCreator = (userId) => {
 };
 
 
-export const getProfileStatusThunkCreator = (userId) => {
-    return async (dispatch) => {
+export const getProfileStatusThunkCreator = (userId: number) => {
+    return async (dispatch: any) => {
         try {
             let data = await profileAPI.getProfileStatusServer(userId);
             dispatch(setProfileStatus(data))
@@ -154,8 +180,8 @@ export const getProfileStatusThunkCreator = (userId) => {
 };
 
 
-export const updateProfileStatusThunkCreator = (status) => {
-    return async (dispatch) => {
+export const updateProfileStatusThunkCreator = (status: string) => {
+    return async (dispatch: any) => {
         try {
             let data = await profileAPI.getUpdateProfileStatus(status)
             if (data.resultCode === 0) {
@@ -167,8 +193,8 @@ export const updateProfileStatusThunkCreator = (status) => {
     }
 };
 
-export const saveAvatarProfileThunkCreator = (photos) => {
-    return async (dispatch) => {
+export const saveAvatarProfileThunkCreator = (photos: PhotosType) => {
+    return async (dispatch: any) => {
         try {
             let data = await profileAPI.uploadPhotoServer(photos)
             if (data.resultCode === 0) {
@@ -180,8 +206,8 @@ export const saveAvatarProfileThunkCreator = (photos) => {
     }
 };
 
-export const updateProfileInfoThunkCreator = (formData, setStatus, setSubmitting, goToViewMode) => {
-    return async (dispatch, getState) => {
+export const updateProfileInfoThunkCreator = (formData: any, setStatus: any, setSubmitting: any, goToViewMode: any) => {
+    return async (dispatch: any, getState: any) => {
         try {
             let data = await profileAPI.getUpdateProfileInfo(formData)
             if (data.resultCode === 0) {

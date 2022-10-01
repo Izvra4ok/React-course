@@ -89,7 +89,7 @@ export const authProfileUserAPI = {
             })
     },
 
-    login(email, password, rememberMe = false, captcha = null) {
+    login(email, password, rememberMe = false, captcha) {
         return instance.post(`auth/login`, {email, password, rememberMe, captcha})
             .then((response) => {
                 return response.data
