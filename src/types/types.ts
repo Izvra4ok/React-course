@@ -29,16 +29,14 @@ export type InStateProfileType = {
     fullName: string,
     contacts: ContactsType,
     photos: PhotosType,
-}
+};
 
 export type UsersType = {
     id: number,
     name: string,
     status: string,
-    photos: ContactsType,
+    photos: PhotosType,
     followed: boolean,
 };
 
-export type folllowingInProgressType = {
-    folllowingInProgress: boolean
-};
+

@@ -9,6 +9,6 @@ let initialstate = {
 const navbarPageReducer = (state: InitialStateType = initialstate, action: AnyAction):InitialStateType => {
 
     return state;
-}
+};
 
 export default navbarPageReducer;

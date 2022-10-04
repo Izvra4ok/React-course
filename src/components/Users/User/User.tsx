@@ -2,10 +2,17 @@ import React from "react";
 import mod from "./User.module.css";
 import {NavLink} from "react-router-dom";
 import UserAva from "./UserAva/UserAva";
+import {UsersType} from "../../../types/types";
 
 
+type UserType = {
+    users: Array<UsersType>,
+    unfollowUser: (userId: number) => void,
+    followUser: (userId: number) => void,
+    folllowingInProgress: Array<number>,
+};
 
-const User = (props) => {
+const User:React.FC<UserType> = (props) => {
 
     return (
         <div className={mod.users}>All users

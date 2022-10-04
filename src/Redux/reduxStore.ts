@@ -5,10 +5,10 @@ import navbarPageReducer from "./navbarPageReducer";
 import usersPageReducer from "./usersPageReducer";
 import authReducer from "./authReducer";
 import thunkMiddleware from "redux-thunk";
-import appReducer from "./appReducer.ts";
+import appReducer from "./appReducer";
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     auth: authReducer,
     profilePage: profilePageReducer,
     messengerPage: messengerPageReducer,
@@ -17,11 +17,18 @@ let reducers = combineReducers({
     app: appReducer,
 });
 
+type RootReducerType = typeof rootReducer;
+
+export type AppStateType = ReturnType<RootReducerType>
+
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = legacy_createStore(reducers,composeEnhancers(applyMiddleware(thunkMiddleware)
+
+const store = legacy_createStore(rootReducer,composeEnhancers(applyMiddleware(thunkMiddleware)
 ));
 // let store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware));
 
+// @ts-ignore
 window.__store__ = store;
 
 

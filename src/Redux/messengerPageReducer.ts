@@ -10,12 +10,12 @@ type InStateDialogsType = {
     avatarUrl: string,
     first: string,
     last: string,
-}
+};
 
 type inStateMessagesType = {
     id: number,
     message: string,
-}
+};
 
 const initialstate = {
 
@@ -86,7 +86,6 @@ const initialstate = {
         {id: 4, message: "How are you?"},
         {id: 5, message: "Hello! I'm fine and you?"},
     ] as Array<inStateMessagesType>
-
 };
 
 const messengerPageReducer = (state: InitialStateType = initialstate, action: AnyAction): InitialStateType => {

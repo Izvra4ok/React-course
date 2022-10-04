@@ -26,7 +26,7 @@ let authReducer = (state: InitialStateType = initialState, action: AnyAction): I
         default:
             return state;
     }
-}
+};
 
 type setAuthProfileUserDataActionPayloadType = {
     id: number | null

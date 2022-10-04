@@ -3,13 +3,20 @@ import mod from "./Paginator.module.css";
 import clsn from "classnames";
 
 
-const Paginator = (props) => {
+type PropsType = {
+    onPageChanged: (pageNumber: number) => void,
+    totalUsersCount: number,
+    pageSize: number,
+    currentPage: number,
+};
 
-    let carousel =props.currentPage;
+const Paginator: React.FC<PropsType> = ({currentPage,totalUsersCount,pageSize,onPageChanged}) => {
+
+    let carousel = currentPage;
 
     let slicedPages = () => {
-        let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-        let pages = [];
+        let pagesCount = Math.ceil(totalUsersCount / pageSize)
+        let pages: Array<number> = [];
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i)
         }
@@ -24,22 +31,22 @@ const Paginator = (props) => {
                     carousel > 1 &&
                 <button className={clsn(mod.paginator,mod.buttonPG)}
                         onClick={() => {
-                            props.onPageChanged(carousel -1)}}>PRE</button>
+                            onPageChanged(carousel -1)}}>PRE</button>
                 }
 
                 {
-                    slicedPages().map( (p, index) => {
+                    slicedPages().map( (p:number, index:number) => {
                         return <button key={index}
-                                    className={clsn((props.currentPage === p && mod.selectedPage) || mod.paginator)}
+                                    className={clsn((currentPage === p && mod.selectedPage) || mod.paginator)}
                                     onClick={() => {
-                                        props.onPageChanged(p)
+                                        onPageChanged(p)
                                     }}>{p}</button>})
                 }
 
                 {
                     <button className={mod.paginator && mod.buttonPG}
                             onClick={() => {
-                                props.onPageChanged(carousel + 1 )}}>NEXT</button>
+                                onPageChanged(carousel + 1 )}}>NEXT</button>
                 }
             </div>
     )

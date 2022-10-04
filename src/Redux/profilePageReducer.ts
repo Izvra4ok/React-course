@@ -148,7 +148,7 @@ export const deletePost = (postId: number): DeletePostActionType => ({
 type SavePhotoSuccessActionType = {
     type: typeof UPLOAD_PHOTO_SUCCESS,
     payload: PhotosType
-}
+};
 
 export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessActionType => ({
     type: UPLOAD_PHOTO_SUCCESS,

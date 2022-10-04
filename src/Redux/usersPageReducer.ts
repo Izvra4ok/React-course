@@ -1,7 +1,7 @@
 import {usersAPI} from "../DAL/api";
 import {updateObjectInArray} from "../utils/objectHelpers";
 import {AnyAction} from "redux";
-import {folllowingInProgressType, UsersType} from "../types/types";
+import {UsersType} from "../types/types";
 
 
 const FOLLOW_SUCCESS = "socialNetwork/usersPageReducer/FOLLOW_SUCCESS";
@@ -21,7 +21,7 @@ const initialState = {
     pageSize: 10,
     currentPage: 1,
     isFetching: true,
-    folllowingInProgress: [] as Array<folllowingInProgressType>
+    folllowingInProgress: [] as Array<number>
 };
 
 
@@ -56,7 +56,7 @@ const usersPageReducer = (state: InitialStateType = initialState, action: AnyAct
         case TOGGLE_IS_FOLLOWING_PROGRESS:
             return {
                 ...state,
-                folllowingInProgress: action.payload as Array<toggleFollowingIsProgressType>
+                folllowingInProgress: action.payload as Array<number>
                     ? [...state.folllowingInProgress, action.payload]
                     : state.folllowingInProgress.filter(id => id !== action.payload)
             }

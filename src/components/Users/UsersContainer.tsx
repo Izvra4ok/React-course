@@ -19,8 +19,28 @@ import {
 } from "../../Redux/selectors/usersPageSelectors";
 import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
 import ErrorBoundary from "../common/ErrorBoundary";
+import {UsersType} from "../../types/types";
+import {AppStateType} from "../../Redux/reduxStore";
 
-const UsersContainer = (props) => {
+
+type PropsType = {
+    totalUsersCount: number,
+    pageSize: number,
+    currentPage: number,
+    users: Array<UsersType>,
+    folllowingInProgress: Array<number>,
+    isFetching: boolean,
+
+    // onPageChanged: (pageNumber: number) => void,
+    // unfollowUser: (userId: number) => void,
+    // followUser: (userId: number) => void,
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void,
+    setCurrentPage: (pageNumber: number) => void,
+    getUnfollowUserThunkCreator: (userId: number) => void,
+    getFollowUsersThunkCreator: (userId: number) => void,
+};
+
+const UsersContainer: React.FC<PropsType> = (props) => {
 
     const currentPage = props.currentPage
     const pageSize = props.pageSize
@@ -30,21 +50,21 @@ const UsersContainer = (props) => {
         getUsersThunkCreator(currentPage, pageSize)
     }, [currentPage, pageSize, getUsersThunkCreator])
 
-    let onPageChanged = (pageNumber = 1) => {
+    let onPageChanged = (pageNumber:number = 1) => {
         // const pageSize = props
         props.setCurrentPage(pageNumber);
         props.getUsersThunkCreator(pageNumber, props.pageSize);
     }
 
-    let onClickUnfollowUsers = (userId) => {
+    let onClickUnfollowUsers = (userId: number) => {
         props.getUnfollowUserThunkCreator(userId);
     }
 
-    let onClickFollowUsers = (userId) => {
+    let onClickFollowUsers = (userId: number) => {
         props.getFollowUsersThunkCreator(userId);
     }
 
-    const ErrorMsg = (error) => {
+    const ErrorMsg = (error: any) => {
         return (
             <div>
                 <Preloader/>
@@ -69,48 +89,13 @@ const UsersContainer = (props) => {
                 />
             </ErrorBoundary>}
     </>
-}
-
-// class UC extends React.Component {
-//     componentDidMount() {
-//         const {currentPage, pageSize} = this.props;
-//         this.props.getUsersThunkCreator(currentPage, pageSize);
-//     };
-//
-//     onPageChanged = (pageNumber = 1) => {
-//         const pageSize = this.props;
-//         this.props.setCurrentPage(pageNumber);
-//         this.props.getUsersThunkCreator(pageNumber, pageSize);
-//     }
-//
-//     onClickUnfollowUsers = (userId) => {
-//         this.props.getUnfollowUserThunkCreator(userId);
-//     }
-//
-//     onClickFollowUsers = (userId) => {
-//         this.props.getFollowUsersThunkCreator(userId);
-//     }
-//
-//     render() {
-//         return <>
-//             {this.props.isFetching //pleloader active
-//                 ? <Preloader styled={{width: "50px", height: "50px"}}/>
-//                 : <Users users={this.props.users}
-//                          slicedPages={this.slicedPages}
-//                          totalUsersCount={this.props.totalUsersCount}
-//                          pageSize={this.props.pageSize}
-//                          currentPage={this.props.currentPage}
-//                          followUser={this.onClickFollowUsers}
-//                          unfollowUser={this.onClickUnfollowUsers}
-//                          onPageChanged={this.onPageChanged}
-//                          folllowingInProgress={this.props.folllowingInProgress}
-//                 />}
-//         </>
-//     }
-// }
+};
 
 
-let mapStateToProps = (state) => {
+
+
+
+let mapStateToProps = (state: AppStateType) => {
     return {
         users: getUsersSelector(state),
         totalUsersCount: getTotalUsersCountSelector(state),
@@ -123,7 +108,7 @@ let mapStateToProps = (state) => {
 };
 
 
-export default compose(connect(mapStateToProps,
+export default compose<React.Component>(connect(mapStateToProps,
     {getUsersThunkCreator, getUnfollowUserThunkCreator, getFollowUsersThunkCreator, setCurrentPage}),)(UsersContainer)
 
 
