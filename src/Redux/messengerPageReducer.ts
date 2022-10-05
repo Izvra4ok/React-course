@@ -1,21 +1,11 @@
 import {AnyAction} from "redux";
+import {InStateDialogsType, inStateMessagesType} from "../types/types";
 
 
 const ADD_MESSAGE = "socialNetwork/profilePageReducer/ADD-MESSAGE";
 
 export type InitialStateType = typeof initialstate;
 
-type InStateDialogsType = {
-    id: number,
-    avatarUrl: string,
-    first: string,
-    last: string,
-};
-
-type inStateMessagesType = {
-    id: number,
-    message: string,
-};
 
 const initialstate = {
 

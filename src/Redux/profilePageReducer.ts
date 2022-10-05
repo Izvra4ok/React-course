@@ -1,6 +1,6 @@
 import {profileAPI} from "../DAL/api";
 import {AnyAction} from "redux";
-import {InStatePostsType, InStateProfileType, PhotosType} from "../types/types";
+import {PostsType, PhotosType, ProfileType} from "../types/types";
 
 const ADD_POST = "socialNetwork/profilePageReducer/ADD-POST";
 const SET_USER_PROFILE = "socialNetwork/profilePageReducer/SET_USER_PROFILE";
@@ -12,7 +12,7 @@ export type InitialStateType = typeof initialstate;
 
 const initialstate= {
 
-    profile: null as  InStateProfileType | null,
+    profile: null as  ProfileType | null,
     status: "",
     newPost: "",
     posts: [
@@ -56,7 +56,7 @@ const initialstate= {
             first: "UserName",
             last: "UserLastName",
         },
-    ] as Array<InStatePostsType>
+    ] as Array<PostsType>
 
 };
 
@@ -97,7 +97,7 @@ const profilePageReducer = (state: InitialStateType = initialstate, action: AnyA
             case UPLOAD_PHOTO_SUCCESS:
             return {
                 ...state,
-                profile: {...state.profile, photos: action.payload} as InStateProfileType
+                profile: {...state.profile, photos: action.payload} as ProfileType
             }
         default:
             return state;
@@ -117,10 +117,10 @@ export const addPost = (textarea: string): addPostActionType => ({
 
 type SetUserProfileActionType = {
     type: typeof SET_USER_PROFILE,
-    payload: InStateProfileType,
+    payload: ProfileType,
 };
 
-export const setUserProfile = (profile: InStateProfileType): SetUserProfileActionType => ({
+export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({
     type: SET_USER_PROFILE,
     payload: profile,
 });

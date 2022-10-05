@@ -1,4 +1,5 @@
-export type InStatePostsType = {
+/////ProfileReducerType/////////
+export type PostsType = {
     id: number,
     avatarUrl: string,
     message: string,
@@ -22,15 +23,19 @@ export type PhotosType = {
     large: string | null,
 };
 
-export type InStateProfileType = {
+export type ProfileType = {
     userId: number,
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
     fullName: string,
     contacts: ContactsType,
     photos: PhotosType,
+    aboutMe: string,
 };
 
+/////ProfileReducerType/////////
+
+/////UsersReducerType//////
 export type UsersType = {
     id: number,
     name: string,
@@ -39,4 +44,28 @@ export type UsersType = {
     followed: boolean,
 };
 
+/////UsersReducerType//////
 
+////MessengerReducerType////
+export type InStateDialogsType = {
+    id: number,
+    avatarUrl: string,
+    first: string,
+    last: string,
+};
+
+export type inStateMessagesType = {
+    id: number,
+    message: string,
+};
+
+////MessengerReducerType////
+
+/////Errors Boundary/////
+export type ErrorMsgType = {
+    error: ErrorMsg
+};
+type ErrorMsg = {
+    message: string | null
+};
+/////Errors Boundary/////

@@ -19,7 +19,7 @@ import {
 } from "../../Redux/selectors/usersPageSelectors";
 import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
 import ErrorBoundary from "../common/ErrorBoundary";
-import {UsersType} from "../../types/types";
+import {ErrorMsgType, UsersType} from "../../types/types";
 import {AppStateType} from "../../Redux/reduxStore";
 
 
@@ -31,40 +31,37 @@ type PropsType = {
     folllowingInProgress: Array<number>,
     isFetching: boolean,
 
-    // onPageChanged: (pageNumber: number) => void,
-    // unfollowUser: (userId: number) => void,
-    // followUser: (userId: number) => void,
     getUsersThunkCreator: (currentPage: number, pageSize: number) => void,
     setCurrentPage: (pageNumber: number) => void,
     getUnfollowUserThunkCreator: (userId: number) => void,
     getFollowUsersThunkCreator: (userId: number) => void,
 };
 
+
 const UsersContainer: React.FC<PropsType> = (props) => {
 
-    const currentPage = props.currentPage
-    const pageSize = props.pageSize
-    const getUsersThunkCreator = props.getUsersThunkCreator
+    const currentPage = props.currentPage;
+    const pageSize = props.pageSize;
+    const getUsersThunkCreator = props.getUsersThunkCreator;
 
     useEffect(() => {
         getUsersThunkCreator(currentPage, pageSize)
-    }, [currentPage, pageSize, getUsersThunkCreator])
+    }, [currentPage, pageSize, getUsersThunkCreator]);
 
     let onPageChanged = (pageNumber:number = 1) => {
-        // const pageSize = props
         props.setCurrentPage(pageNumber);
         props.getUsersThunkCreator(pageNumber, props.pageSize);
-    }
+    };
 
     let onClickUnfollowUsers = (userId: number) => {
         props.getUnfollowUserThunkCreator(userId);
-    }
+    };
 
     let onClickFollowUsers = (userId: number) => {
         props.getFollowUsersThunkCreator(userId);
-    }
+    };
 
-    const ErrorMsg = (error: any) => {
+    const ErrorMsg = (error: ErrorMsgType) => {
         return (
             <div>
                 <Preloader/>
@@ -76,7 +73,7 @@ const UsersContainer: React.FC<PropsType> = (props) => {
 
     return <>
         {props.isFetching
-            ? <Preloader styled={{width: "50px", height: "50px"}}/>
+            ? <Preloader/>
             : <ErrorBoundary ErrorComponent={ErrorMsg}>
                 <Users users={props.users}
                        totalUsersCount={props.totalUsersCount}
@@ -92,9 +89,6 @@ const UsersContainer: React.FC<PropsType> = (props) => {
 };
 
 
-
-
-
 let mapStateToProps = (state: AppStateType) => {
     return {
         users: getUsersSelector(state),
@@ -108,7 +102,7 @@ let mapStateToProps = (state: AppStateType) => {
 };
 
 
-export default compose<React.Component>(connect(mapStateToProps,
+export default compose<React.ComponentType>(connect(mapStateToProps,
     {getUsersThunkCreator, getUnfollowUserThunkCreator, getFollowUsersThunkCreator, setCurrentPage}),)(UsersContainer)
 
 
