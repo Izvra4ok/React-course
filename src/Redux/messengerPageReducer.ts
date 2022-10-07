@@ -1,11 +1,13 @@
-import {AnyAction} from "redux";
 import {InStateDialogsType, inStateMessagesType} from "../types/types";
+// import {ThunkAction} from "redux-thunk";
+// import {AppStateType} from "./reduxStore";
 
 
 const ADD_MESSAGE = "socialNetwork/profilePageReducer/ADD-MESSAGE";
 
 export type InitialStateType = typeof initialstate;
-
+type ActionsType = addMessageActionType
+// type ThunkType = ThunkAction<Promise<void>, any, AppStateType, ActionsType>
 
 const initialstate = {
 
@@ -78,10 +80,10 @@ const initialstate = {
     ] as Array<inStateMessagesType>
 };
 
-const messengerPageReducer = (state: InitialStateType = initialstate, action: AnyAction): InitialStateType => {
+const messengerPageReducer = (state: InitialStateType = initialstate, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE:
-            let newMessage = action.payload;
+            let newMessage = action.newMessageText;
             if (newMessage === "") return state;
             return {
                 ...state,
@@ -95,14 +97,10 @@ const messengerPageReducer = (state: InitialStateType = initialstate, action: An
 };
 
 type addMessageActionType = {
-    type: typeof ADD_MESSAGE,
-    payload: string,
-};
+    type: typeof ADD_MESSAGE, newMessageText: string, };
 
 export const addMessage = (newMessageText: string): addMessageActionType => ({
-    type: ADD_MESSAGE,
-    payload: newMessageText
-});
+    type: ADD_MESSAGE, newMessageText});
 
 
 export default messengerPageReducer;

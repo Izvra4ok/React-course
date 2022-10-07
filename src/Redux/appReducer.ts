@@ -1,16 +1,20 @@
 import {getAuthProfileUser} from "./authReducer";
-import {AnyAction} from "redux";
-
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "./reduxStore";
 
 const INITIALIZATION_SUCCESS = "socialNetwork/appReducer/INITIALIZATION_SUCCESS";
 
 export type InitialStateType = typeof initialState;
 
+type ActionsType = initializationSuccessActionType
+
+type ThunkType = ThunkAction<Promise<void>, any, AppStateType, ActionsType>
+
 const initialState = {
     initialized: false,
 };
 
-let appReducer = (state: InitialStateType = initialState, action: AnyAction): InitialStateType => {
+let appReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case INITIALIZATION_SUCCESS:
             return {
@@ -22,13 +26,9 @@ let appReducer = (state: InitialStateType = initialState, action: AnyAction): In
     }
 };
 
-type initializationSuccessActionType = {
-    type: typeof INITIALIZATION_SUCCESS
-};
+type initializationSuccessActionType = { type: typeof INITIALIZATION_SUCCESS };
 
-const initializationSuccess = (): initializationSuccessActionType =>  ({
-    type: INITIALIZATION_SUCCESS,
-});
+const initializationSuccess = (): initializationSuccessActionType =>  ({type: INITIALIZATION_SUCCESS,});
 
 // export const getInitializedThunkCreator = () => async (dispatch) => {
 //     await dispatch(getAuthUserData());
@@ -36,8 +36,8 @@ const initializationSuccess = (): initializationSuccessActionType =>  ({
 // }; //если несколько await то будут выполняться по очереди а Promise.all([...promise])- все сразу пока все не выполняться
 
 
-export const getInitializedThunkCreator = () => {
-    return async (dispatch: any) => {
+export const getInitializedThunkCreator = (): ThunkType => {
+    return async (dispatch) => {
         try {
         let promise = await dispatch(getAuthProfileUser());
         Promise.all([promise])

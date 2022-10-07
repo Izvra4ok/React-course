@@ -43,6 +43,7 @@ type PropsType = {
 
 };
 
+
 const ProfileContainer: React.FC<PropsType> = (props) => {
 
     const userIdFromPath = props.router.params.userId;

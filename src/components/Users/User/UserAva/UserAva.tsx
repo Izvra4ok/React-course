@@ -19,7 +19,7 @@ const UserAva: React.FC<PropsType> = (props) => {
                 : userDefaultFoto} alt="avatar"/>
         </NavLink>
     )
-}
+};
 
 
 export default UserAva;

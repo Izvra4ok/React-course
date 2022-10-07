@@ -7,63 +7,56 @@ const GET_CAPTCHA_SUCCESS = "social-network/auth/GET_CAPTCHA_SUCCESS";
 
 export type InitialStateType = typeof initialState;
 
+type ActionsType = setAuthProfileUserDataActionType | getCaptchaUrlSuccessActionType
 let initialState = {
     email: null as string | null,
     login: null as string | null,
-    isAuth: false,
-    id: null,
+    isAuth: false as true | false,
+    id: null as null | number,
     captchaUrl: null as string | null,
 };
 
-let authReducer = (state: InitialStateType = initialState, action: AnyAction): InitialStateType => {
+let authReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
+            return {
+                ...state,
+                   ...action.payload
+
+            };
         case GET_CAPTCHA_SUCCESS:
             return {
                 ...state,
-                ...action.payload
+                captchaUrl: action.captchaUrl
             };
         default:
             return state;
     }
 };
 
-type setAuthProfileUserDataActionPayloadType = {
-    id: number | null
-    email: string | null
-    login: string | null
-    isAuth: boolean | null
-};
-
 type setAuthProfileUserDataActionType = {
     type: typeof SET_USER_DATA,
-    payload: setAuthProfileUserDataActionPayloadType
+    payload: {
+        id: number | null
+        email: string | null
+        login: string | null
+        isAuth: boolean
+    }
 };
 
-export const setAuthProfileUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean): setAuthProfileUserDataActionType => ({
+export const setAuthProfileUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean ): setAuthProfileUserDataActionType => ({
     type: SET_USER_DATA,
     payload: {id, email, login, isAuth}
 });
 
-type getCaptchaUrlSuccessActionPayloadType = {
+type getCaptchaUrlSuccessActionType = {
+    type: typeof GET_CAPTCHA_SUCCESS,
     captchaUrl: string | null,
 }
 
-// type getCaptchaUrlSuccessActionType = {
-//     type: typeof GET_CAPTCHA_SUCCESS,
-//     payload: { captchaUrl: string }
-// }
-
-type getCaptchaUrlSuccessActionType = {
-    type: typeof GET_CAPTCHA_SUCCESS,
-    payload: getCaptchaUrlSuccessActionPayloadType
-}
-
 export const getCaptchaUrlSuccess = (captchaUrl: string): getCaptchaUrlSuccessActionType => ({
-    type: GET_CAPTCHA_SUCCESS,
-    payload: {captchaUrl}
+    type: GET_CAPTCHA_SUCCESS, captchaUrl
 });
-
 
 export const getAuthProfileUser = () => {
     return async (dispatch: any) => {
