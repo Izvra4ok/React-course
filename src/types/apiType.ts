@@ -1,3 +1,4 @@
+
 export enum ResultCodeEnum {
     Success = 0,
     Error = 1,
@@ -9,12 +10,18 @@ export enum ResultCodeEnumCaptcha {
 
 
 export type UsersGetUsersType = {
-    items: {
-        id: number, name: string, status: string, photos: { small: string, large: string },
-        followed: boolean
-    }
+    items: Array<{
+        id: number,
+        name: string,
+        status: string,
+        followed: boolean,
+        photos:{
+            small: string | null,
+            large: string | null,
+        },
+    }>,
     totalCount: number,
-    error: string
+    error: string | null
 };
 
 export type ProfileUserType = {

@@ -7,10 +7,13 @@ type PropsType = {
     onAddMessageClick: (newMessageText: string) => void,
 };
 
+type TextareaFormMessagesType = {
+    newMessageText: string,
+}
 
 const TextareaFormMessages: React.FC<PropsType> = (props) => {
 
-    const initialValues = {
+    const initialValues: TextareaFormMessagesType = {
         newMessageText: "",
     };
 
@@ -19,7 +22,6 @@ const TextareaFormMessages: React.FC<PropsType> = (props) => {
     };
 
     return (
-
         <div>
             <Formik
                 initialValues={initialValues}

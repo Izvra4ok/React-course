@@ -8,9 +8,13 @@ type PropsType = {
     onAddPostClick: (textarea: string) => void,
 };
 
+type TextareaPostFormType = {
+    textarea: string
+}
+
 const TextareaPostForm: React.FC<PropsType> = (props) => {
 
-    const initialValues = {
+    const initialValues: TextareaPostFormType = {
         textarea: "",
     };
 

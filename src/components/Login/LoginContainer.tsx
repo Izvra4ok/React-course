@@ -14,14 +14,20 @@ import {
 import {AppStateType} from "../../Redux/reduxStore";
 
 
-type PropsType = {
+type MapStateToPropsType = {
     isAuth: boolean,
-    captchaUrl: string,
+    captchaUrl: string | null,
+    email: string | null,
+    id: number | null,
+    login: string | null,
+};
+
+type MapDispatchToPropsType = {
     getLoginUser: (email: string, password: string, rememberMe: boolean, captcha: string, setStatus: string) => void
 };
 
 
-const LoginContainer: React.FC<PropsType> = (props) => {
+const LoginContainer: React.FC<MapDispatchToPropsType & MapStateToPropsType> = (props) => {
 
     if (props.isAuth) {
         return <Navigate to={"/profile/"}/>
@@ -36,7 +42,7 @@ const LoginContainer: React.FC<PropsType> = (props) => {
 };
 
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         login: getLoginSelector(state),
         id: getIdSelector(state),

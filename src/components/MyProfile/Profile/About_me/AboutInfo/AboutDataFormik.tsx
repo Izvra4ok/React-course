@@ -8,11 +8,13 @@ import {ProfileType} from "../../../../../types/types";
 
 type PropsType = {
     profile: ProfileType
-    handleSubmit: (values: ProfileType, setStatus: any, setSubmitting: any, goToViewMode: any) => void,
+    handleSubmit: (values: ProfileType, setStatus: () => void, setSubmitting: (setSubmitting: boolean) => void,
+                   goToViewMode: () => void) => void,
     goToViewMode: () => void
-}
+};
 
-let contactsJsx = (name: string) => {
+
+const contactsJsx = (name: string) => {
     return (
         <div key={name} className={mod.about_info}>
             <span>

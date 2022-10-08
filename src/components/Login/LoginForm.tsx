@@ -5,32 +5,43 @@ import * as Yup from "yup";
 
 
 type PropsType = {
-    captchaUrl: string,
+    isAuth: boolean,
+    captchaUrl: string | null,
+    email: string | null,
+    id: number | null,
+    login: string | null,
     loginUser: (email: string, password: string, rememberMe: boolean, captcha: string, setStatus: string) => void
 };
 
+type FormikPropsType = {
+    email: string,
+    password: string,
+    rememberMe: boolean,
+    captcha: string
+};
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string().email()
+        .min(2, "Must be longer than 2 characters")
+        .required("Required email"),
+    password: Yup.string()
+        .min(1, "Must be longer than 1 characters")
+        .required("Required password"),
+});
 
 const LoginForm: React.FC<PropsType> = (props) => {
 
-    const captcha = props.captchaUrl
-    const initialValues = {
+    const captcha = props.captchaUrl;
+
+    const initialValues: FormikPropsType = {
         email: "",
         password: "",
         rememberMe: false,
         captcha: "",
     };
 
-    const validationSchema = Yup.object().shape({
-        email: Yup.string().email()
-            .min(2, "Must be longer than 2 characters")
-            .required("Required email"),
-        password: Yup.string()
-            .min(1, "Must be longer than 1 characters")
-            .required("Required password"),
-    });
-
-    const loginUser = (values: any, onSubmitProps: any) => {
-        props.loginUser(values.email, values.password, values.rememberMe,values.captcha,onSubmitProps.setStatus,);
+    const loginUser = (values: FormikPropsType, onSubmitProps: any) => {
+        props.loginUser(values.email, values.password, values.rememberMe, values.captcha, onSubmitProps.setStatus,);
         onSubmitProps.setSubmitting(false);
         onSubmitProps.resetForm();
     };

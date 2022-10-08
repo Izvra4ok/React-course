@@ -1,6 +1,6 @@
 .messenger{
     display:grid;
     grid-template-columns: 3fr 9fr;
-    height: 500px;
+    height: 100%;
     overflow-y: hidden;
 }
