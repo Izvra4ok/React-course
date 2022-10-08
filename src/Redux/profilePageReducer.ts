@@ -2,6 +2,8 @@ import {profileAPI} from "../DAL/api";
 import {PostsType, PhotosType, ProfileType} from "../types/types";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./reduxStore";
+import {ResultCodeEnum} from "../types/apiType";
+
 
 const ADD_POST = "socialNetwork/profilePageReducer/ADD-POST";
 const SET_USER_PROFILE = "socialNetwork/profilePageReducer/SET_USER_PROFILE";
@@ -9,7 +11,8 @@ const SET_PROFILE_STATUS = "socialNetwork/profilePageReducer/SET_PROFILE_STATUS"
 const DELETE_POST = "socialNetwork/profilePageReducer/DELETE_POST";
 const UPLOAD_PHOTO_SUCCESS = "socialNetwork/profilePageReducer/UPLOAD_PHOTO_SUCCESS";
 
-export type InitialStateType = typeof initialstate;
+
+type InitialStateType = typeof initialstate;
 
 type ActionsType = addPostActionType | SetUserProfileActionType | SetProfileStatusActionType
     | DeletePostActionType | SavePhotoSuccessActionType;
@@ -170,7 +173,7 @@ export const updateProfileStatusThunkCreator = (status: string): ThunkType => {
     return async (dispatch) => {
         try {
             let data = await profileAPI.getUpdateProfileStatus(status)
-            if (data.resultCode === 0) {
+            if (data.resultCode === ResultCodeEnum.Success) {
                 dispatch(setProfileStatus(status))
             }
         } catch (error) {
@@ -179,11 +182,11 @@ export const updateProfileStatusThunkCreator = (status: string): ThunkType => {
     }
 };
 
-export const saveAvatarProfileThunkCreator = (photos: PhotosType): ThunkType => {
+export const saveAvatarProfileThunkCreator = (photoFile: File): ThunkType => {
     return async (dispatch) => {
         try {
-            let data = await profileAPI.uploadPhotoServer(photos)
-            if (data.resultCode === 0) {
+            let data = await profileAPI.uploadPhotoServer(photoFile)
+            if (data.resultCode === ResultCodeEnum.Success) {
                 dispatch(savePhotoSuccess(data.data.photos))
             }
         } catch (error) {
@@ -196,7 +199,7 @@ export const updateProfileInfoThunkCreator = (formData: any, setStatus: any, set
     return async (dispatch, getState) => {
         try {
             let data = await profileAPI.getUpdateProfileInfo(formData)
-            if (data.resultCode === 0) {
+            if (data.resultCode === ResultCodeEnum.Success) {
                 const userId = getState().auth.id
                 goToViewMode()
                 if (userId) {

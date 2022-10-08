@@ -1,4 +1,12 @@
-import * as axios from "axios";
+import axios from "axios";
+import {
+    AuthLoginType,
+    AuthLogoutType,
+    AuthMeType, ProfileStatusUpdateType, ProfileUpdateType, ProfileUploadPhotoType,
+    ProfileUserType,
+    UsersGetUsersType,
+} from "../types/apiType";
+
 
 const instance = axios.create({
     withCredentials: true,
@@ -11,23 +19,23 @@ const instance = axios.create({
 
 export const usersAPI = {
 
-    getUsersServer(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`,)
+    getUsersServer(currentPage: number = 1, pageSize: number = 10) {
+        return instance.get<UsersGetUsersType>(`users?page=${currentPage}&count=${pageSize}`,)
             .then((response) => {
                 return response.data
             })
     },
 
-    unfollowUsersServer(userId) {
-        return instance.delete(`follow/${userId}`,)
+    unfollowUsersServer(userId: number) {
+        return instance.delete<number>(`follow/${userId}`,)
             .then((response) => {
                 return response.data
             })
 
     },
 
-    followUsersServer(userId) {
-        return instance.post(`follow/${userId}`,)
+    followUsersServer(userId: number) {
+        return instance.post<number>(`follow/${userId}`,)
             .then((response) => {
                 return response.data
             })
@@ -37,42 +45,39 @@ export const usersAPI = {
 
 export const profileAPI = {
 
-    getProfileUserServer(userId) {
-        return instance.get(`profile/${userId}`)
+    getProfileUserServer(userId: number) {
+        return instance.get<ProfileUserType>(`profile/${userId}`)
             .then((response) => {
                 return response.data
             })
     },
 
-    getProfileStatusServer(userId) {
-        return instance.get(`profile/status/${userId}`)
+    getProfileStatusServer(userId: number) {
+        return instance.get<string>(`profile/status/${userId}`)
             .then((response) => {
                 return response.data
             })
     },
 
-    getUpdateProfileStatus(status) {
-        return instance.put(`profile/status`, {status: status})
+    getUpdateProfileStatus(status: string) {
+        return instance.put<ProfileStatusUpdateType>(`profile/status`, {status: status})
             .then((response) => {
                 return response.data
             })
     },
 
-    uploadPhotoServer(photoFile) {
+    uploadPhotoServer(photoFile: File) {
         const formData = new FormData();
         formData.append("image", photoFile);
-        return instance.put("profile/photo", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            }
-        })
+        return instance.put<ProfileUploadPhotoType>("profile/photo", formData, {
+            headers: {"Content-Type": "multipart/form-data",}})
             .then((response) => {
                 return response.data
             })
     },
 
-    getUpdateProfileInfo(formData) {
-        return instance.put(`profile`, formData)
+    getUpdateProfileInfo(formData: string) {
+        return instance.put<ProfileUpdateType>(`profile`, formData)
             .then((response) => {
                 return response.data
             })
@@ -81,23 +86,22 @@ export const profileAPI = {
 
 
 export const authProfileUserAPI = {
-
     me() {
-        return instance.get(`auth/me`)
+        return instance.get<AuthMeType>(`auth/me`)
             .then((response) => {
                 return response.data
             })
     },
 
-    login(email, password, rememberMe = false, captcha) {
-        return instance.post(`auth/login`, {email, password, rememberMe, captcha})
+    login(email: string | null, password: string | null, rememberMe: boolean = false, captcha: string | null) {
+        return instance.post<AuthLoginType>(`auth/login`, {email, password, rememberMe, captcha})
             .then((response) => {
                 return response.data
             })
     },
 
     logout() {
-        return instance.delete(`auth/login`)
+        return instance.delete<AuthLogoutType>(`auth/login`)
             .then((response) => {
                 return response.data
             })

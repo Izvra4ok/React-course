@@ -1,13 +1,19 @@
 import {authProfileUserAPI, securityAPI} from "../DAL/api";
-import {AnyAction} from "redux";
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "./reduxStore";
+import {ResultCodeEnum} from "../types/apiType";
+import {ResultCodeEnumCaptcha} from "../types/apiType";
 
 const SET_USER_DATA = "social-network/auth/SET_USER_DATA";
 const GET_CAPTCHA_SUCCESS = "social-network/auth/GET_CAPTCHA_SUCCESS";
 
 
-export type InitialStateType = typeof initialState;
+type InitialStateType = typeof initialState;
 
-type ActionsType = setAuthProfileUserDataActionType | getCaptchaUrlSuccessActionType
+type ActionsType = setAuthProfileUserDataActionType | getCaptchaUrlSuccessActionType;
+
+type ThunkType = ThunkAction<Promise<void>, any, AppStateType, ActionsType>;
+
 let initialState = {
     email: null as string | null,
     login: null as string | null,
@@ -58,11 +64,11 @@ export const getCaptchaUrlSuccess = (captchaUrl: string): getCaptchaUrlSuccessAc
     type: GET_CAPTCHA_SUCCESS, captchaUrl
 });
 
-export const getAuthProfileUser = () => {
-    return async (dispatch: any) => {
+export const getAuthProfileUser = (): ThunkType => {
+    return async (dispatch) => {
         try {
             let data = await authProfileUserAPI.me();
-            if (data.resultCode === 0) {
+            if (data.resultCode === ResultCodeEnum.Success) {
                 await dispatch(setAuthProfileUserData(data.data.id, data.data.email, data.data.login, true));
             }
         } catch (error) {
@@ -71,16 +77,16 @@ export const getAuthProfileUser = () => {
     }
 };
 
-export const getLoginUser = (email: string | null, password: string | null, rememberMe: boolean, captcha: string | null, setStatus: any) => {
-    return async (dispatch: any) => {
+export const getLoginUser = (email: string | null, password: string | null, rememberMe: boolean, captcha: string | null, setStatus: any): ThunkType => {
+    return async (dispatch) => {
         try {
             let data = await authProfileUserAPI.login(email, password, rememberMe, captcha);
-            if (data.resultCode === 0) {
-                dispatch(getAuthProfileUser())
+            if (data.resultCode === ResultCodeEnum.Success) {
+                await dispatch(getAuthProfileUser())
             } else {
                 setStatus(data.messages)
-                if (data.resultCode === 10) {
-                    dispatch(getCaptchaUrl());
+                if (data.resultCode === ResultCodeEnumCaptcha.Captcha) {
+                    await dispatch(getCaptchaUrl());
                 }
             }
         } catch (error) {
@@ -90,8 +96,8 @@ export const getLoginUser = (email: string | null, password: string | null, reme
 };
 
 
-export const getCaptchaUrl = () => {
-    return async (dispatch: any) => {
+export const getCaptchaUrl = (): ThunkType => {
+    return async (dispatch) => {
         try {
             const data = await securityAPI.getCaptchaServer();
             const captchaUrl = data.url
@@ -103,11 +109,11 @@ export const getCaptchaUrl = () => {
 };
 
 
-export const getLogoutUser = (captchaUrl: string) => {
-    return async (dispatch: any) => {
+export const getLogoutUser = (captchaUrl: string): ThunkType => {
+    return async (dispatch) => {
         try {
             let data = await authProfileUserAPI.logout();
-            if (data.resultCode === 0) {
+            if (data.resultCode === ResultCodeEnum.Success) {
                 dispatch(setAuthProfileUserData(null, null, null, false))
                 dispatch(getCaptchaUrlSuccess(captchaUrl))
             }

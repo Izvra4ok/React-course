@@ -4,7 +4,7 @@ import {AppStateType} from "./reduxStore";
 
 const INITIALIZATION_SUCCESS = "socialNetwork/appReducer/INITIALIZATION_SUCCESS";
 
-export type InitialStateType = typeof initialState;
+type InitialStateType = typeof initialState;
 
 type ActionsType = initializationSuccessActionType
 

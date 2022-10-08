@@ -5,7 +5,7 @@ import {InStateDialogsType, inStateMessagesType} from "../types/types";
 
 const ADD_MESSAGE = "socialNetwork/profilePageReducer/ADD-MESSAGE";
 
-export type InitialStateType = typeof initialstate;
+type InitialStateType = typeof initialstate;
 type ActionsType = addMessageActionType
 // type ThunkType = ThunkAction<Promise<void>, any, AppStateType, ActionsType>
 

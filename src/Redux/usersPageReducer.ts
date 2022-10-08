@@ -1,9 +1,10 @@
 import {usersAPI} from "../DAL/api";
 import {updateObjectInArray} from "../utils/objectHelpers";
-import {UsersType} from "../types/types";
 import {AppStateType} from "./reduxStore";
 import {Dispatch} from "redux";
 import {ThunkAction} from "redux-thunk";
+import {UsersType} from "../types/types";
+import {ResultCodeEnum} from "../types/apiType";
 
 
 const FOLLOW_SUCCESS = "socialNetwork/usersPageReducer/FOLLOW_SUCCESS";
@@ -15,7 +16,7 @@ const TOGGLE_IS_FETCHING = "socialNetwork/usersPageReducer/TOGGLE_IS_FETCHING";
 const TOGGLE_IS_FOLLOWING_PROGRESS = "socialNetwork/usersPageReducer/TOGGLE_IS_FOLLOWING_PROGRESS";
 
 
-export type InitialStateType = typeof initialState;
+type InitialStateType = typeof initialState;
 
 type ActionsType = followUserSuccessActionType | unfollowUserSuccessActionType | setUsersActionType | setCurrentPageType
     | setTotalUsersCountType | toggleIsFetchingType | toggleFollowingIsProgressType;
@@ -148,7 +149,7 @@ export const getFollowUnfollowFlow = async (dispatch: DispatchType, userId: numb
     try {
         dispatch(toggleFollowingIsProgress(true, userId));
         let data = await apiMethod(userId);
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodeEnum.Success) {
             dispatch(actionCreator(userId));
         }
         dispatch(toggleFollowingIsProgress(false, userId));
