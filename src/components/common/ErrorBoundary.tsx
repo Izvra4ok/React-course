@@ -1,12 +1,16 @@
 import React from "react";
 
+type PropsType = {
+    children: any,
+    ErrorComponent: any
+};
 
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends React.Component<PropsType> {
     state = {
-        error: null,
+        error: null
     };
 
-    static getDerivedStateFromError(error) {
+    static getDerivedStateFromError(error:any) {
         return {error};
     }
 

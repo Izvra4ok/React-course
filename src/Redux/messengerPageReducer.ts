@@ -1,83 +1,18 @@
 import {InStateDialogsType, inStateMessagesType} from "../types/types";
+import {InferActionsType} from "./reduxStore";
 // import {ThunkAction} from "redux-thunk";
 // import {AppStateType} from "./reduxStore";
 
 
-const ADD_MESSAGE = "socialNetwork/profilePageReducer/ADD-MESSAGE";
-
 type InitialStateType = typeof initialstate;
-type ActionsType = addMessageActionType
+type ActionsType = InferActionsType<typeof actions>;
 // type ThunkType = ThunkAction<Promise<void>, any, AppStateType, ActionsType>
+
 
 const initialstate = {
 
     dialogs: [
         {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
-            id: 1,
-            avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            first: "UserName1",
-            last: "UserLastName1",
-        },    {
             id: 1,
             avatarUrl: "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             first: "UserName1",
@@ -147,7 +82,7 @@ const initialstate = {
 
 const messengerPageReducer = (state: InitialStateType = initialstate, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case "sn/messenger/ADD-MESSAGE":
             let newMessage = action.newMessageText;
             if (newMessage === "") return state;
             return {
@@ -161,11 +96,10 @@ const messengerPageReducer = (state: InitialStateType = initialstate, action: Ac
     }
 };
 
-type addMessageActionType = {
-    type: typeof ADD_MESSAGE, newMessageText: string, };
-
-export const addMessage = (newMessageText: string): addMessageActionType => ({
-    type: ADD_MESSAGE, newMessageText});
+export const actions = {
+    addMessage: (newMessageText: string) => ({
+        type: "sn/messenger/ADD-MESSAGE", newMessageText} as const),
+};
 
 
 export default messengerPageReducer;

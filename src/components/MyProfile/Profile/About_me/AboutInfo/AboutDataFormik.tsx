@@ -8,8 +8,9 @@ import {ProfileType} from "../../../../../types/types";
 
 type PropsType = {
     profile: ProfileType
-    handleSubmit: (values: ProfileType, setStatus: () => void, setSubmitting: (setSubmitting: boolean) => void,
-                   goToViewMode: () => void) => void,
+    handleSubmit: (formData: ProfileType, setStatus: (messages:Array<string>)=>void,
+                   setSubmitting: (setSubmitting: boolean)=>void, goToViewMode: ()=>void
+    ) => Promise<any>,
     goToViewMode: () => void
 };
 

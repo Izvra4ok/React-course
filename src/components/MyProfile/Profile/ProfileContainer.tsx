@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
-    addPost,
+    actions,
     getProfileStatusThunkCreator,
     getProfileUserThunkCreator,
     saveAvatarProfileThunkCreator,
@@ -34,32 +34,28 @@ type PropsType = {
 
     getProfileUserThunkCreator: (id: number) => void,
     getProfileStatusThunkCreator: (id: number) => void,
-
-    updateProfileInfoThunkCreator: () => void,
+    updateProfileInfoThunkCreator: () => Promise<any>,
     updateProfileStatusThunkCreator: (status: string) => string,
     saveAvatarProfileThunkCreator: (photoFile: File) => void,
     addPost: (textarea: string) => void,
-    router: any,
-
+    params: { userId:number },
 };
 
 
 const ProfileContainer: React.FC<PropsType> = (props) => {
 
-    const userIdFromPath = props.router.params.userId;
-    const authorisedUserId = props.id;
-    const getProfileUserThunkCreator = props.getProfileUserThunkCreator;
-    const getProfileStatusThunkCreator = props.getProfileStatusThunkCreator;
+    const {id,getProfileUserThunkCreator,getProfileStatusThunkCreator} = props;
+    const userIdFromPath = props.params.userId;
 
     useEffect(() => {
         if (userIdFromPath) {
             getProfileUserThunkCreator(userIdFromPath);
             getProfileStatusThunkCreator(userIdFromPath);
-        } else if (authorisedUserId) {
-            getProfileUserThunkCreator(authorisedUserId);
-            getProfileStatusThunkCreator(authorisedUserId);
+        } else if (id) {
+            getProfileUserThunkCreator(id);
+            getProfileStatusThunkCreator(id);
         }
-    }, [getProfileStatusThunkCreator, getProfileUserThunkCreator, authorisedUserId, userIdFromPath]);
+    }, [getProfileStatusThunkCreator, getProfileUserThunkCreator, id, userIdFromPath]);
 
     const onAddPostClick = (textarea: string) => {
         props.addPost(textarea);
@@ -96,13 +92,12 @@ let mapStateToProps = (state: AppStateType) => {
 };
 
 
-export default compose<React.ComponentType>(connect(mapStateToProps, {
+export default compose<React.ComponentType>(connect(mapStateToProps, {addPost: actions.addPost,
         getProfileUserThunkCreator,
         getProfileStatusThunkCreator,
         updateProfileStatusThunkCreator,
         saveAvatarProfileThunkCreator,
         updateProfileInfoThunkCreator,
-        addPost
     }),
     withRouter
 // WithAuthRedirectComponent

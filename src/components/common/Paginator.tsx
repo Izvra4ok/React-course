@@ -10,9 +10,9 @@ type PropsType = {
     currentPage: number,
 };
 
-const Paginator: React.FC<PropsType> = ({currentPage,totalUsersCount,pageSize,onPageChanged}) => {
+const Paginator: React.FC<PropsType> = (props) => {
 
-    let carousel = currentPage;
+    let {currentPage,totalUsersCount,pageSize,onPageChanged} = props
 
     let slicedPages = () => {
         let pagesCount = Math.ceil(totalUsersCount / pageSize)
@@ -20,18 +20,18 @@ const Paginator: React.FC<PropsType> = ({currentPage,totalUsersCount,pageSize,on
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i)
         }
-        let carouselLeft = ((carousel - 5) < 0) ? 0 : carousel - 4;
-        let carouselRight = carousel + 5;
+        let carouselLeft = ((currentPage - 5) < 0) ? 0 : currentPage - 4;
+        let carouselRight = currentPage + 5;
         return pages.slice(carouselLeft, carouselRight);
     }
 
     return (
             <div>
                 {
-                    carousel > 1 &&
+                    currentPage > 1 &&
                 <button className={clsn(mod.paginator,mod.buttonPG)}
                         onClick={() => {
-                            onPageChanged(carousel -1)}}>PRE</button>
+                            onPageChanged(currentPage -1)}}>PRE</button>
                 }
 
                 {
@@ -46,7 +46,7 @@ const Paginator: React.FC<PropsType> = ({currentPage,totalUsersCount,pageSize,on
                 {
                     <button className={mod.paginator && mod.buttonPG}
                             onClick={() => {
-                                onPageChanged(carousel + 1 )}}>NEXT</button>
+                                onPageChanged(currentPage + 1 )}}>NEXT</button>
                 }
             </div>
     )

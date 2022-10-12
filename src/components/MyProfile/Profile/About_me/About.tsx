@@ -13,7 +13,7 @@ type PropsType = {
     id: number,
     savePhoto: (photoFile: File) => void,
     profile: ProfileType,
-    updateProfile: (formData: ProfileType, setStatus: any, setSubmitting: any, goToViewMode: any) => void,
+    updateProfile: (formData: ProfileType, setStatus: any, setSubmitting: any, goToViewMode: any) => Promise<any>,
     status: string,
     updateStatus: (status: string) => string,
 };

@@ -13,7 +13,7 @@ type PropsType = {
     profile: ProfileType,
     status: string,
     posts: Array<PostsType>,
-    updateProfile: () => void,
+    updateProfile: () => Promise<any>,
     updateStatus: (status: string) => string,
     savePhoto: (photoFile: File) => void,
     onAddPostClick: (textarea: string) => void,

@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {
+    actions,
     getFollowUsersThunkCreator,
     getUnfollowUserThunkCreator,
     getUsersThunkCreator,
-    setCurrentPage,
 } from "../../Redux/usersPageReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
@@ -40,24 +40,22 @@ type PropsType = {
 
 const UsersContainer: React.FC<PropsType> = (props) => {
 
-    const currentPage = props.currentPage;
-    const pageSize = props.pageSize;
-    const getUsersThunkCreator = props.getUsersThunkCreator;
+    const {currentPage, pageSize, getUsersThunkCreator, setCurrentPage} = props;
 
     useEffect(() => {
         getUsersThunkCreator(currentPage, pageSize)
     }, [currentPage, pageSize, getUsersThunkCreator]);
 
-    let onPageChanged = (pageNumber:number = 1) => {
-        props.setCurrentPage(pageNumber);
-        props.getUsersThunkCreator(pageNumber, props.pageSize);
+    const onPageChanged = (pageNumber: number = 1) => {
+        setCurrentPage(pageNumber);
+        getUsersThunkCreator(pageNumber, pageSize);
     };
 
-    let onClickUnfollowUsers = (userId: number) => {
+    const unfollowUser = (userId: number) => {
         props.getUnfollowUserThunkCreator(userId);
     };
 
-    let onClickFollowUsers = (userId: number) => {
+    const followUser = (userId: number) => {
         props.getFollowUsersThunkCreator(userId);
     };
 
@@ -77,10 +75,10 @@ const UsersContainer: React.FC<PropsType> = (props) => {
             : <ErrorBoundary ErrorComponent={ErrorMsg}>
                 <Users users={props.users}
                        totalUsersCount={props.totalUsersCount}
-                       pageSize={props.pageSize}
-                       currentPage={props.currentPage}
-                       followUser={onClickFollowUsers}
-                       unfollowUser={onClickUnfollowUsers}
+                       pageSize={pageSize}
+                       currentPage={currentPage}
+                       followUser={followUser}
+                       unfollowUser={unfollowUser}
                        onPageChanged={onPageChanged}
                        folllowingInProgress={props.folllowingInProgress}
                 />
@@ -103,6 +101,7 @@ let mapStateToProps = (state: AppStateType) => {
 
 
 export default compose<React.ComponentType>(connect(mapStateToProps,
-    {getUsersThunkCreator, getUnfollowUserThunkCreator, getFollowUsersThunkCreator, setCurrentPage}),)(UsersContainer)
+    {getUsersThunkCreator, getUnfollowUserThunkCreator, getFollowUsersThunkCreator,
+        setCurrentPage: actions.setCurrentPage,}))(UsersContainer)
 
 

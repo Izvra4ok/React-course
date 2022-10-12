@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import mod from "./SubNavbar.module.css"
 import {NavLink} from "react-router-dom";
 
@@ -15,8 +15,8 @@ const SubNavbar: React.FC<PropsType> = (props) => {
     let profileId = props.profileId;
     let savePhoto = props.savePhoto;
 
-    const onMainFotoSelected = (e: any) => {
-        if (e.target.files.length) {
+    const onMainFotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length ) {
             savePhoto(e.target.files[0])
         }
     };

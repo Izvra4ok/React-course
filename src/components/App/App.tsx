@@ -95,7 +95,7 @@ let mapStateToProps = (state: AppStateType) => ({
 })
 
 
-let AppContainer = compose(withRouter, connect(mapStateToProps, {getInitializedThunkCreator}))(App);
+let AppContainer = compose<React.ComponentType>(withRouter, connect(mapStateToProps, {getInitializedThunkCreator}))(App);
 
 let SocialNetworkApp = () => {
     return <HashRouter>

@@ -1,12 +1,11 @@
 import {getAuthProfileUser} from "./authReducer";
 import {ThunkAction} from "redux-thunk";
-import {AppStateType} from "./reduxStore";
+import {AppStateType, InferActionsType} from "./reduxStore";
 
-const INITIALIZATION_SUCCESS = "socialNetwork/appReducer/INITIALIZATION_SUCCESS";
 
 type InitialStateType = typeof initialState;
 
-type ActionsType = initializationSuccessActionType
+type ActionsType = InferActionsType<typeof actions>
 
 type ThunkType = ThunkAction<Promise<void>, any, AppStateType, ActionsType>
 
@@ -16,7 +15,7 @@ const initialState = {
 
 let appReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case INITIALIZATION_SUCCESS:
+        case "sn/app/INITIALIZATION_SUCCESS":
             return {
                 ...state,
                 initialized: true,
@@ -26,14 +25,9 @@ let appReducer = (state: InitialStateType = initialState, action: ActionsType): 
     }
 };
 
-type initializationSuccessActionType = { type: typeof INITIALIZATION_SUCCESS };
-
-const initializationSuccess = (): initializationSuccessActionType =>  ({type: INITIALIZATION_SUCCESS,});
-
-// export const getInitializedThunkCreator = () => async (dispatch) => {
-//     await dispatch(getAuthUserData());
-//     dispatch(setInitializedSuccess());
-// }; //если несколько await то будут выполняться по очереди а Promise.all([...promise])- все сразу пока все не выполняться
+const actions = {
+     initializationSuccess: () => ({type: "sn/app/INITIALIZATION_SUCCESS"})
+};
 
 
 export const getInitializedThunkCreator = (): ThunkType => {
@@ -41,7 +35,7 @@ export const getInitializedThunkCreator = (): ThunkType => {
         try {
         let promise = await dispatch(getAuthProfileUser());
         Promise.all([promise])
-        dispatch(initializationSuccess())
+        dispatch(actions.initializationSuccess())
     } catch (error) {
         console.error(error)}
     }

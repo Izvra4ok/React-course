@@ -4,9 +4,9 @@ import {connect} from "react-redux";
 import {WithAuthRedirectComponent} from "../../HOC/Redirect";
 import {compose} from "redux";
 import {getDialogsSelector, getMessagesSelector} from "../../Redux/selectors/messengerPageSelectors";
-import {addMessage} from "../../Redux/messengerPageReducer";
 import {AppStateType} from "../../Redux/reduxStore";
 import {InStateDialogsType, inStateMessagesType} from "../../types/types";
+import {actions} from "../../Redux/messengerPageReducer";
 
 
 type PropsType = {
@@ -34,4 +34,4 @@ let mapStateToProps = (state: AppStateType) => ({
 
 
 export default compose<React.ComponentType>(connect(mapStateToProps,
-    {addMessage}))(WithAuthRedirectComponent(MessengerContainer));
+    {addMessage: actions.addMessage}))(WithAuthRedirectComponent(MessengerContainer));
