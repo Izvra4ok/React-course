@@ -10,7 +10,7 @@ type PropsType = {
 };
 
 
-const Dialog: React.FC<PropsType> = (props) => {
+const Dialog: React.FC<PropsType> = React.memo((props) => {
 
     return (
         <div className={mod.dialogues_items}>
@@ -30,7 +30,7 @@ const Dialog: React.FC<PropsType> = (props) => {
                 )}
         </div>
     );
-};
+});
 
 
 export default Dialog;

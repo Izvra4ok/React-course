@@ -25,6 +25,12 @@
     margin-bottom: 10px;
 }
 
+.select{
+    height: 30px;
+}
+.select:focus {
+    background-color: rgba(0, 0, 0, 0.05);
+}
 .button {
     display: inline-block;
     background: #007146;

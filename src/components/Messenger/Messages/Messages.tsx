@@ -11,7 +11,7 @@ type PropsType = {
 };
 
 
-const Messages: React.FC<PropsType> = (props) => {
+const Messages: React.FC<PropsType> = React.memo((props) => {
 
     return (
         <div>
@@ -23,6 +23,6 @@ const Messages: React.FC<PropsType> = (props) => {
             <TextareaFormMessages onAddMessageClick={props.onAddMessageClick} />
         </div>
     )
-};
+});
 
 export default Messages;

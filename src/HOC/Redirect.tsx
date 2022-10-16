@@ -1,26 +1,19 @@
 import React from "react";
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
-import {AppStateType} from "../Redux/reduxStore";
 import {getIsAuthSelector} from "../Redux/selectors/authSelectors";
 
 
-type MapStateToPropsType = {
-    isAuth: boolean
-};
+export const WithAuthRedirectComponent= (Component: any ) => {
 
-export const WithAuthRedirectComponent= (Component: any) => {
-    const Redirect:React.FC<MapStateToPropsType> = (props) => {
+    const Redirect:React.FC = React.memo((props) => {
 
-        if (!props.isAuth) return <Navigate to='/login' />
+        const isAuth = useSelector(getIsAuthSelector);
+
+        if (!isAuth) return <Navigate to='/login' />
+
         return <Component {...props} />
-    };
+    });
 
-    return connect(mapStateToPropsForRedirect)(Redirect)
-
-}
-
-
-let mapStateToPropsForRedirect = (state: AppStateType) => ({
-    isAuth: getIsAuthSelector(state)
-})
+    return Redirect
+};

@@ -2,11 +2,8 @@ import React from "react";
 import mod from "./Navbar.module.css"
 import {NavLink} from "react-router-dom";
 
-type PropsType = {
 
-}
-
-const Navbar: React.FC<PropsType> = (props) => {
+export const Navbar: React.FC = React.memo(() => {
 
     return <nav className={mod.navbar}>
                     <ul className={mod.navbar_list}>
@@ -61,6 +58,4 @@ const Navbar: React.FC<PropsType> = (props) => {
 
                     </ul>
                 </nav>
-};
-
-export default Navbar;
+});

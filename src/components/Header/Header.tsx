@@ -1,18 +1,23 @@
 import React from "react";
 import mod from "./Header.module.css";
 import logo from "../../assets/images/obrez.png";
-import {Link,NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {getIdSelector, getIsAuthSelector, getLoginSelector} from "../../Redux/selectors/authSelectors";
+import {getLogoutUser} from "../../Redux/authReducer";
+import {AnyAction} from "redux";
 
 
-type PropsType = {
-    isAuth: boolean,
-    login: string,
-    id: number,
-    logout: () => void
-};
+export const Header: React.FC = React.memo(() => {
 
+    const dispatch = useDispatch();
+    const isAuth = useSelector(getIsAuthSelector);
+    const login = useSelector(getLoginSelector);
+    const id = useSelector(getIdSelector);
 
-const Header:React.FC<PropsType> = (props) => {
+    const logout = () => {
+        dispatch(getLogoutUser() as unknown as AnyAction)
+    };
 
     return (
         <header className={mod.header}>
@@ -26,13 +31,13 @@ const Header:React.FC<PropsType> = (props) => {
             </div>
 
             <div>
-                {props.isAuth
+                {isAuth
                     ? <div className={mod.auth}>
-                        <NavLink to={"/profile/" + props.id}>
-                            <div>Login:{props.login}</div>
-                            <div>id:{props.id}</div>
+                        <NavLink to={"/profile/" + id}>
+                            <div>Login:{login}</div>
+                            <div>id:{id}</div>
                         </NavLink>
-                        <NavLink to={"/login/"} onClick={props.logout}>
+                        <NavLink to={"/login/"} onClick={logout}>
                             Exit
                         </NavLink>
                     </div>
@@ -40,7 +45,4 @@ const Header:React.FC<PropsType> = (props) => {
                 }</div>
         </header>
     );
-};
-
-
-export default Header;
+});

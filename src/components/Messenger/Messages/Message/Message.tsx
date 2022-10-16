@@ -8,7 +8,7 @@ type PropsType = {
 };
 
 
-const Message: React.FC<PropsType> = (props) => {
+const Message: React.FC<PropsType> = React.memo((props) => {
 
     return (
         <div>
@@ -19,6 +19,6 @@ const Message: React.FC<PropsType> = (props) => {
             }
         </div>
     );
-};
+});
 
 export default Message;

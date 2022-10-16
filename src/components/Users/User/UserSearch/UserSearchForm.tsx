@@ -4,18 +4,19 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import mod from "./UserSearch.module.css";
 import clsn from "classnames";
 import {SearchFormType} from "../../../../Redux/usersPageReducer";
-import {useSelector} from "react-redux";
-import {getSearchUsersSelector, getTotalUsersCountSelector} from "../../../../Redux/selectors/usersPageSelectors";
 
 
 type PropsType = {
     onSearchChanged: (search: SearchFormType) => void,
+    totalUsersCount: number,
+    search: SearchFormType,
 };
 
 type FormType = {
     term: string,
     friend: string
-}
+};
+
 type onSubmitProps = {
     setSubmitting: (setSubmitting:boolean) => void,
 };
@@ -25,11 +26,11 @@ const validationSchema = Yup.object().shape({
         .max(20, "Must be shorter than 20 characters !"),
 });
 
-const UserSearchForm: React.FC<PropsType> = (props) => {
 
-    const search = useSelector(getSearchUsersSelector);
-    const total = useSelector(getTotalUsersCountSelector);
+export const UserSearchForm: React.FC<PropsType> = React.memo((props) => {
 
+
+    const {totalUsersCount, search, onSearchChanged} = props
     const initialValues = {
         term: search.term,
         friend: String(search.friend)
@@ -42,7 +43,7 @@ const UserSearchForm: React.FC<PropsType> = (props) => {
             ? true
             : values.friend === 'false' ? false : null
     };
-        props.onSearchChanged(search2)
+        onSearchChanged(search2)
         onSubmitProps.setSubmitting(false);
     };
 
@@ -58,7 +59,7 @@ const UserSearchForm: React.FC<PropsType> = (props) => {
             return (
                 <Form className={mod.form}>
                     <div className={mod.statusErrors}>{Formik.status}</div>
-                    <div>Total Users:  {total}</div>
+                    <div>Total Users:  {totalUsersCount}</div>
                     <span>Search users:
                         <label htmlFor="term"/>
                         <Field className={clsn(mod.search)} type="text"
@@ -86,8 +87,7 @@ const UserSearchForm: React.FC<PropsType> = (props) => {
             )
         }}
     </Formik>
-}
+});
 
-export default UserSearchForm;
 
 

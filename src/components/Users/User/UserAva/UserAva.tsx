@@ -10,7 +10,7 @@ type PropsType = {
 };
 
 
-const UserAva: React.FC<PropsType> = (props) => {
+export const UserAva: React.FC<PropsType> = React.memo((props) => {
 
     return (
         <NavLink to={"/profile/" + props.id}>
@@ -19,7 +19,5 @@ const UserAva: React.FC<PropsType> = (props) => {
                 : userDefaultFoto} alt="avatar"/>
         </NavLink>
     )
-};
+});
 
-
-export default UserAva;

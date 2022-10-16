@@ -2,12 +2,7 @@ import React, {useEffect} from "react";
 import "../../nullstyle.css";
 import "./App.css";
 import {HashRouter, Navigate, Route, Routes} from "react-router-dom"
-import UsersContainer from "../Users/UsersContainer";
 import ProfileContainer from "../MyProfile/Profile/ProfileContainer";
-// import MessengerContainer from "../Messenger/MessengerContainer";
-import NavbarContainer from "../Navbar/NavbarContainer";
-import HeaderContainer from "../Header/HeaderContainer";
-import LoginContainer from "../Login/LoginContainer";
 import {compose} from "redux";
 import {withRouter} from "../../HOC/WithRouter";
 import {connect, Provider} from "react-redux";
@@ -17,7 +12,11 @@ import {getInitializedSelector} from "../../Redux/selectors/appSelectors";
 import {getIsAuthSelector} from "../../Redux/selectors/authSelectors";
 import store, {AppStateType} from "../../Redux/reduxStore";
 import ErrorBoundary from "../common/ErrorBoundary";
-import {ErrorMsgType} from "../../types/types";
+import {Users} from "../Users/Users";
+import {ErrorMsg} from "../common/ErrorMsg";
+import {Navbar} from "../Navbar/Navbar";
+import {LoginForm} from "../Login/LoginForm";
+import {Header} from "../Header/Header";
 
 
 type PropsType = {
@@ -46,15 +45,15 @@ const App: React.FC<PropsType> = (props) => {
     return (
         <div className="app_wrapper">
             <ErrorBoundary ErrorComponent={ErrorMsg}>
-                <HeaderContainer/>
-                <NavbarContainer/>
+                <Header/>
+                <Navbar/>
             <div className="app_wrapper_content">
                 <Routes>
 
                     <Route path="/" element={<Navigate to="/profile"/>}/>
 
                     <Route path="/login/*"
-                           element={<LoginContainer/>}>
+                           element={<LoginForm/>}>
                     </Route>
 
                     <Route path="/profile/:userId/*"
@@ -73,7 +72,7 @@ const App: React.FC<PropsType> = (props) => {
                     </Route>
 
                     <Route path="/users/*"
-                           element={<UsersContainer/>}>
+                           element={<Users/>}>
                     </Route>
                     <Route path="*"
                            element={"404 NOT FOUND"}>
@@ -108,13 +107,3 @@ let SocialNetworkApp = () => {
 
 export default SocialNetworkApp;
 
-
-const ErrorMsg = (error: ErrorMsgType) => {
-    return (
-        <div>
-            <Preloader/>
-            <div> Something went wrong!</div>
-            <div> {error.error.message}</div>
-        </div>
-    );
-};

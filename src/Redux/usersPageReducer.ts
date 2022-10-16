@@ -15,6 +15,7 @@ export type SearchFormType = typeof initialState.search;
 export type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionsType>;
 
 
+
 const initialState = {
     users: [] as Array<UsersType>,
     totalUsersCount: 0,

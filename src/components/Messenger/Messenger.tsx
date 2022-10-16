@@ -2,23 +2,31 @@ import React from "react";
 import mod from "./Messenger.module.css";
 import Dialogs from "./Dialogues/Dialogs";
 import Messages from "./Messages/Messages";
-import {InStateDialogsType, inStateMessagesType} from "../../types/types";
+import {useDispatch, useSelector} from "react-redux";
+import {getDialogsSelector, getMessagesSelector} from "../../Redux/selectors/messengerPageSelectors";
+import {actions} from "../../Redux/messengerPageReducer";
+import ErrorBoundary from "../common/ErrorBoundary";
+import {ErrorMsg} from "../common/ErrorMsg";
 
-type PropsType = {
-    dialogs: Array<InStateDialogsType>,
-    messages: Array<inStateMessagesType>,
-    onAddMessageClick: (newMessageText: string) => void
-}
 
-const Messenger: React.FC<PropsType> = (props) => {
+export const Messenger: React.FC = React.memo((props) => {
+
+    const dispatch = useDispatch();
+    const messages = useSelector(getMessagesSelector);
+    const dialogs = useSelector(getDialogsSelector);
+
+    const onAddMessageClick = (newMessageText: string)=> {
+        dispatch(actions.addMessage(newMessageText))
+    };
 
     return (
+        <ErrorBoundary ErrorComponent={ErrorMsg}>
         <section className={mod.messenger}>
-            <Dialogs dialogs={props.dialogs} />
-            <Messages messages={props.messages}
-                      onAddMessageClick={props.onAddMessageClick}/>
+            <Dialogs dialogs={dialogs} />
+            <Messages messages={messages}
+                      onAddMessageClick={onAddMessageClick}/>
         </section>
+        </ErrorBoundary>
     )
-};
+});
 
-export default Messenger;

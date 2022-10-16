@@ -2,16 +2,15 @@ import React from "react";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import mod from "./Login.module.css";
 import * as Yup from "yup";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    getCaptchaUrlSelector,
+    getIsAuthSelector
+} from "../../Redux/selectors/authSelectors";
+import {getLoginUser} from "../../Redux/authReducer";
+import {AnyAction} from "redux";
+import {Navigate} from "react-router-dom";
 
-
-type PropsType = {
-    isAuth: boolean,
-    captchaUrl: string | null,
-    email: string | null,
-    id: number | null,
-    login: string | null,
-    loginUser: (email: string, password: string, rememberMe: boolean, captcha: string, setStatus: string) => void
-};
 
 type FormikPropsType = {
     email: string,
@@ -29,9 +28,15 @@ const validationSchema = Yup.object().shape({
         .required("Required password"),
 });
 
-const LoginForm: React.FC<PropsType> = (props) => {
+export const LoginForm: React.FC = () => {
 
-    const captcha = props.captchaUrl;
+    const dispatch =useDispatch();
+    const isAuth = useSelector(getIsAuthSelector);
+    const captcha = useSelector(getCaptchaUrlSelector);
+
+    if (isAuth) {
+        return <Navigate to={"/profile/"}/>
+    }
 
     const initialValues: FormikPropsType = {
         email: "",
@@ -41,7 +46,7 @@ const LoginForm: React.FC<PropsType> = (props) => {
     };
 
     const loginUser = (values: FormikPropsType, onSubmitProps: any) => {
-        props.loginUser(values.email, values.password, values.rememberMe, values.captcha, onSubmitProps.setStatus,);
+        dispatch(getLoginUser(values.email, values.password, values.rememberMe, values.captcha, onSubmitProps.setStatus,) as unknown as AnyAction)
         onSubmitProps.setSubmitting(false);
         onSubmitProps.resetForm();
     };
@@ -126,4 +131,3 @@ const LoginForm: React.FC<PropsType> = (props) => {
 };
 
 
-export default LoginForm;

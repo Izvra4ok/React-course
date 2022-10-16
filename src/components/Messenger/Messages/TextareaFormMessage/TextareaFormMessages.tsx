@@ -9,9 +9,9 @@ type PropsType = {
 
 type TextareaFormMessagesType = {
     newMessageText: string,
-}
+};
 
-const TextareaFormMessages: React.FC<PropsType> = (props) => {
+const TextareaFormMessages: React.FC<PropsType> = React.memo((props) => {
 
     const initialValues: TextareaFormMessagesType = {
         newMessageText: "",
@@ -49,7 +49,7 @@ const TextareaFormMessages: React.FC<PropsType> = (props) => {
             </Formik>
         </div>
     )
-};
+});
 
 
 export default TextareaFormMessages;

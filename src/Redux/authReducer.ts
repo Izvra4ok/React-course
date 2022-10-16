@@ -37,11 +37,11 @@ let authReducer = (state: InitialStateType = initialState, action: ActionsType):
     }
 };
 
-const actions = {
+export const actions = {
     setAuthProfileUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean ) => ({
         type: "sn/auth/SET_USER_DATA", payload: {id, email, login, isAuth} } as const),
 
-    getCaptchaUrlSuccess: (captchaUrl: string) => ({
+    getCaptchaUrlSuccess: (captchaUrl: string | null) => ({
         type: "sn/auth/GET_CAPTCHA_SUCCESS", captchaUrl} as const)
 };
 
@@ -92,13 +92,13 @@ export const getCaptchaUrl = (): ThunkType => {
 };
 
 
-export const getLogoutUser = (captchaUrl: string): ThunkType => {
+export const getLogoutUser = (): ThunkType => {
     return async (dispatch) => {
         try {
             let data = await authAPI.logout();
             if (data.resultCode === ResultCodeEnum.Success) {
                 dispatch(actions.setAuthProfileUserData(null, null, null, false))
-                dispatch(actions.getCaptchaUrlSuccess(captchaUrl))
+                dispatch(actions.getCaptchaUrlSuccess(null))
             }
         } catch (error:any) {
             console.error(error)

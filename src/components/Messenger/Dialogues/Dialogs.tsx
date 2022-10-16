@@ -9,14 +9,14 @@ type PropsType = {
 };
 
 
-const Dialogs: React.FC<PropsType> = (props) => {
+const Dialogs: React.FC<PropsType> = React.memo((props) => {
 
     return (
         <div className={mod.dialogs}>
             <Dialog dialogs={props.dialogs}/>
         </div>
     )
-};
+});
 
 
 export default Dialogs;
