@@ -60,3 +60,12 @@ export const getFollowingInProgressSelector  = createSelector(getFolllowingInPro
     (folllowingInProgress) => {
     return folllowingInProgress;
     });
+
+const getSearchUsersBasicSelector = (state: AppStateType) => {
+    return state.usersPage.search
+}
+
+export const getSearchUsersSelector  = createSelector(getSearchUsersBasicSelector,
+    (search) => {
+        return search;
+    });

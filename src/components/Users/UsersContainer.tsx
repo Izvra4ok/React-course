@@ -4,7 +4,7 @@ import {
     actions,
     getFollowUsersThunkCreator,
     getUnfollowUserThunkCreator,
-    getUsersThunkCreator,
+    getUsersThunkCreator, SearchFormType,
 } from "../../Redux/usersPageReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
@@ -13,7 +13,7 @@ import {
     getCurrentPageSelector,
     getFollowingInProgressSelector,
     getIsFetchingSelector,
-    getPageSizeSelector,
+    getPageSizeSelector, getSearchUsersSelector,
     getTotalUsersCountSelector,
     getUsersSelector
 } from "../../Redux/selectors/usersPageSelectors";
@@ -31,24 +31,31 @@ type PropsType = {
     folllowingInProgress: Array<number>,
     isFetching: boolean,
 
-    getUsersThunkCreator: (currentPage: number, pageSize: number) => void,
+    getUsersThunkCreator: (currentPage: number, pageSize: number, search:SearchFormType) => void,
     setCurrentPage: (pageNumber: number) => void,
     getUnfollowUserThunkCreator: (userId: number) => void,
     getFollowUsersThunkCreator: (userId: number) => void,
+    onSearchChanged: (search: SearchFormType) => void,
+    search: SearchFormType,
 };
 
 
-const UsersContainer: React.FC<PropsType> = (props) => {
+const UsersContainer: React.FC<PropsType> = React.memo((props) => {
 
-    const {currentPage, pageSize, getUsersThunkCreator, setCurrentPage} = props;
+    const {currentPage, pageSize, search, getUsersThunkCreator, setCurrentPage} = props;
 
     useEffect(() => {
-        getUsersThunkCreator(currentPage, pageSize)
-    }, [currentPage, pageSize, getUsersThunkCreator]);
+        getUsersThunkCreator(currentPage, pageSize, search)
+    }, [currentPage, pageSize, search,getUsersThunkCreator]);
 
     const onPageChanged = (pageNumber: number = 1) => {
         setCurrentPage(pageNumber);
-        getUsersThunkCreator(pageNumber, pageSize);
+        getUsersThunkCreator(pageNumber, pageSize, search);
+    };
+
+    const onSearchChanged = (search: SearchFormType) => {
+        getUsersThunkCreator(1, pageSize, search)
+
     };
 
     const unfollowUser = (userId: number) => {
@@ -69,6 +76,7 @@ const UsersContainer: React.FC<PropsType> = (props) => {
         );
     };
 
+
     return <>
         {props.isFetching
             ? <Preloader/>
@@ -81,10 +89,11 @@ const UsersContainer: React.FC<PropsType> = (props) => {
                        unfollowUser={unfollowUser}
                        onPageChanged={onPageChanged}
                        folllowingInProgress={props.folllowingInProgress}
+                       onSearchChanged={onSearchChanged}
                 />
             </ErrorBoundary>}
     </>
-};
+});
 
 
 let mapStateToProps = (state: AppStateType) => {
@@ -96,9 +105,9 @@ let mapStateToProps = (state: AppStateType) => {
         isFetching: getIsFetchingSelector(state),
         folllowingInProgress: getFollowingInProgressSelector(state),
         isAuth: getIsAuthSelector(state),
+        search: getSearchUsersSelector(state),
     }
-};
-
+}
 
 export default compose<React.ComponentType>(connect(mapStateToProps,
     {getUsersThunkCreator, getUnfollowUserThunkCreator, getFollowUsersThunkCreator,

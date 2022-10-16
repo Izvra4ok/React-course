@@ -1,0 +1,49 @@
+.form {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.search {
+    margin-left: 10px;
+    display: inline-block;
+    width: 250px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.50);
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.search:focus {
+    background-color: rgba(0, 0, 0, 0.05)
+}
+
+.formErrors {
+    color: red;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline-block;
+    background: #007146;
+    text-align: center;
+    font-size: 16px;
+    width: 100px;
+    height: 30px;
+    border: none;
+    margin-left: 10px;
+    color: white;
+}
+
+.button:active {
+    transform: scale(1.02, 1.02);
+
+}
+
+.button:disabled {
+    background-color: rgba(0, 113, 70, 0.74);
+    transform: none;
+    box-shadow: none;
+}

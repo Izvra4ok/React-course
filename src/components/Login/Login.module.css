@@ -1,12 +1,13 @@
-h2{
+h2 {
     text-align: center;
     font-size: 50px;
 }
 
-.formName{
+.formName {
     font-size: 16px;
     font-weight: 500;
 }
+
 .form {
     display: block;
     width: 350px;
@@ -16,19 +17,12 @@ h2{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.formComments{
-    display: block;
-    width: 250px;
-    height: 100px;
-    border: 1px solid black;
-    font-size: 14px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.formErrors{
+
+.formErrors {
     margin-bottom: 20px;
-    color:red;
+    color: red;
 }
+
 .formCheckbox {
     margin-left: 5px;
 }
@@ -51,7 +45,8 @@ h2{
     transform: scale(1.02, 1.02);
 
 }
-.button:disabled{
+
+.button:disabled {
     background-color: rgba(0, 113, 70, 0.74);
     transform: none;
     box-shadow: none;

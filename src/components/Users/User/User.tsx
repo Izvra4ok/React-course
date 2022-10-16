@@ -3,6 +3,8 @@ import mod from "./User.module.css";
 import {NavLink} from "react-router-dom";
 import UserAva from "./UserAva/UserAva";
 import {UsersType} from "../../../types/types";
+import UserSearchForm from "./UserSearch/UserSearchForm";
+import {SearchFormType} from "../../../Redux/usersPageReducer";
 
 
 type UserType = {
@@ -10,12 +12,16 @@ type UserType = {
     unfollowUser: (userId: number) => void,
     followUser: (userId: number) => void,
     folllowingInProgress: Array<number>,
+    onSearchChanged: (search: SearchFormType) => void,
 };
 
 const User:React.FC<UserType> = (props) => {
 
     return (
-        <div className={mod.users}>All users
+
+        <div className={mod.users}>
+
+            <UserSearchForm onSearchChanged={props.onSearchChanged}/>
 
         {
             props.users.map(user => <div className={mod.all_users} key={user.id}>

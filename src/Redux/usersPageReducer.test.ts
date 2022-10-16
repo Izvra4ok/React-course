@@ -49,7 +49,11 @@ beforeEach(() => {
         pageSize: 10,
         currentPage: 1,
         isFetching: false,
-        folllowingInProgress: []
+        folllowingInProgress: [],
+        search: {
+            term: "",
+            friend: null as null | boolean,
+        }
     }
 });
 
