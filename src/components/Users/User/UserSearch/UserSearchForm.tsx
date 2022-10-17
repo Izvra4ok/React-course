@@ -4,12 +4,13 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import mod from "./UserSearch.module.css";
 import clsn from "classnames";
 import {SearchFormType} from "../../../../Redux/usersPageReducer";
+import {useSelector} from "react-redux";
+import {getSearchUsersSelector} from "../../../../Redux/selectors/usersPageSelectors";
 
 
 type PropsType = {
     onSearchChanged: (search: SearchFormType) => void,
     totalUsersCount: number,
-    search: SearchFormType,
 };
 
 type FormType = {
@@ -18,7 +19,7 @@ type FormType = {
 };
 
 type onSubmitProps = {
-    setSubmitting: (setSubmitting:boolean) => void,
+    setSubmitting: (setSubmitting: boolean) => void,
 };
 
 const validationSchema = Yup.object().shape({
@@ -29,26 +30,28 @@ const validationSchema = Yup.object().shape({
 
 export const UserSearchForm: React.FC<PropsType> = React.memo((props) => {
 
+    const filter = useSelector(getSearchUsersSelector);
 
-    const {totalUsersCount, search, onSearchChanged} = props
+    const {totalUsersCount, onSearchChanged} = props;
     const initialValues = {
-        term: search.term,
-        friend: String(search.friend)
+        term: filter.term,
+        friend: String(filter.friend)
     };
 
-    const handleSubmit = (values: FormType, onSubmitProps:onSubmitProps) => {
-        const search2: SearchFormType = {
+    const handleSubmit = (values: FormType, onSubmitProps: onSubmitProps) => {
+        const filter2: SearchFormType = {
             term: values.term,
             friend: values.friend === 'true'
-            ? true
-            : values.friend === 'false' ? false : null
-    };
-        onSearchChanged(search2)
+                ? true
+                : values.friend === 'false' ? false : null
+        };
+        onSearchChanged(filter2)
         onSubmitProps.setSubmitting(false);
     };
 
     return <Formik
-            initialValues={initialValues}
+        enableReinitialize={true}
+        initialValues={initialValues}
 
         validationSchema={validationSchema}
 
@@ -59,7 +62,7 @@ export const UserSearchForm: React.FC<PropsType> = React.memo((props) => {
             return (
                 <Form className={mod.form}>
                     <div className={mod.statusErrors}>{Formik.status}</div>
-                    <div>Total Users:  {totalUsersCount}</div>
+                    <div>Total Users: {totalUsersCount}</div>
                     <span>Search users:
                         <label htmlFor="term"/>
                         <Field className={clsn(mod.search)} type="text"

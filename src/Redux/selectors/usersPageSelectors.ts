@@ -62,10 +62,10 @@ export const getFollowingInProgressSelector  = createSelector(getFolllowingInPro
     });
 
 const getSearchUsersBasicSelector = (state: AppStateType) => {
-    return state.usersPage.search
+    return state.usersPage.filter
 }
 
 export const getSearchUsersSelector  = createSelector(getSearchUsersBasicSelector,
-    (search) => {
-        return search;
+    (filter) => {
+        return filter;
     });

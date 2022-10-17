@@ -14,7 +14,6 @@ type UserType = {
     users: Array<UsersType>,
     folllowingInProgress: Array<number>,
     totalUsersCount: number,
-    search:SearchFormType
 };
 
 const User: React.FC<UserType> = React.memo((props) => {
@@ -25,8 +24,7 @@ const User: React.FC<UserType> = React.memo((props) => {
         <div className={mod.users}>
 
             <UserSearchForm onSearchChanged={props.onSearchChanged}
-                            totalUsersCount={totalUsersCount}
-                            search={props.search}/>
+                            totalUsersCount={totalUsersCount}/>
 
             {
                 users.map(user => <div className={mod.all_users} key={user.id}>
@@ -35,9 +33,7 @@ const User: React.FC<UserType> = React.memo((props) => {
 
                             <UserAva id={user.id} photos={user.photos.small} {...props}/>
 
-                            <NavLink to={"id" + user.name}>
                                 <div>
-
                                     {user.followed
                                         ? <button className={mod.button}
                                                   disabled={folllowingInProgress.includes(user.id)}
@@ -52,9 +48,8 @@ const User: React.FC<UserType> = React.memo((props) => {
                                                   }}>FOLLOW
                                         </button>
                                     }
-
                                 </div>
-                            </NavLink>
+
                         </div>
                         <div>
                             <div className={mod.user_about}>

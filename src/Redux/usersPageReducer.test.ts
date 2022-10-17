@@ -50,7 +50,7 @@ beforeEach(() => {
         currentPage: 1,
         isFetching: false,
         folllowingInProgress: [],
-        search: {
+        filter: {
             term: "",
             friend: null as null | boolean,
         }

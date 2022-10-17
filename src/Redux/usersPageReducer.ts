@@ -9,7 +9,7 @@ import {ResponsedType, ResultCodeEnum} from "../DAL/api";
 
 export type InitialStateType = typeof initialState;
 type ActionsType = InferActionsType<typeof actions>;
-export type SearchFormType = typeof initialState.search;
+export type SearchFormType = typeof initialState.filter;
 // type GetStateType = () => AppStateType;
 // export type DispatchType = Dispatch<ActionsType>;
 export type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionsType>;
@@ -23,7 +23,7 @@ const initialState = {
     currentPage: 1,
     isFetching: true,
     folllowingInProgress: [] as Array<number>,
-    search: {
+    filter: {
         term: "",
         friend: null as null | boolean,
     }
@@ -68,7 +68,7 @@ const usersPageReducer = (state: InitialStateType = initialState, action: Action
         case "sn/users/SET_FILTER_USERS":
                 return {
                     ...state,
-                    search: action.payload
+                    filter: action.payload
                 }
         default:
             return state;
@@ -79,7 +79,7 @@ export const actions = {
     followUserSuccess: (userId: number) => ({type: "sn/users/FOLLOW_SUCCESS", userId } as const),
     unfollowUserSuccess: (userId: number) => ({type: "sn/users/UNFOLLOW_SUCCESS", userId } as const),
     setUsers: (users: Array<UsersType>) => ({type: "sn/users/SET_USERS", users} as const),
-    setFilterUsers: (search: SearchFormType) => ({type:"sn/users/SET_FILTER_USERS", payload:  search } as const),
+    setFilterUsers: (filter: SearchFormType) => ({type:"sn/users/SET_FILTER_USERS", payload:  filter } as const),
     setCurrentPage: (currentPage: number) => ({type: "sn/users/SET_CURRENT_PAGE", currentPage } as const),
     setTotalUsersCount: (totalUsersCount: number) => ({type: "sn/users/SET_TOTAL_USERS_COUNT", totalUsersCount } as const ),
     toggleIsFetching: (isFetching: boolean) => ({type: "sn/users/TOGGLE_IS_FETCHING", isFetching } as const),
@@ -89,13 +89,13 @@ export const actions = {
 
 export const setCurrentPageAC = actions.setCurrentPage;
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number, search: SearchFormType): ThunkType => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number, filter: SearchFormType): ThunkType => {
     return async (dispatch) => {
         try {
             dispatch(actions.toggleIsFetching(true)); // preloader
             dispatch(actions.setCurrentPage(currentPage));
-            dispatch(actions.setFilterUsers(search));
-            let data = await usersAPI.getUsersServer(currentPage, pageSize, search.term, search.friend);
+            dispatch(actions.setFilterUsers(filter));
+            let data = await usersAPI.getUsersServer(currentPage, pageSize, filter.term, filter.friend);
             dispatch(actions.toggleIsFetching(false)); // preloader
             dispatch(actions.setUsers(data.items)); // request on server DAL for Users
             dispatch(actions.setTotalUsersCount(data.totalCount)); //request on server DAL for count Users
