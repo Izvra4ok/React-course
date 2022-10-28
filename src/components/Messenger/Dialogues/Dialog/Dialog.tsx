@@ -17,13 +17,13 @@ const Dialog: React.FC<PropsType> = React.memo((props) => {
             {
                 props.dialogs.map(dialog => <span key={dialog.id}>
             <div className={mod.dialog}>
-                <NavLink to={"/messenger/id" + dialog.first + dialog.last} className={SelectedLink => SelectedLink.isActive ? mod.active_link : mod.dialog}>
+                <NavLink to={"/messenger/id" + dialog.name} className={SelectedLink => SelectedLink.isActive ? mod.active_link : mod.dialog}>
                     <img className={mod.dialogAva}
                          src={dialog.avatarUrl != null
                              ? dialog.avatarUrl
                              : userDefaultFoto}
                          alt="avatarUser"/>
-                    {dialog.first} {dialog.last}
+                    {dialog.name}
                 </NavLink>
             </div>
             </span>

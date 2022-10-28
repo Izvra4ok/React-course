@@ -1,45 +1,3 @@
-.all_users {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-    padding: 10px;
-    align-items: flex-start;
-}
-
-.users {
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin-left: 5px;
-}
-
-.users_avaButton {
-    display: flex;
-    flex-direction: column;
-
-}
-
-.button {
-    display: block;
-    width: 120px;
-    height: 40px;
-    margin-top: 10px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    background-color: #007146;
-}
-
-.button:active {
-    transform: scale(1.02, 1.02);
-    box-shadow: 1px 1px 5px black;
-}
-
-.button:disabled {
-    background-color: rgba(0, 113, 70, 0.74);
-    transform: none;
-    box-shadow: none;
-}
 
 .users_ava {
     width: 120px;
@@ -47,27 +5,11 @@
     border-radius: 100%;
 }
 
-.users_about {
-    display: flex;
-    font-size: 14px;
-}
+@media (max-width: 1024px) {
 
-.users_fullname {
-    margin-top: 20px;
-    font-size: 20px;
-}
-
-.users_info {
-    margin-top: 10px;
-    font-size: 14px;
-
-}
-
-.users_status {
-    font-size: 14px;
-    margin-top: 20px;
-}
-
-.active_link {
-    font-weight: 500;
+    .users_ava {
+        width: 90px;
+        height: 90px;
+        border-radius: 100%;
+    }
 }

@@ -21,40 +21,36 @@ const initialstate= {
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Hello! What's new?",
             likes: 10,
-            first: "UserName",
-            last: "UserLastName",
+            name: "UserName1",
         },
         {
             id: 2,
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Hi, how are you my friend?",
             likes: 15,
-            first: "UserName",
-            last: "UserLastName",
+            name: "UserName2",
         },
         {
             id: 3,
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Good bye bro",
             likes: 25,
-            first: "UserName",
-            last: "UserLastName",
+            name: "UserName3",
         },
         {
             id: 4,
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Good bye bro",
             likes: 25,
-            first: "UserName",
-            last: "UserLastName",
+            name: "UserName4"
         },
         {
             id: 5,
             avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
             message: "Good bye bro",
             likes: 25,
-            first: "UserName",
-            last: "UserLastName",
+            name: "UserName5",
+
         },
     ] as Array<PostsType>
 
@@ -75,8 +71,7 @@ const profilePageReducer = (state: InitialStateType = initialstate, action: Acti
                     avatarUrl: "https://cdn.maximonline.ru/56/49/1b/56491b82bc0993b183b184b1bc81f2a5/1280x720_0xac120002_6545353461542004417.jpg",
                     message: newPost,
                     likes: 0,
-                    first: "UserName",
-                    last: "UserLastName",
+                    name: "UserName",
                 }]
             }
         case "sn/profile/DELETE_POST":

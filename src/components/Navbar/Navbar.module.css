@@ -45,3 +45,53 @@
     padding: 10px 9px 10px 25px;
     font-size: 16px;
 }
+
+@media (max-width: 1024px) {
+    .navbar {
+        grid-area: nav;
+        margin-left: 10px;
+        height: 235px;
+        min-width: 100px;
+        /*background-color: #007146;*/
+        background: #605e8ed4;
+        /*background:#0ac5a8;*/
+        border-radius: 10px;
+    }
+
+    .navbar_list {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+        margin-top: 5px;
+    }
+
+    .navbar_li {
+        position: relative;
+        margin: 4px auto 4px 0;
+    }
+
+
+    .navbar_li:before {
+        content: "";
+        position: absolute;
+        top: 25%;
+        left: 0;
+        margin-left: 0;
+        padding: 7px;
+        background: url("icons/navbarIcon.png") center no-repeat;
+    }
+
+    .navbar_link {
+        color: white;
+        padding: 10px 9px 10px 20px;
+        font-size: 12px;
+    }
+
+    .active_link {
+        color: black;
+        font-weight: 500;
+        padding: 10px 9px 10px 20px;
+        font-size: 12px;
+    }
+}

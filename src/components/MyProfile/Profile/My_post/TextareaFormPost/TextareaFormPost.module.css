@@ -28,3 +28,28 @@
   transform: scale(1.02, 1.02);
   box-shadow: 1px 1px 5px black;
 }
+
+@media (max-width: 1024px) {
+  .areatext{
+    height: 36px;
+    border:1px solid rgba(0, 0, 0, 0.2);
+    flex: 0 1 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .button{
+    display: inline-block;
+    background:#007146;
+    text-align: center;
+    line-height: 40px;;
+    font-size: 12px;
+    width:100px;
+    height: 36px;
+    border:none;
+    margin-left:5px;
+    color:white;
+  }
+  .button:active{
+    transform: scale(1.02, 1.02);
+    box-shadow: 1px 1px 5px black;
+  }
+}

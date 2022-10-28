@@ -4,8 +4,7 @@ export type PostsType = {
     avatarUrl: string,
     message: string,
     likes: number | null,
-    first: string,
-    last: string,
+    name: string,
 };
 
 export type ContactsType = {
@@ -50,8 +49,7 @@ export type UsersType = {
 export type InStateDialogsType = {
     id: number,
     avatarUrl: string,
-    first: string,
-    last: string,
+    name: string,
 };
 
 export type inStateMessagesType = {

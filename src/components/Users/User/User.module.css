@@ -41,11 +41,6 @@
     box-shadow: none;
 }
 
-.users_ava {
-    width: 120px;
-    height: 120px;
-    border-radius: 100%;
-}
 
 .users_about {
     display: flex;
@@ -70,4 +65,44 @@
 
 .active_link {
     font-weight: 500;
+}
+
+
+@media (max-width: 1024px) {
+    .all_users {
+        padding: 5px;
+    }
+    .users {
+        font-size: 12px;
+        padding: 5px;
+    }
+    .button {
+        width: 90px;
+        height: 30px;
+        margin-top: 5px;
+        font-size: 12px;
+    }
+    .users_about {
+        display: flex;
+        font-size: 12px;
+    }
+
+    .users_fullname {
+        margin-top: 10px;
+        font-size: 16px;
+        margin-left: 5px;
+    }
+
+    .users_info {
+        margin-left: 5px;
+        margin-top: 10px;
+        font-size: 12px;
+
+    }
+
+    .users_status {
+        margin-left: 5px;
+        font-size: 12px;
+        margin-top: 10px;
+    }
 }

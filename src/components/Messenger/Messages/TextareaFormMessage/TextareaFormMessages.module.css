@@ -6,6 +6,7 @@
 
 .areatext {
     height: 56px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     flex: 0 1 100%;
     background-color: rgba(0, 0, 0, 0.2);
 }
@@ -31,4 +32,19 @@
 .button:active {
     transform: scale(1.02, 1.02);
     box-shadow: 1px 1px 5px black;
+}
+
+
+@media (max-width: 1024px) {
+    .button {
+        line-height: 24px;;
+        font-size: 12px;
+        width: 100px;
+        height: 36px;
+
+    }
+
+    .areatext {
+        height: 36px;
+    }
 }

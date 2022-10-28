@@ -16,11 +16,11 @@ const Post: React.FC<PropsType> = (props) => {
             {
                 props.posts.map(p => <span key={p.id}>
         <div className={mod.post}>
-            <NavLink className={mod.postUser} to={p.first + p.last}>
-                {p.first} {p.last}
+            <NavLink className={mod.postUser} to={"/"+ p.id}>
+                {p.name}
             </NavLink>
             <div className={mod.post_item}>
-                <NavLink to={p.first + p.last} className={mod.link_avatar}>
+                <NavLink to={"/"+ p.id} className={mod.link_avatar}>
                     <img className={mod.image}
                          src={p.avatarUrl != null
                     ? p.avatarUrl

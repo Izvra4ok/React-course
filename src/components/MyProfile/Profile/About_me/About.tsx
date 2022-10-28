@@ -39,8 +39,7 @@ let About: React.FC<PropsType> = (props) => {
 
     return (
         <div className={mod.about}>
-            <AvaProfile avatar={props.profile.photos.large}/>
-
+                <AvaProfile avatar={props.profile.photos.large}/>
             <div className={mod.about_me}>
                 {editMode
                     ? <AboutDataFormik profile={profile}
