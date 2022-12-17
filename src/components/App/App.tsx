@@ -17,6 +17,8 @@ import {ErrorMsg} from "../common/ErrorMsg";
 import {Navbar} from "../Navbar/Navbar";
 import {LoginForm} from "../Login/LoginForm";
 import {Header} from "../Header/Header";
+import {Alert} from "@mui/material";
+
 
 
 type PropsType = {
@@ -27,6 +29,7 @@ type PropsType = {
 };
 
 const MessengerContainer = React.lazy(() => import("../Messenger/MessengerContainer"));
+const ChatPage = React.lazy(() => import("../../pages/Chat/ChatPage"));
 
 
 const App: React.FC<PropsType> = (props) => {
@@ -74,8 +77,17 @@ const App: React.FC<PropsType> = (props) => {
                     <Route path="/users/*"
                            element={<Users/>}>
                     </Route>
+
+                    <Route path="/chat/*"
+                           element={<React.Suspense fallback={<Preloader/>}>
+                               <ChatPage/>
+                           </React.Suspense>}>
+                    </Route>
+
                     <Route path="*"
-                           element={"404 NOT FOUND"}>
+                           element={<Alert variant="filled" severity="warning">
+                               "404 Not Found"
+                           </Alert>}>
                     </Route>
 
                 </Routes>

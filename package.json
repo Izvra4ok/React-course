@@ -2,7 +2,7 @@
   "name": "socialnetwork",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://izvra4ok.github.io/React-course/",
+  "homepage": "https://izvra4ok.github.io/react-course-from-ulbi/",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",

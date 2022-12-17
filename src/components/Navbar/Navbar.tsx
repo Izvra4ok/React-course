@@ -23,8 +23,8 @@ export const Navbar: React.FC = React.memo(() => {
                             </NavLink>
                         </li>
                         <li className={mod.navbar_li}>
-                            <NavLink to="/news" className={SelectedLink =>  SelectedLink.isActive ? mod.active_link : mod.navbar_link}>
-                                News
+                            <NavLink to="/chat" className={SelectedLink =>  SelectedLink.isActive ? mod.active_link : mod.navbar_link}>
+                                Chat
                             </NavLink>
                         </li>
                         <li className={mod.navbar_li}>
