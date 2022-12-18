@@ -1,21 +1,25 @@
 {
   "files": {
-    "main.css": "/React-course/static/css/main.9106c9fd.css",
-    "main.js": "/React-course/static/js/main.23e16106.js",
-    "static/css/371.3bf3aee5.chunk.css": "/React-course/static/css/371.3bf3aee5.chunk.css",
-    "static/js/371.bb9c5138.chunk.js": "/React-course/static/js/371.bb9c5138.chunk.js",
-    "static/js/787.543e6ce9.chunk.js": "/React-course/static/js/787.543e6ce9.chunk.js",
-    "static/media/preloader.gif": "/React-course/static/media/preloader.63d7da1bc33c0063002c.gif",
-    "static/media/userDefaultAvatar.webp": "/React-course/static/media/userDefaultAvatar.a315ddfedcd9b60a6702.webp",
-    "index.html": "/React-course/index.html",
-    "main.9106c9fd.css.map": "/React-course/static/css/main.9106c9fd.css.map",
-    "main.23e16106.js.map": "/React-course/static/js/main.23e16106.js.map",
-    "371.3bf3aee5.chunk.css.map": "/React-course/static/css/371.3bf3aee5.chunk.css.map",
-    "371.bb9c5138.chunk.js.map": "/React-course/static/js/371.bb9c5138.chunk.js.map",
-    "787.543e6ce9.chunk.js.map": "/React-course/static/js/787.543e6ce9.chunk.js.map"
+    "main.css": "/react-course-from-ulbi/static/css/main.d65d16a3.css",
+    "main.js": "/react-course-from-ulbi/static/js/main.ef1d7b91.js",
+    "static/css/213.45858e43.chunk.css": "/react-course-from-ulbi/static/css/213.45858e43.chunk.css",
+    "static/js/213.af32db50.chunk.js": "/react-course-from-ulbi/static/js/213.af32db50.chunk.js",
+    "static/css/925.f894e1a0.chunk.css": "/react-course-from-ulbi/static/css/925.f894e1a0.chunk.css",
+    "static/js/925.0bec0e66.chunk.js": "/react-course-from-ulbi/static/js/925.0bec0e66.chunk.js",
+    "static/js/787.543e6ce9.chunk.js": "/react-course-from-ulbi/static/js/787.543e6ce9.chunk.js",
+    "static/media/preloader.gif": "/react-course-from-ulbi/static/media/preloader.63d7da1bc33c0063002c.gif",
+    "static/media/userDefaultAvatar.webp": "/react-course-from-ulbi/static/media/userDefaultAvatar.a315ddfedcd9b60a6702.webp",
+    "index.html": "/react-course-from-ulbi/index.html",
+    "main.d65d16a3.css.map": "/react-course-from-ulbi/static/css/main.d65d16a3.css.map",
+    "main.ef1d7b91.js.map": "/react-course-from-ulbi/static/js/main.ef1d7b91.js.map",
+    "213.45858e43.chunk.css.map": "/react-course-from-ulbi/static/css/213.45858e43.chunk.css.map",
+    "213.af32db50.chunk.js.map": "/react-course-from-ulbi/static/js/213.af32db50.chunk.js.map",
+    "925.f894e1a0.chunk.css.map": "/react-course-from-ulbi/static/css/925.f894e1a0.chunk.css.map",
+    "925.0bec0e66.chunk.js.map": "/react-course-from-ulbi/static/js/925.0bec0e66.chunk.js.map",
+    "787.543e6ce9.chunk.js.map": "/react-course-from-ulbi/static/js/787.543e6ce9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9106c9fd.css",
-    "static/js/main.23e16106.js"
+    "static/css/main.d65d16a3.css",
+    "static/js/main.ef1d7b91.js"
   ]
 }
